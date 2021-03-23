@@ -4,12 +4,158 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/crowd"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:id="@+id/LogoImg"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:contentDescription="@string/logoimg"
         app:srcCompat="@drawable/logo_red" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        tools:gravity="center_horizontal" />
+
+    <TableLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#FAEAEA"
+        android:foregroundTint="#DD1919">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/TxtLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/login"
+                android:textColor="@color/red"
+                android:textSize="30sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:gravity="center_horizontal">
+
+            <EditText
+                android:id="@+id/TxtUsuNom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="@string/NoMUsu"
+                android:inputType="textPersonName"
+                android:text="@string/nombre_de_usuario"
+                android:textColor="#7C7070" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:gravity="center_horizontal">
+
+            <EditText
+                android:id="@+id/TxtUsuPas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:gravity="center_horizontal"
+                android:inputType="textPersonName"
+                android:text="@string/txtContraseña"
+                android:textColor="#7C7070" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnIngresar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingresar"
+                android:textColor="#FFFFFF" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/Txtreg"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="@string/NRegis"
+                android:textColor="#BF2E2E" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/BtnEven"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btnEventos"
+                android:textColor="#FFFFFF" />
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="80dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FAEAEA"
+            android:gravity="center_horizontal"
+            android:foregroundTint="#DD1919"
+            />
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/fblogo" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/logogoo" />
+        </TableRow>
+
+    </TableLayout>
 </LinearLayout>

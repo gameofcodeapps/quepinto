@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">QuePinto</string>
+    <string name="logoimg">LogoImg</string>
+    <string name="login">Login</string>
+    <string name="nombre_de_usuario">Nombre de Usuario</string>
+    <string name="txtContraseña">Contraseña</string>
+    <string name="NoMUsu">Nombre o Mail de Usuario</string>
+    <string name="NRegis">No estás registrado?</string>
+    <string name="btnEventos">Buscar eventos!</string>
+    <string name="btningresar">Ingresar</string>
+    <string name="string_btningresar" />
+    <string name="txtredsoc">Ingresa mediante las redes Sociales</string>
 </resources>
