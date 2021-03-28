@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QuePinto</string>
+    <string name="app_name">QuePintó?</string>
     <string name="logoimg">LogoImg</string>
     <string name="login">Login</string>
     <string name="nombre_de_usuario">Nombre de Usuario</string>
@@ -10,4 +10,14 @@
     <string name="btningresar">Ingresar</string>
     <string name="string_btningresar" />
     <string name="txtredsoc">Ingresa mediante las redes Sociales</string>
+    <string name="adnd_vamos">A dónde vamos hoy?</string>
+    <string name="barra_busqueda">buscar</string>
+    <string name="reg_usuario">REGISTRO DE USUARIO</string>
+    <string name="NAME">NOMBRE</string>
+    <string name="SURNAME">APELLIDO</string>
+    <string name="EMAIL">EMAIL</string>
+    <string name="PASS">CONTRASEÑA</string>
+    <string name="CONF_PASS">CONFIRMAR CONTRASEÑA</string>
+    <string name="bot_Env">ENVIAR</string>
+
 </resources>
