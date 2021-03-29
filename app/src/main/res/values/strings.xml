@@ -19,5 +19,11 @@
     <string name="PASS">CONTRASEÑA</string>
     <string name="CONF_PASS">CONFIRMAR CONTRASEÑA</string>
     <string name="bot_Env">ENVIAR</string>
+    <string name="txt_nom">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="correle">Correo Electrónico</string>
+    <string name="confirmar_correo">Confirmar Correo</string>
+    <string name="txtcontr">Contraseña</string>
+    <string name="txtconfcont">Confirmar Contraseña</string>
 
 </resources>
