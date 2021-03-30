@@ -1,9 +1,12 @@
 package com.gameofcode.quepinto.helpers;
 
+import android.util.Base64;
+
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 
 
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,9 +22,8 @@ public class ConnectDBHelper {
     private static String remoteHost="quepinto.mysql.pythonanywhere-services.com";
     private static String sshHost="ssh.pythonanywhere.com";
     private static String user ="quepinto";
-    private static String password ="proyecto2020";
+    private static String access ="cHJveWVjdG8yMDIw";
     private static String dbUserName ="quepinto";
-    private static String dbPassword ="proyecto2020";
     private static String url = "jdbc:mysql://localhost:"+locaPort+"/quepinto$quepinto";
     private static Connection conn = null;
     private static Session session= null;
@@ -39,7 +41,7 @@ public class ConnectDBHelper {
             config.put("StrictHostKeyChecking", "no");
             JSch jsch = new JSch();
             session=jsch.getSession(user, sshHost, 22);
-            session.setPassword(password);
+            session.setPassword( new String(Base64.decode(access, Base64.DEFAULT), StandardCharsets.UTF_8));
             session.setConfig(config);
             session.connect();
             System.out.println("Connected");
@@ -53,7 +55,7 @@ public class ConnectDBHelper {
 
         try{
             Class.forName(driverName).newInstance();
-            conn = DriverManager.getConnection (url, dbUserName, dbPassword);
+            conn = DriverManager.getConnection (url, dbUserName, new String(Base64.decode(access, Base64.DEFAULT),StandardCharsets.UTF_8));
         }catch (Exception e){
             //En caso de error al conectar al BD
             throw e;
