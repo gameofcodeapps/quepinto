@@ -24,6 +24,16 @@
     <string name="correle">Correo Electrónico</string>
     <string name="confirmar_correo">Confirmar Correo</string>
     <string name="txtcontr">Contraseña</string>
+    <string name="reg_evento">REGISTRO DE EVENTO</string>
     <string name="txtconfcont">Confirmar Contraseña</string>
-
+    <string name="NAME_EVENT">INGRESE NOMBRE DEL EVENTO</string>
+    <string name="txt_nombre_evento">Nombre del evento</string>
+    <string name="txt_organizador">Organizador</string>
+    <string name="ORGANIZER">ORGANIZADOR</string>
+    <string name="txt_description">Descripción</string>
+    <string name="DESCRIPTION">DESCRIPCIÓN</string>
+    <string name="txt_map">Mapa</string>
+    <string name="btnregistrar">Registrar</string>
+    <string name="txt_fecha_hora_inicio">Fecha y Hora de inicio</string>
+    <string name="txt_fecha_hora_fin">Fecha y Hora de finalizacion</string>
 </resources>
