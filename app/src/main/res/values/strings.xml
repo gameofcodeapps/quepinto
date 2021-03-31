@@ -4,10 +4,10 @@
     <string name="login">Login</string>
     <string name="nombre_de_usuario">Nombre de Usuario</string>
     <string name="txtContraseña">Contraseña</string>
-    <string name="NoMUsu">Nombre o Mail de Usuario</string>
+    <string name="NoMUsu">Mail del Usuario</string>
     <string name="NRegis">No estás registrado?</string>
     <string name="btnEventos">Buscar eventos!</string>
-    <string name="btningresar">Ingresar</string>
+    <string name="btningreso">Ingresar</string>
     <string name="string_btningresar" />
     <string name="txtredsoc">Ingresa mediante las redes Sociales</string>
     <string name="adnd_vamos">A dónde vamos hoy?</string>
@@ -36,4 +36,6 @@
     <string name="btnregistrar">Registrar</string>
     <string name="txt_fecha_hora_inicio">Fecha y Hora de inicio</string>
     <string name="txt_fecha_hora_fin">Fecha y Hora de finalizacion</string>
+    <string name="btningresar">Ingresar</string>
+    <string name="txorgy">Organízate y enucuentra dónde salir</string>
 </resources>
