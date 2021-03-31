@@ -2,6 +2,7 @@ package com.gameofcode.quepinto;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toast.makeText(this,"esto es solo un prueba, los stings van en el XML",Toast.LENGTH_LONG).show();
+
         doStaff();
         EditText UsuNom = findViewById(R.id.TxtUsuNom);
         EditText UsuPwd = findViewById(R.id.TxtUsuPas);
@@ -38,23 +39,42 @@ public class MainActivity extends AppCompatActivity {
         Intent registro = new Intent(this,MainActivity3.class);
         startActivity(registro);}
 
-
-    private void doStaff(){
+    public void logUsuario(View view){
+        EditText etUsuario = findViewById(R.id.TxtUsuNom);
+        EditText etPassword = findViewById(R.id.TxtUsuPas);
+        ProgressDialog progressDialog= ProgressDialog.show(this, "",
+                "Validando Usuario...", true);
         new Thread(new Runnable() {
             @Override
             public void run() {
-                UsuarioModel usuarioModel = new UsuarioModel();
-                UsuarioDTO usuarioDTO = usuarioModel.ObtenerDatosUsuario("admin", "admin");
+
+                UsuarioModel instance = UsuarioModel.getInstance();
+                UsuarioDTO usuarioDTO=instance.obtenerDatosUsuario(etUsuario.getText().toString(),etPassword.getText().toString());
+
+                //Toast.makeText(getApplicationContext(),usuarioDTO.getUsername(),Toast.LENGTH_LONG).show();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println(usuarioDTO.getUsername());
-                        Toast.makeText(getApplicationContext(),usuarioDTO.getUsername(),Toast.LENGTH_LONG).show();
+                        if(usuarioDTO.getUsername()==null){
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(),"Usuario o clave incorrecta",Toast.LENGTH_LONG).show();
+                        }else{
+                            progressDialog.dismiss();
+                            Intent buscar = new Intent(getApplicationContext(),MainActivity2.class);
+                            startActivity(buscar);
+                        }
+
+
                     }
                 });
             }
 
         }).start();
+
+    }
+
+    private void doStaff(){
+
 
     }
 

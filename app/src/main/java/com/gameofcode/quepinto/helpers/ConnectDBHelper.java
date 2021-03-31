@@ -1,18 +1,13 @@
 package com.gameofcode.quepinto.helpers;
 
 import android.util.Base64;
-
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
-
-
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.concurrent.CompletableFuture;
 
 
 public class ConnectDBHelper {
@@ -89,6 +84,7 @@ public class ConnectDBHelper {
         return rs;
 
     }
+
 
 
 }
