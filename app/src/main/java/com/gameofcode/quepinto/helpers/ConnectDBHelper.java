@@ -34,7 +34,7 @@ public class ConnectDBHelper {
     }
 
 
-    private static void establecerConexionBD() throws Exception {
+    public static void establecerConexionBD() throws Exception {
         try{
             //Set StrictHostKeyChecking property to no to avoid UnknownHostKey issue
             java.util.Properties config = new java.util.Properties();
@@ -62,7 +62,7 @@ public class ConnectDBHelper {
         }
     }
 
-    private void desconectarBD() throws Exception {
+    public static void desconectarBD() throws Exception {
 
         try {
             if(conn != null && !conn.isClosed()){
@@ -82,9 +82,10 @@ public class ConnectDBHelper {
 
     public static ResultSet  ejecutarSQL(String pQuery) throws Exception {
 
-        establecerConexionBD();
+       // establecerConexionBD();
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(pQuery);
+       // desconectarBD();
         return rs;
 
     }
