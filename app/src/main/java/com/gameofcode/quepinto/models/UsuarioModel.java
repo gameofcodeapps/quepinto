@@ -70,4 +70,8 @@ public  class UsuarioModel {
         }
         return "";
     }
+
+    public UsuarioDTO getUsuarioLogeado() {
+        return usuarioLogeado;
+    }
 }

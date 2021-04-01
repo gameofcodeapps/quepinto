@@ -4,5 +4,5 @@ import com.gameofcode.quepinto.DTO.UsuarioDTO;
 
 public interface IMainPresenter {
 
-    public UsuarioDTO validarUsuario(String pUsuarrio, String pPassword);
+    public boolean validarUsuario(String pUsuarrio, String pPassword);
 }

@@ -11,7 +11,9 @@ import android.widget.Toast;
 import android.content.Intent;
 import com.gameofcode.quepinto.DTO.UsuarioDTO;
 import com.gameofcode.quepinto.helpers.ConnectDBHelper;
+import com.gameofcode.quepinto.interfaces.IMainPresenter;
 import com.gameofcode.quepinto.models.UsuarioModel;
+import com.gameofcode.quepinto.presentadores.MainPresenter;
 
 import java.sql.SQLException;
 
@@ -48,20 +50,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                UsuarioModel instance = UsuarioModel.getInstance();
-                UsuarioDTO usuarioDTO=instance.obtenerDatosUsuario(etUsuario.getText().toString(),etPassword.getText().toString());
-
+                IMainPresenter iMainPresenter = new MainPresenter();
+                boolean boolBsuarioValido = iMainPresenter.validarUsuario(etUsuario.getText().toString(), etPassword.getText().toString());
                 //Toast.makeText(getApplicationContext(),usuarioDTO.getUsername(),Toast.LENGTH_LONG).show();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(usuarioDTO.getUsername()==null){
-                            progressDialog.dismiss();
-                            Toast.makeText(getApplicationContext(),"Usuario o clave incorrecta",Toast.LENGTH_LONG).show();
-                        }else{
+                        if(boolBsuarioValido){
                             progressDialog.dismiss();
                             Intent buscar = new Intent(getApplicationContext(),MainActivity2.class);
                             startActivity(buscar);
+                            }else{
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(),"Usuario o clave incorrecta",Toast.LENGTH_LONG).show();
+
                         }
 
 
