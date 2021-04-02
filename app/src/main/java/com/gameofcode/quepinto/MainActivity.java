@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void buscarEventos(View view) {
-        Intent buscar = new Intent(this,MainActivity2.class);
+        Intent buscar = new Intent(this,MainActivityBusEvento.class);
         startActivity(buscar);}
 
     public void noRegistro(View view) {
-        Intent registro = new Intent(this,MainActivity3.class);
+        Intent registro = new Intent(this,MainActivityRegEvento.class);
         startActivity(registro);}
 
     public void logUsuario(View view){
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         if(boolBsuarioValido){
                             progressDialog.dismiss();
-                            Intent buscar = new Intent(getApplicationContext(),MainActivity2.class);
+                            Intent buscar = new Intent(getApplicationContext(),MainActivityBusEvento.class);
                             startActivity(buscar);
                             }else{
                             progressDialog.dismiss();
