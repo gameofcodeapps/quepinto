@@ -32,10 +32,13 @@
     <string name="ORGANIZER">ORGANIZADOR</string>
     <string name="txt_description">Descripción</string>
     <string name="DESCRIPTION">DESCRIPCIÓN</string>
-    <string name="txt_map">Mapa</string>
+    <string name="txt_map">Ubicar en Mapa</string>
     <string name="btnregistrar">Registrar</string>
     <string name="txt_fecha_hora_inicio">Fecha y Hora de inicio</string>
-    <string name="txt_fecha_hora_fin">Fecha y Hora de finalizacion</string>
+    <string name="txt_fecha_hora_fin">Fecha y Hora de finalización</string>
     <string name="btningresar">Ingresar</string>
     <string name="txorgy">Organízate y enucuentra dónde salir</string>
+    <string name="olvco">Olvidó su Contraseña?</string>
+    <string name="txtreccon">Recuperación de Contraseña</string>
+    <string name="ejmail">ejemplo@gmail.com</string>
 </resources>

@@ -41,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
         Intent registro = new Intent(this,MainActivityRegEvento.class);
         startActivity(registro);}
 
+    public void olvidoCont(View view) {
+        Intent recCon = new Intent(this,MainActivityRecCont.class);
+        startActivity(recCon);}
+
     public void logUsuario(View view){
         EditText etUsuario = findViewById(R.id.TxtUsuNom);
         EditText etPassword = findViewById(R.id.TxtUsuPas);

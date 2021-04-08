@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuePinto">
-        <activity android:name=".MainActivityPerfil"></activity>
+        <activity android:name=".MainActivityRecCont"/>
+        <activity android:name=".MainActivityPerfil" />
         <activity android:name=".MainActivityRegEvento" />
         <activity android:name=".MainActivityRegUsuario" />
         <activity android:name=".MainActivityBusEvento" />
