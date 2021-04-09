@@ -104,8 +104,8 @@
 
     <Button
         android:id="@+id/but_Env"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="162dp"
+        android:layout_height="46dp"
         android:text="@string/bot_Env"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

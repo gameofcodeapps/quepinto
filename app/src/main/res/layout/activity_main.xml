@@ -110,6 +110,7 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
                 android:onClick="olvidoCont"
+                android:textSize="17sp"
                 android:text="@string/olvco"
                 android:textColor="#BF2E2E" />
         </TableRow>
@@ -125,6 +126,7 @@
                 android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:onClick="noRegistro"
+                android:textSize="17sp"
                 android:text="@string/NRegis"
                 android:textColor="#BF2E2E" />
 
@@ -149,15 +151,14 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:paddingTop="80dp">
+        android:paddingTop="20dp">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="15dp"
             android:background="#FAEAEA"
-            android:gravity="center_horizontal"
             android:foregroundTint="#DD1919"
-            />
+            android:gravity="center_horizontal" />
 
         <TableRow
             android:layout_width="wrap_content"
@@ -170,11 +171,17 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/fblogo" />
 
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/logogoo" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/sign_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </TableRow>
 
     </TableLayout>
