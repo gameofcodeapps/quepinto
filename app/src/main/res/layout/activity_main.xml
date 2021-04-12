@@ -8,10 +8,14 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+
+<!---quité actionbar y bajé el logo-->
+
     <ImageView
         android:id="@+id/LogoImg"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginTop="20dp"
         android:contentDescription="@string/logoimg"
         app:srcCompat="@drawable/logo_red" />
 

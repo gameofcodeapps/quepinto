@@ -41,4 +41,9 @@
     <string name="olvco">Olvidó su Contraseña?</string>
     <string name="txtreccon">Recuperación de Contraseña</string>
     <string name="ejmail">ejemplo@gmail.com</string>
+    >!---PERFIL!--->
+    <string name="NAME_perf">NOMBRE:</string>
+    <string name="APELL_perf">APELLIDO:</string>
+    <string name="EMAIL_perf">EMAIL:</string>
+
 </resources>
