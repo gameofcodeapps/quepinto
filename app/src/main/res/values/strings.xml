@@ -45,5 +45,6 @@
     <string name="NAME_perf">NOMBRE:</string>
     <string name="APELL_perf">APELLIDO:</string>
     <string name="EMAIL_perf">EMAIL:</string>
+    <string name="User_NAME_PERF">NOMBRE DE USUARIO:</string>
 
 </resources>
