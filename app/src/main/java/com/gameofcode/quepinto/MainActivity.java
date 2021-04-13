@@ -10,9 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.content.Intent;
+
+import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.DTO.UsuarioDTO;
 import com.gameofcode.quepinto.helpers.ConnectDBHelper;
 import com.gameofcode.quepinto.interfaces.IMainPresenter;
+import com.gameofcode.quepinto.models.EventoModel;
 import com.gameofcode.quepinto.models.UsuarioModel;
 import com.gameofcode.quepinto.presentadores.MainPresenter;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -24,6 +27,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
 import java.sql.SQLException;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -72,17 +76,20 @@ public class MainActivity extends AppCompatActivity {
         startActivity(recCon);}
 
     public void logUsuario(View view){
+        //Se ejecuta antes de la tarea en segundo plano//////////////////
         EditText etUsuario = findViewById(R.id.TxtUsuNom);
         EditText etPassword = findViewById(R.id.TxtUsuPas);
         ProgressDialog progressDialog= ProgressDialog.show(this, "",
                 "Validando Usuario...", true);
+        /////////////////////////////////////////////////////////////////
         new Thread(new Runnable() {
             @Override
             public void run() {
-
+                ////////Se ejecuta en segundo plano//////////////////////
                 IMainPresenter iMainPresenter = new MainPresenter();
                 boolean boolBsuarioValido = iMainPresenter.validarUsuario(etUsuario.getText().toString(), etPassword.getText().toString());
-                //Toast.makeText(getApplicationContext(),usuarioDTO.getUsername(),Toast.LENGTH_LONG).show();
+                ////////////////////////////////////////////////////////
+                //Se ejecuta al terminar la tarea en segundo plano
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -93,19 +100,35 @@ public class MainActivity extends AppCompatActivity {
                             }else{
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(),"Usuario o clave incorrecta",Toast.LENGTH_LONG).show();
-
                         }
-
-
                     }
                 });
+                /////////////////////////////////////////////////////////
             }
-
         }).start();
 
     }
-
     private void doStaff(){
+        //Se ejecuta antes de la tarea en segundo plano
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //Se ejecuta en segundo plano
+
+                EventoModel instance = EventoModel.getInstance();
+                List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
+                //Log.i("Eventos","holaa");
+                Log.i("Eventos",String.valueOf(eventoDTOS.get(1).getImagenEvento()));
+                //Se ejecuta al terminar la tarea en segundo plano
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Toast.makeText(getApplicationContext(),eventoDTOS.size(),Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        }).start();
 
 
     }

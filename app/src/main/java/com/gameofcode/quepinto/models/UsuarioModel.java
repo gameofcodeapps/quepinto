@@ -1,11 +1,16 @@
 package com.gameofcode.quepinto.models;
 
+import android.util.Log;
+
+import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.DTO.UsuarioDTO;
 import com.gameofcode.quepinto.helpers.ConnectDBHelper;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public  class UsuarioModel {
 
@@ -52,6 +57,12 @@ public  class UsuarioModel {
         return usuarioDevuelto;
     }
 
+    public int registrarUsuario(UsuarioDTO pUsuarioDTO) throws Exception {
+        ConnectDBHelper.establecerConexionBD();
+
+        return 0;
+    }
+
     private  String encriptarMD5(String s) {
         try {
             // Create MD5 Hash
@@ -74,4 +85,54 @@ public  class UsuarioModel {
     public UsuarioDTO getUsuarioLogeado() {
         return usuarioLogeado;
     }
+
+    //Valores retorno
+    /*
+    0 = nombre de usuario y mail no registrado
+    1 = email registrado
+    2 = usuario registrado
+    3 = nombre de usuario y mail registrado
+     */
+    public int verificarSiExisteUsuario(String pEmail, String pUsuario){
+
+        String sqlUsuario = "SELECT count(*) from username=\""+pUsuario+"\"";
+        String sqlEmail =  "SELECT count(*) from email=\""+pEmail+"\"";
+        ResultSet resultSet = null;
+        int resultadoEmail = 0;
+        int resultadoFinal=0;
+        try {
+            ConnectDBHelper.establecerConexionBD();
+            resultSet = ConnectDBHelper.ejecutarSQL(sqlUsuario);
+            int resultadoUsuario = 0;
+            while (resultSet.next()) {
+                resultadoUsuario=resultSet.getInt(1);
+            }
+            resultSet = ConnectDBHelper.ejecutarSQL(sqlEmail);
+            while (resultSet.next()) {
+                resultadoEmail=resultSet.getInt(1);
+            }
+            //Si el usuario y el mail no estan registrados
+            if (resultadoUsuario==0 && resultadoEmail==0){
+                resultadoFinal=0;
+            //Si el mail esta registrado
+            }else if (resultadoEmail>0){
+                resultadoFinal=1;
+            //Si el nombre de usuario esta registrado
+            }else if(resultadoUsuario>0){
+                resultadoFinal=2;
+            //Si el nombre de usuario y el mail estan registrados
+            }else if(resultadoUsuario>0 && resultadoEmail>0){
+                resultadoFinal=3;
+            }
+            ConnectDBHelper.desconectarBD();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultadoFinal;
+
+    }
+
+
+
+
 }
