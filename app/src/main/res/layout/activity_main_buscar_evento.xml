@@ -8,12 +8,15 @@
     android:background="@drawable/crowd"
     tools:context=".MainActivityBusEvento">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <TextView
         android:id="@+id/adnd_vamos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="sans-serif-medium"
         android:includeFontPadding="false"
         android:text="@string/adnd_vamos"

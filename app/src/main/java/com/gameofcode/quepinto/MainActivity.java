@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(buscar);}
 
     public void noRegistro(View view) {
-        Intent registro = new Intent(this,MainActivityRegEvento.class);
+        Intent registro = new Intent(this,MainActivityRegUsuario.class);
         startActivity(registro);}
 
     public void olvidoCont(View view) {

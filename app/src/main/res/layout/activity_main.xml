@@ -24,169 +24,133 @@
         android:layout_height="100dp"
         tools:gravity="center_horizontal" />
 
-    <TableLayout
-        android:layout_width="250dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="#FAEAEA"
-        android:foregroundTint="#DD1919">
+        android:background="#55000000">
 
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/TxtLogo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="@string/login"
-                android:textColor="@color/red"
-                android:textSize="30sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:gravity="center_horizontal">
-
-            <EditText
-                android:id="@+id/TxtUsuNom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:layout_gravity="center"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:hint="@string/NoMUsu"
-                android:inputType="textPersonName"
-                android:textColor="#7C7070" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_gravity="center_horizontal">
-
-            <EditText
-                android:id="@+id/TxtUsuPas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:gravity="center_horizontal"
-                android:inputType="textPassword"
-                android:hint="@string/txtContraseña"
-                android:textColor="#7C7070" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
-
-            <Button
-                android:id="@+id/btnIngresar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btningresar"
-                android:onClick="logUsuario"
-                android:textColor="#FFFFFF" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </TableRow>
-
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/txtolvido"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:onClick="olvidoCont"
-                android:textSize="17sp"
-                android:text="@string/olvco"
-                android:textColor="#BF2E2E" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/Txtreg"
-                android:layout_width="199dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center_horizontal"
-                android:onClick="noRegistro"
-                android:textSize="17sp"
-                android:text="@string/NRegis"
-                android:textColor="#BF2E2E" />
-
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/BtnEven"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="buscarEventos"
-                android:text="@string/btnEventos"
-                android:textColor="#FFFFFF" />
-        </TableRow>
-
-    </TableLayout>
-
-    <TableLayout
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:paddingTop="20dp">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:background="#FAEAEA"
-            android:foregroundTint="#DD1919"
-            android:gravity="center_horizontal" />
-
-        <TableRow
+        <TextView
+            android:id="@+id/TxtLogo"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lemon"
+            android:gravity="center_horizontal"
+            android:text="@string/login"
+            android:textColor="#931E1E"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/fblogo" />
+        <EditText
+            android:id="@+id/TxtUsuNom"
+            android:layout_width="255dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="@string/NoMUsu"
+            android:textColorHint="@color/white"
+            android:inputType="textPersonName"
+            android:textColor="#FBFAFA"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TxtLogo" />
 
-        </TableRow>
+        <EditText
+            android:id="@+id/TxtUsuPas"
+            android:layout_width="255dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="8dp"
+            android:autofillHints=""
+            android:textColorHint="@color/white"
+            android:gravity="center_horizontal"
+            android:hint="@string/txtContraseña"
+            android:inputType="textPassword"
+            android:textColor="#F8F3F3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TxtUsuNom" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+        <Button
+            android:id="@+id/btnIngresar"
+            android:layout_width="190dp"
+            android:layout_height="50dp"
+            android:onClick="logUsuario"
+            android:text="@string/btningresar"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TxtUsuPas" />
 
-            <com.google.android.gms.common.SignInButton
-                android:id="@+id/sign_in_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </TableRow>
+        <TextView
+            android:id="@+id/txtolvido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:gravity="center_horizontal"
+            android:onClick="olvidoCont"
+            android:text="@string/olvco"
+            android:textColor="#F4F2F2"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnIngresar" />
 
-    </TableLayout>
+        <TextView
+            android:id="@+id/Txtreg"
+            android:layout_width="188dp"
+            android:layout_height="31dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:onClick="noRegistro"
+            android:text="@string/NRegis"
+            android:textColor="#F4F2F2"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtolvido" />
+
+        <Button
+            android:id="@+id/BtnEven"
+            android:layout_width="190dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="12dp"
+            android:onClick="buscarEventos"
+            android:text="@string/btnEventos"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Txtreg" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="61dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/sign_in_button"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BtnEven"
+            app:srcCompat="@drawable/fblogo" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="130dp"
+            android:layout_height="61dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="76dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BtnEven" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

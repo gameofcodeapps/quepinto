@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloEvento"
         app:srcCompat="@drawable/crowd"
-        android:contentDescription="@string/todo" />
+        android:contentDescription="@string/ImgLogo" />
 
     <EditText
         android:id="@+id/descripcionEvento"

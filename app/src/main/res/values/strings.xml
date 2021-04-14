@@ -46,5 +46,6 @@
     <string name="APELL_perf">APELLIDO:</string>
     <string name="EMAIL_perf">EMAIL:</string>
     <string name="User_NAME_PERF">NOMBRE DE USUARIO:</string>
+    <string name="ImgLogo">Imagen</string>
 
 </resources>
