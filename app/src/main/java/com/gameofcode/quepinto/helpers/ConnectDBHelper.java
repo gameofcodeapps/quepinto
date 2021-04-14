@@ -23,6 +23,7 @@ public class ConnectDBHelper {
     private static Connection conn = null;
     private static Session session= null;
     private static String driverName="com.mysql.jdbc.Driver";
+    private static int portAssigned;
 
     public ConnectDBHelper(){
 
@@ -40,8 +41,8 @@ public class ConnectDBHelper {
             session.setConfig(config);
             session.connect();
             System.out.println("Connected");
-            int assinged_port=session.setPortForwardingL(locaPort, remoteHost, remotePort);
-            System.out.println("localhost:"+assinged_port+" -> "+remoteHost+":"+remotePort);
+            portAssigned=session.setPortForwardingL(locaPort, remoteHost, remotePort);
+            System.out.println("localhost:"+portAssigned+" -> "+remoteHost+":"+remotePort);
             System.out.println("Port Forwarded");
         }catch(Exception e){
             //Capturo error si no se puedo crear tunel SSH
@@ -66,6 +67,7 @@ public class ConnectDBHelper {
             }
             if(session !=null && session.isConnected()){
                 System.out.println("Closing SSH Connection");
+                //session.delPortForwardingL(portAssigned);
                 session.disconnect();
 
             }
