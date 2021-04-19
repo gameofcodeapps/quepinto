@@ -18,6 +18,14 @@ public class UsuarioDTO {
 
     }
 
+    public UsuarioDTO(String password, String username, String firstName, String email, String lastName) {
+        this.password = password;
+        this.username = username;
+        this.firstName = firstName;
+        this.email = email;
+        this.lastName = lastName;
+    }
+
     public UsuarioDTO(String id, String password, String lastLogin, String isSuperUser, String username, String firstName, String email, String isStaff, String isActive, String dateJoined, String lastName) {
         this.id = id;
         this.password = password;

@@ -57,13 +57,8 @@ public  class UsuarioModel {
         return usuarioDevuelto;
     }
 
-    public int registrarUsuario(UsuarioDTO pUsuarioDTO) throws Exception {
-        ConnectDBHelper.establecerConexionBD();
-
-        return 0;
-    }
-
-    private  String encriptarMD5(String s) {
+/*
+    public  String encriptarMD5(String s) {
         try {
             // Create MD5 Hash
             MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
@@ -81,7 +76,26 @@ public  class UsuarioModel {
         }
         return "";
     }
-
+*/
+    public String encriptarMD5(final String s) {
+        try{
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+            StringBuilder hexString = new StringBuilder();
+            for(int i = 0; i < messageDigest.length; i++){
+                String h = Integer.toHexString(0xFF & messageDigest[i]);
+                while(h.length() < 2){
+                    h = "0" + h;
+                }
+                hexString.append(h);
+            }
+            return hexString.toString();
+        }catch (NoSuchAlgorithmException e){
+            Log.e("Error al encriptar MD5 ", " " + e.getMessage());
+        }
+        return "";
+    }
     public UsuarioDTO getUsuarioLogeado() {
         return usuarioLogeado;
     }
@@ -93,14 +107,16 @@ public  class UsuarioModel {
     2 = usuario registrado
     3 = nombre de usuario y mail registrado
      */
-    public int verificarSiExisteUsuario(String pEmail, String pUsuario){
+    public int verificarSiExisteUsuario(UsuarioDTO pUsuario){
 
-        String sqlUsuario = "SELECT count(*) from username=\""+pUsuario+"\"";
-        String sqlEmail =  "SELECT count(*) from email=\""+pEmail+"\"";
+        String sqlUsuario = "SELECT count(*) from auth_user where username=\""+pUsuario.getUsername()+"\"";
+        String sqlEmail =  "SELECT count(*) from auth_user where email=\""+pUsuario.getEmail()+"\"";
         ResultSet resultSet = null;
         int resultadoEmail = 0;
         int resultadoFinal=0;
         try {
+            Log.i("SQL",sqlUsuario);
+            Log.i("SQL_email",sqlUsuario);
             ConnectDBHelper.establecerConexionBD();
             resultSet = ConnectDBHelper.ejecutarSQL(sqlUsuario);
             int resultadoUsuario = 0;
@@ -132,6 +148,57 @@ public  class UsuarioModel {
 
     }
 
+    public int crearUsuario(UsuarioDTO pUsuario){
+        String sqlUltimoID =  "select  id from auth_user order by id desc limit 1";
+
+        ResultSet resultSet = null;
+        int ultimoID = 0;
+        try {
+            ConnectDBHelper.establecerConexionBD();
+            resultSet = ConnectDBHelper.ejecutarSQL(sqlUltimoID);
+            while(resultSet.next()){
+                ultimoID = resultSet.getInt(1);
+
+            }
+            ultimoID = ultimoID+1;
+            String sqlInsert="INSERT INTO auth_user (" +
+                    "id," +
+                    "password," +
+                    "last_login," +
+                    "is_superuser," +
+                    "username," +
+                    "first_name," +
+                    "email," +
+                    "is_staff," +
+                    "is_active," +
+                    "date_joined," +
+                    "last_name)" +
+                    "VALUES " +
+                    "("+ultimoID+"," +
+                    "\""+encriptarMD5(pUsuario.getPassword())+"\","+
+                    "NOW(),"+
+                    "0,"+
+                    "\""+pUsuario.getUsername()+"\","+
+                    "\""+pUsuario.getFirstName()+"\","+
+                    "\""+pUsuario.getEmail()+"\","+
+                    "0,"+
+                    "1,"+
+                    "NOW(),"+
+                    "\""+pUsuario.getLastName()+"\""
+                    +")";
+            Log.i("SQL Insert",sqlInsert);
+            Log.i("Password",pUsuario.getPassword());
+            Log.i("MD5",encriptarMD5(pUsuario.getPassword()));
+            int devuelveInsert = ConnectDBHelper.ejecutarSQLInsertUpdate(sqlInsert);
+            Log.i("DevuelveInsert",String.valueOf(devuelveInsert));
+            ConnectDBHelper.desconectarBD();
+        }catch (Exception e){
+            Log.i("error insert",e.getMessage());
+            ConnectDBHelper.desconectarBD();
+        }
+
+        return ultimoID;
+    }
 
 
 

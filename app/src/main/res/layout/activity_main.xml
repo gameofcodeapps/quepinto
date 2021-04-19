@@ -151,6 +151,19 @@
             android:layout_marginEnd="76dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/BtnEven" />
+
+        <Button
+            android:id="@+id/testBtn"
+            android:text="Boton de Pruebas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="doStaff"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
+
+        />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

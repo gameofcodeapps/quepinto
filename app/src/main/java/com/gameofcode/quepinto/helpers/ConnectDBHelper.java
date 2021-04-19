@@ -58,7 +58,7 @@ public class ConnectDBHelper {
         }
     }
 
-    public static void desconectarBD() throws Exception {
+    public static void desconectarBD() {
 
         try {
             if(conn != null && !conn.isClosed()){
@@ -72,7 +72,7 @@ public class ConnectDBHelper {
 
             }
         }catch(Exception e) {
-            throw e;
+
         }
 
     }
@@ -87,6 +87,14 @@ public class ConnectDBHelper {
 
     }
 
+    public static int  ejecutarSQLInsertUpdate(String pQuery) throws Exception {
+
+        // establecerConexionBD();
+        Statement st = conn.createStatement();
+        int rs = st.executeUpdate(pQuery);
+        return rs;
+
+    }
 
 
 }

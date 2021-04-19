@@ -1,178 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CAE0F1"
-    tools:context=".MainActivityRegUsuario">
+    android:orientation="vertical">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CAE0F1"
+        android:orientation="vertical"
+        tools:context=".MainActivityRegUsuario"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        >
 
-    <TextView
-        android:id="@+id/reg_usuario"
+        <TextView
+            android:id="@+id/reg_usuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="7dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/reg_usuario"
+            android:textColor="@color/red"
+            android:textSize="30sp" />
+
+        <TextView
+        android:id="@+id/usuarioTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/reg_usuario"
-        android:textColor="@color/red"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028" />
-
-    <EditText
-        android:id="@+id/UsuNom"
-        android:layout_width="379dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="@string/NAME"
-        android:inputType="textPersonName"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/UsuApe"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_usuario" />
-
-    <EditText
-        android:id="@+id/UsuMail"
-        android:layout_width="379dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="@string/EMAIL"
-        android:inputType="textPersonName"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/UsuPwd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UsuApe" />
-
-    <EditText
-        android:id="@+id/UsuPwd"
-        android:layout_width="379dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="@string/PASS"
-        android:inputType="textPassword"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/UsuValPwd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UsuMail" />
-
-    <EditText
-        android:id="@+id/UsuValPwd"
-        android:layout_width="379dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="@string/CONF_PASS"
-        android:inputType="textPassword"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/but_Env"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UsuPwd" />
-
-    <EditText
-        android:id="@+id/UsuApe"
-        android:layout_width="379dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center_horizontal"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/SURNAME"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/UsuMail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UsuNom" />
-
-    <Button
-        android:id="@+id/but_Env"
-        android:layout_width="162dp"
-        android:layout_height="46dp"
-        android:text="@string/bot_Env"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UsuValPwd"
-        app:layout_constraintVertical_bias="0.325" />
-
-    <TextView
-        android:id="@+id/txtNom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_nom"
-        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/usurioRegistroTV"
         android:textColor="#BF2E2E"
-        app:layout_constraintBottom_toTopOf="@+id/UsuNom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_usuario" />
+        android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/txtApe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/apellido"
-        android:textColor="#BF2E2E"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/UsuApe"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UsuNom" />
+        <EditText
+            android:id="@+id/usuarioET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="@string/usurioRegistroET"
+            android:textSize="17sp" />
+        <TextView
+            android:id="@+id/nombreUsuarioTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/txt_nom"
+            android:textColor="#BF2E2E"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/correle"
-        android:textColor="#BF2E2E"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/UsuMail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UsuApe"
-        app:layout_constraintVertical_bias="0.476" />
+        <EditText
+            android:id="@+id/nombreUsuarioET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="@string/NAME"
+            android:textSize="17sp" />
+        <TextView
+            android:id="@+id/apellidoUsuarioTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/apellido"
+            android:textColor="#BF2E2E"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/txtcontr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txtcontr"
-        android:textColor="#BF2E2E"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/UsuPwd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UsuMail" />
+        <EditText
+            android:id="@+id/apellidoUsuarioET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="@string/SURNAME"
+            android:textSize="17sp" />
+        <TextView
+            android:id="@+id/emailUsuarioTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/correle"
+            android:textColor="#BF2E2E"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/txtconfcont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txtconfcont"
-        android:textColor="#BF2E2E"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/UsuValPwd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UsuPwd" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/emailUsuarioET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="@string/EMAIL"
+            android:textSize="17sp" />
+        <TextView
+            android:id="@+id/passwordUsuarioTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/txtContraseña"
+            android:textColor="#BF2E2E"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/passwordUsuarioET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="@string/PASS"
+            android:inputType="textPassword"
+            android:textSize="17sp" />
+        <TextView
+            android:id="@+id/reptirPasswordUsuarioTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/txtconfcont"
+            android:textColor="#BF2E2E"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/repetirPasswordUsuarioET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="@string/CONF_PASS"
+            android:inputType="textPassword"
+            android:textSize="17sp" />
+        <TextView
+            android:id="@+id/requisioPasswordTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="@string/requisitoPasswordTV"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/but_Env"
+            android:layout_width="162dp"
+            android:layout_height="46dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="26dp"
+            android:text="@string/bot_Env"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+</LinearLayout>

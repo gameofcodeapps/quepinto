@@ -47,5 +47,9 @@
     <string name="EMAIL_perf">EMAIL:</string>
     <string name="User_NAME_PERF">NOMBRE DE USUARIO:</string>
     <string name="ImgLogo">Imagen</string>
-
+    ---------------------------------------------------
+    <string name="usurioRegistroTV">Usuario</string>
+    <string name="usurioRegistroET">USUARIO</string>
+    <string name="requisitoPasswordTV">La contraseña tiene que contener al menos 8 caracteres, pueden contener numeros y los siguientes simbolos @/./+/-/_ solamente.
+No puede ser solo numérico, y no puede ser similar a la información de usuario. </string>
 </resources>

@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        doStaff();
+        //doStaff();
         EditText UsuNom = findViewById(R.id.TxtUsuNom);
         EditText UsuPwd = findViewById(R.id.TxtUsuPas);
         BtnEven = findViewById(R.id.BtnEven);
@@ -93,12 +93,11 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        progressDialog.dismiss();
                         if(boolBsuarioValido){
-                            progressDialog.dismiss();
                             Intent buscar = new Intent(getApplicationContext(),MainActivityBusEvento.class);
                             startActivity(buscar);
                             }else{
-                            progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(),"Usuario o clave incorrecta",Toast.LENGTH_LONG).show();
                         }
                     }
@@ -108,7 +107,10 @@ public class MainActivity extends AppCompatActivity {
         }).start();
 
     }
-    private void doStaff(){
+    public void doStaff(View view){
+
+        Log.i("md5", UsuarioModel.getInstance().encriptarMD5("pepe1234"));
+        /*
         //Se ejecuta antes de la tarea en segundo plano
 
         new Thread(new Runnable() {
@@ -116,21 +118,25 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 //Se ejecuta en segundo plano
 
-                EventoModel instance = EventoModel.getInstance();
-                List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
+                //EventoModel instance = EventoModel.getInstance();
+                //List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
                 //Log.i("Eventos","holaa");
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(1).getImagenEvento()));
+                //Log.i("Eventos",String.valueOf(eventoDTOS.get(1).getImagenEvento()));
+                UsuarioDTO u = new UsuarioDTO("Demo4.123","demo4","demo","demo@demo.com","Demo");
+                int resultado = UsuarioModel.getInstance().crearUsuario(u);
+                Log.i("ultimo ID ",String.valueOf(resultado));
                 //Se ejecuta al terminar la tarea en segundo plano
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //Toast.makeText(getApplicationContext(),eventoDTOS.size(),Toast.LENGTH_LONG).show();
+
+                        Toast.makeText(getApplicationContext(),String.valueOf(resultado),Toast.LENGTH_LONG).show();
                     }
                 });
             }
         }).start();
 
-
+*/
     }
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -163,4 +169,5 @@ public class MainActivity extends AppCompatActivity {
             Log.w("Error", "signInResult:failed code=" + e.getStatusCode());
         }
     }
+
 }
