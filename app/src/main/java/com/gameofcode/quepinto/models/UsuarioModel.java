@@ -200,6 +200,30 @@ public  class UsuarioModel {
         return ultimoID;
     }
 
+    public boolean actulizarDatosUsuarioLogeado(){
+
+        String sql= "UPDATE auth_user set first_name=\"" +
+                usuarioLogeado.getFirstName()+"\" "+
+                "email = \""+usuarioLogeado.getEmail()+"\" "+
+                "last_name= \""+usuarioLogeado.getLastName()+"\" " +
+                "WHERE" +
+                "id="+usuarioLogeado.getId();
+
+        ResultSet resultSet = null;
+        try {
+            ConnectDBHelper.establecerConexionBD();
+            int devuelveInsert = ConnectDBHelper.ejecutarSQLInsertUpdate(sql);
+            Log.i("DevuelveInsert",String.valueOf(devuelveInsert));
+            ConnectDBHelper.desconectarBD();
+        }catch (Exception e){
+            Log.i("error insert",e.getMessage());
+            ConnectDBHelper.desconectarBD();
+            return false;
+        }
+
+        return true;
+
+    }
 
 
 }
