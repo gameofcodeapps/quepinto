@@ -109,8 +109,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void doStaff(View view){
 
-        Log.i("md5", UsuarioModel.getInstance().encriptarMD5("pepe1234"));
-        /*
+        //Log.i("md5", UsuarioModel.getInstance().encriptarMD5("pepe1234"));
+
         //Se ejecuta antes de la tarea en segundo plano
 
         new Thread(new Runnable() {
@@ -118,25 +118,34 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 //Se ejecuta en segundo plano
 
-                //EventoModel instance = EventoModel.getInstance();
-                //List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
-                //Log.i("Eventos","holaa");
+                EventoModel instance = EventoModel.getInstance();
+                List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
+
+                Log.i("Eventos",String.valueOf(eventoDTOS.size()));
                 //Log.i("Eventos",String.valueOf(eventoDTOS.get(1).getImagenEvento()));
+
+                /*Crear Usuario
                 UsuarioDTO u = new UsuarioDTO("Demo4.123","demo4","demo","demo@demo.com","Demo");
                 int resultado = UsuarioModel.getInstance().crearUsuario(u);
-                Log.i("ultimo ID ",String.valueOf(resultado));
+                */
+
+                //Agregar Comentario
+                EventoDTO evento = eventoDTOS.get(1);
+                Log.i("evento ID",String.valueOf(evento.getId()));
+                EventoModel.getInstance().agregarComentario(evento,"Esto es un comentario");
+
                 //Se ejecuta al terminar la tarea en segundo plano
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
 
-                        Toast.makeText(getApplicationContext(),String.valueOf(resultado),Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getApplicationContext(),String.valueOf(resultado),Toast.LENGTH_LONG).show();
                     }
                 });
             }
         }).start();
 
-*/
+
     }
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
