@@ -5,219 +5,137 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".MainActivityRegEvento">
 
-    <TextView
-        android:id="@+id/reg_evento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/reg_evento"
-        android:textColor="@color/red"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="21dp"
+        tools:layout_editor_absoluteY="18dp">
 
-    <TextView
-        android:id="@+id/txtNomEvent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="@string/txt_nombre_evento"
-        android:textColor="#BF2E2E"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNonbreEvento"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_evento"
-        app:layout_constraintVertical_bias="0.162" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/editTextNonbreEvento"
-        android:layout_width="359dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="35dp"
-        android:ems="10"
-        android:hint="@string/NAME_EVENT"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_evento" />
+            <TextView
+                android:id="@+id/reg_evento"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/reg_evento"
+                android:textColor="@color/red"
+                android:textSize="30sp" />
+            <TextView
+                android:id="@+id/txtNomEvent"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_nombre_evento"
+                android:textColor="#BF2E2E"
+                android:textSize="20sp" />
+            <EditText
+                android:id="@+id/editTextNonbreEvento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/NAME_EVENT"
+                android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/txtOrganizador"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_organizador"
+                android:textColor="#BF2E2E"
+                android:textSize="20sp" />
+            <EditText
+                android:id="@+id/editTextOrganizador"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/ORGANIZER"
+                android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/textView9"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_evento"
+                android:textColor="#BF2E2E"
+                android:textSize="20sp" />
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></Spinner>
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="96dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="80dp"
-        android:gravity="center_horizontal"
-        android:text="@string/txt_map"
-        android:textColor="#BF2E2E"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4"
-        app:layout_constraintVertical_bias="0.236" />
+            <Button
+                android:id="@+id/btnFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha" />
 
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="277dp"
-        android:layout_height="158dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.902"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4"
-        app:layout_constraintVertical_bias="0.806"
-        tools:context=".MainActivityRegEvento" />
+            <EditText
+                android:id="@+id/txtFecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Fecha" />
+            <Button
+                android:id="@+id/btnHora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hora" />
+            <EditText
+                android:id="@+id/txtHora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Hora" />
+            <TextView
+                android:id="@+id/textView8"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_description"
+                android:textColor="#BF2E2E"
+                android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/editTextOrganizador"
-        android:layout_width="359dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="2dp"
-        android:ems="10"
-        android:hint="@string/ORGANIZER"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtOrganizador" />
+            <EditText
+                android:id="@+id/editTextTextMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="102dp"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="@string/DESCRIPTION"
+                android:inputType="textMultiLine" />
 
-    <TextView
-        android:id="@+id/txtOrganizador"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/txt_organizador"
-        android:textColor="#BF2E2E"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/txt_map"
+                android:textColor="#BF2E2E"
+                android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:text="@string/txt_description"
-        android:textColor="#BF2E2E"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextOrganizador" />
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="341dp"></fragment>
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btnregistrar"
+                android:textColor="@color/white" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="359dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="2dp"
-        android:ems="10"
-        android:hint="@string/DESCRIPTION"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.519"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="120dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="2dp"
-        android:text="@string/btnregistrar"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="359dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="35dp"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNonbreEvento" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="@string/txt_evento"
-        android:textColor="#BF2E2E"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNonbreEvento"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/btnFecha"
-        android:layout_width="96dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="292dp"
-        android:text="Fecha"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnHora"
-        android:layout_width="96dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="340dp"
-        android:text="Hora"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.085"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txtFecha"
-        android:layout_width="177dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="292dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Fecha"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.838"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txtHora"
-        android:layout_width="177dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="340dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Hora"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.837"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
