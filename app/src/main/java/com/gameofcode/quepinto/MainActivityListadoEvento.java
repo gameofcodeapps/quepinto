@@ -23,6 +23,4 @@ public class MainActivityListadoEvento extends AppCompatActivity {
         txtFecha.setText(getIntent().getStringExtra("Fecha y Hora Evento"));
     }
 
-
-
 }

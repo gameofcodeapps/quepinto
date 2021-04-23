@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.models.EventoModel;
 
@@ -24,7 +25,8 @@ import java.util.List;
 
 public class MainActivityBusEvento extends AppCompatActivity {
     RecyclerView rcv;
-    String auxNom,auxdsc,auxfch,auxorg,auxdir,auximg;
+    int i,auxindex;
+    String auxNom,auxdsc,auxfch,auxorg,auxdir,auximg,auxIntstr;
     ImageView imageView;
     myadapter adapter;
     @Override
@@ -34,11 +36,12 @@ public class MainActivityBusEvento extends AppCompatActivity {
         //accedo a toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
          rcv= findViewById(R.id.recview);
-        doStaff();
+
         //pongo Título
         toolbar.setTitle("Qué Pintó?");
 
         adapter = new myadapter(dataqueue(),getApplicationContext());
+        rcv.setHasFixedSize(true);
         rcv.setAdapter(adapter);
 
         GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
@@ -83,37 +86,44 @@ public class MainActivityBusEvento extends AppCompatActivity {
     public ArrayList<Model> dataqueue()
     {
         ArrayList<Model> holder=new ArrayList<>();
+    //traigo last index
 
-         /*   EventoModel instance = EventoModel.getInstance();
-            List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
-            //Log.i("Eventos","holaa");
-        Log.i("Eventos",String.valueOf(eventoDTOS.get(1).getImagenEvento()));
-            //Se ejecuta al terminar la tarea en segundo plano
-*/
-
-
-        while(auxNom == null){
-
+        traerLastIndex();
+        while (auxindex == 0){
 
         }
+// comienzo loop I=1 hasta last
+        //auxindex= 12;
 
-        Model ob1=new Model();
-        ob1.setHeader(auxNom);
-        ob1.setDesc(auxdsc);
-        ob1.setImgname(R.drawable.toque);
-        ob1.setFecha(auxfch);
-        ob1.setOrganizador(auxorg);
-        ob1.setTxtmapa(auxdir);
+        for(i=0; i<auxindex; i++){
+            Model ob1=new Model();
+            traerEvento();
 
-        holder.add(ob1);
+            while(auxdir == null){
 
-        Model ob2=new Model();
+                }
+            ob1.setHeader(auxNom);
+            ob1.setDesc(auxdsc);
+            ob1.setImgname(R.drawable.banda1);
+            ob1.setFecha(auxfch);
+            ob1.setOrganizador(auxorg);
+            ob1.setTxtmapa(auxdir);
+
+            holder.add(ob1);
+            auxdir = null;
+        }
+
+
+        return holder;
+        }
+//fin loop
+    /*    Model ob2=new Model();
         ob2.setHeader(auxNom);
         ob2.setDesc(auxdsc);
-        ob2.setImgname(R.drawable.banda1);
+        ob2.setImgname(R.drawable.toque);
         ob2.setFecha(auxfch);
         ob2.setOrganizador(auxorg);
-     //   ob2.setTxtmapa( "busque aquí");
+        ob2.setTxtmapa(auxdir);
 
         holder.add(ob2);
 
@@ -121,18 +131,18 @@ public class MainActivityBusEvento extends AppCompatActivity {
         ob3.setHeader(auxNom);
         ob3.setDesc(auxdsc);
         ob3.setImgname(R.drawable.banda3);
-        ob1.setFecha(auxfch);
-        ob1.setOrganizador(auxorg);
+        ob3.setFecha(auxfch);
+        ob3.setOrganizador(auxorg);
    //     ob1.setTxtmapa( "busque aquí");
 
-        holder.add(ob3);
+        holder.add(ob3);*/
 
 
 
 
-        return holder;
-    }
-    private void doStaff(){
+
+
+    private void traerEvento(){
         //Se ejecuta antes de la tarea en segundo plano
 
         new Thread(new Runnable() {
@@ -144,23 +154,53 @@ public class MainActivityBusEvento extends AppCompatActivity {
                 List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
                 //Log.i("Eventos","holaa");
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(1).getNombreEvento()));
-                auxNom = String.valueOf(eventoDTOS.get(1).getNombreEvento());
+                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getNombreEvento()));
+                auxNom = String.valueOf(eventoDTOS.get(i).getNombreEvento());
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(1).getDescripcion()));
-                auxdsc = String.valueOf(eventoDTOS.get(1).getDescripcion());
+                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getDescripcion()));
+                auxdsc = String.valueOf(eventoDTOS.get(i).getDescripcion());
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(1).getFechaInicio()));
-                auxfch = String.valueOf(eventoDTOS.get(1).getFechaInicio());
+                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getFechaInicio()));
+                auxfch = String.valueOf(eventoDTOS.get(i).getFechaInicio());
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(1).getOrganizador()));
-                auxorg = String.valueOf(eventoDTOS.get(1).getOrganizador());
+                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getOrganizador()));
+                auxorg = String.valueOf(eventoDTOS.get(i).getOrganizador());
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(1).getDireccion()));
-                auxdir = String.valueOf(eventoDTOS.get(1).getDireccion());
+                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getDireccion()));
+                auxdir = String.valueOf(eventoDTOS.get(i).getDireccion());
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(1).getImagenEvento()));
-                auximg = String.valueOf(eventoDTOS.get(1).getImagenEvento());
+                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getImagenEvento()));
+                auximg = String.valueOf(eventoDTOS.get(i).getImagenEvento());
+
+                //Se ejecuta al terminar la tarea en segundo plano
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Toast.makeText(getApplicationContext(),eventoDTOS.size(),Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        }).start();
+
+
+    }
+    private void traerLastIndex(){
+        //Se ejecuta antes de la tarea en segundo plano
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //Se ejecuta en segundo plano
+
+                EventoModel instance = EventoModel.getInstance();
+                List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
+                //Log.i("Eventos","holaa");
+
+                Log.i("Eventos",String.valueOf(eventoDTOS.size()));
+              //  auxIntstr = String.valueOf(eventoDTOS.size());
+                auxindex = eventoDTOS.size();
+
+
                 //Se ejecuta al terminar la tarea en segundo plano
                 runOnUiThread(new Runnable() {
                     @Override
