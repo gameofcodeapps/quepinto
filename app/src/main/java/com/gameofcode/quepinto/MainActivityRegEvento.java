@@ -3,12 +3,14 @@ package com.gameofcode.quepinto;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -23,6 +25,8 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.gameofcode.quepinto.DTO.EventoDTO;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -33,6 +37,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivityRegEvento extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener, View.OnClickListener {
 
@@ -46,6 +51,12 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_reg_evento);
+
+        EditText nombreEvent = findViewById(R.id.nombreEvento);
+        EditText organizador = findViewById(R.id.organizador);
+        EditText descrip = findViewById(R.id.descripcion);
+
+        Button Registrar = (Button)findViewById(R.id.btnRegistroEvent);
 
         bfecha=(Button)findViewById(R.id.btnFecha);
         bhora=(Button)findViewById(R.id.btnHora);
@@ -61,12 +72,29 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
 
 
 
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         getLocalizacion();
+
+        Registrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String evento = nombreEvent.getText().toString();
+                String organiza = organizador.getText().toString();
+                String categoria = spinner.getAdapter().toString();
+                String fecha = efecha.getText().toString();
+                String hora = ehora.getText().toString();
+                String descripcion = descrip.getText().toString();
+
+            }
+        });
+
     }
+
+
 
     private void getLocalizacion() {
         int permiso = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
@@ -77,6 +105,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
             }
         }
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -91,6 +120,18 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(latLng);
+
+                markerOptions.title(latLng.latitude + " : " + latLng.longitude);
+                googleMap.clear();
+                googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                googleMap.addMarker(markerOptions);
+            }
+        });
         mMap.setMyLocationEnabled(true);
 
         mMap.getUiSettings().setMyLocationButtonEnabled(false);
@@ -101,14 +142,15 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
             public void onLocationChanged(Location location) {
                 LatLng miUbicacion = new LatLng(location.getLatitude(), location.getLongitude());
                 mMap.addMarker(new MarkerOptions().position(miUbicacion).title("ubicacion actual"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(miUbicacion));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miUbicacion,15));
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(miUbicacion)
-                        .zoom(14)
+                        .zoom(1)
                         .bearing(90)
                         .tilt(45)
                         .build();
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
 
             }
 
@@ -174,5 +216,22 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
             },hora,minutos,false);
             timePickerDialog.show();
         }
+    }
+
+    private boolean validarDatosEvent(EventoDTO pEvento) {
+        if (pEvento.getNombreEvento().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "El nombre del evento no puede estar vacío", Toast.LENGTH_LONG).show();
+            return false;
+        } else if (pEvento.getOrganizador().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "El nombre del organizador no puede estar vacío", Toast.LENGTH_LONG).show();
+            return false;
+        } else if (pEvento.getFechaInicio().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Debe ingresar una fecha para el evento", Toast.LENGTH_LONG).show();
+            return false;
+        } else if (pEvento.getHoraInicio().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Debe ingresar una hora para el evento", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return false;
     }
 }
