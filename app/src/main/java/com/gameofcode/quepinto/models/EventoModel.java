@@ -41,15 +41,40 @@ public class EventoModel {
 
     public List<EventoDTO> obtenerEventosFavoritosUsuarioLogeado(){
         UsuarioDTO usuarioLogeado = UsuarioModel.getInstance().getUsuarioLogeado();
-        String sql = "SELECT evento.* " +
+        /*String sql = "SELECT evento.* " +
                 "from home_evento as evento, " +
                 "home_evento_favorito as favorito " +
                 "WHERE " +
                 "favorito.idUsuario = \"" + usuarioLogeado.getId() +"\"and " +
-                "favorito.id_evento=evento.id";
+                "favorito.id_evento=evento.id";*/
+        String sql = "SELECT home_evento.* " +
+                "from home_evento, " +
+                "home_usuario_favorito " +
+                "WHERE " +
+                "home_usuario_favorito.idUsuario = '41' and " +
+                "home_usuario_favorito.idEvento=home_evento.id";
         return obtenerEventos(sql);
 
     }
+
+    public List<EventoDTO> obtenerEventosFavoritosServicio(String pUsuario){
+        String sql = "SELECT evento.* " +
+                "from home_evento as evento, " +
+                "home_usuario_favorito as favorito, " +
+                "auth_user as usuario "+
+                "WHERE " +
+                "usuario.username= \""+pUsuario+"\" and "+
+                "favorito.idUsuario = usuario.id and " +
+                "favorito.idEvento=evento.id";
+        //String sql = "SELECT home_evento.* FROM home_evento,home_usuario_favorito where home_evento.id=home_usuario_favorito.idEvento";
+       // String sql = "SELECT * FROM home_evento";
+        List<EventoDTO> eventoDTOS = obtenerEventos(sql);
+        //Log.i("cantidad",sql);
+        return eventoDTOS;
+
+    }
+
+
 
     private List<EventoDTO> obtenerEventos(String pSQL){
 
@@ -58,6 +83,7 @@ public class EventoModel {
         try {
             ConnectDBHelper.establecerConexionBD();
             resultSet = ConnectDBHelper.ejecutarSQL(pSQL);
+            Log.i("SQL",pSQL);
             while (resultSet.next()) {
 
                 EventoDTO eventoDTO = new EventoDTO(
@@ -83,6 +109,7 @@ public class EventoModel {
             }
             ConnectDBHelper.desconectarBD();
         } catch (Exception e) {
+            ConnectDBHelper.desconectarBD();
             e.printStackTrace();
         }
         return eventos;
@@ -154,6 +181,47 @@ public class EventoModel {
         return comentarios;
     }
 
+    public boolean agregarEvento(EventoDTO pEvento){
+        String sqlUltimoID =  "select  id from home_evento order by id desc limit 1";
+        ResultSet resultSet = null;
+        int ultimoID=0;
+        try {
+            ConnectDBHelper.establecerConexionBD();
+            resultSet = ConnectDBHelper.ejecutarSQL(sqlUltimoID);
+            while(resultSet.next()){
+                ultimoID = resultSet.getInt(1);
+            }
+            ultimoID = ultimoID+1;
+            String sqlInsert="INSERT INTO home_evento values (" +
+                    ultimoID+" ,"+
+                    "\""+pEvento.getNombreEvento()+"\""+", " +
+                    "\""+pEvento.getOrganizador()+"\""+", " +
+                    "\""+pEvento.getCategoria()+"\""+", " +
+                    "\""+pEvento.getDescripcion()+"\""+", " +
+                    "\""+"images/sinfoto.jpg"+"\""+", " +
+                    "\""+pEvento.getCiudad()+"\""+", " +
+                    "\""+pEvento.getDepartamento()+"\""+", " +
+                    "\""+pEvento.getPais()+"\""+", " +
+                    "\""+pEvento.getFechaInicio()+"\""+", " +
+                    "\""+"0000-00-00"+"\""+", " +
+                    "\""+"00:00"+"\""+", " +
+                    "\""+pEvento.getHoraInicio()+"\""+", " +
+                    "\""+pEvento.getLatitud()+"\""+", " +
+                    "\""+pEvento.getDireccion()+"\""+", " +
+                    "\""+pEvento.getLongitud()+"\""+", " +
+                    "\""+pEvento.getUsuarioCreador()+"\""+")";
+            Log.i("SQL Insert",sqlInsert);
+            int devuelveInsert = ConnectDBHelper.ejecutarSQLInsertUpdate(sqlInsert);
+            //Log.i("DevuelveInsert",String.valueOf(devuelveInsert));
+            ConnectDBHelper.desconectarBD();
+        }catch (Exception e){
+            Log.i("error insert",e.getMessage());
+            ConnectDBHelper.desconectarBD();
+            return false;
+        }
+
+        return true;
+    }
 
 
 
