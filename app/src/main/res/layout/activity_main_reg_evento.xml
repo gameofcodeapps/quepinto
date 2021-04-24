@@ -8,9 +8,6 @@
     android:orientation="vertical"
     tools:context=".MainActivityRegEvento">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"

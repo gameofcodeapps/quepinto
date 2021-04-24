@@ -59,6 +59,8 @@
 No puede ser solo numérico, y no puede ser similar a la información de usuario. </string>
     <string name="org">Organiza:</string>
     <string name="fch">Fecha:</string>
+    <string name="regis">Registrarse</string>
+    <string name="salir">Salir</string>
     <string-array name="Categorias">
         <item>Teatros</item>
         <item>Restaurantes</item>

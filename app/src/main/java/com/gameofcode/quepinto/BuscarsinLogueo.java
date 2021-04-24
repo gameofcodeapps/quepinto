@@ -1,10 +1,5 @@
 package com.gameofcode.quepinto;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,43 +9,38 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Callback;
-import com.bumptech.glide.Glide;
-import com.gameofcode.quepinto.DTO.EventoDTO;
-import com.gameofcode.quepinto.DTO.UsuarioDTO;
-import com.gameofcode.quepinto.models.EventoModel;
-import com.gameofcode.quepinto.models.UsuarioModel;
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.module.AppGlideModule;
 
+import com.gameofcode.quepinto.DTO.EventoDTO;
+import com.gameofcode.quepinto.models.EventoModel;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivityBusEvento extends AppCompatActivity {
-
+public class BuscarsinLogueo extends AppCompatActivity {
     RecyclerView rcv;
     int i,auxindex;
     String auxNom,auxdsc,auxfch,auxorg,auxdir,auximg,auxIntstr;
     ImageView imageView;
     myadapter adapter;
     Bitmap bmp;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_buscar_evento);
+        setContentView(R.layout.activity_sin_logueo);
         //accedo a toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar2 = findViewById(R.id.toolbar2);
          rcv= findViewById(R.id.recview);
 
         //pongo Título
-        toolbar.setTitle("Qué Pintó?");
+        toolbar2.setTitle("Qué Pintó?");
 
         adapter = new myadapter(dataqueue(),getApplicationContext());
         rcv.setHasFixedSize(true);
@@ -60,40 +50,50 @@ public class MainActivityBusEvento extends AppCompatActivity {
         rcv.setLayoutManager(gridLayoutManager);
 
         //placing toolbar in place of actionbar
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar2);
 
+        new Thread()
+        {
+            public void run()
+            {
+                try
+                {
+                    URL url = new URL(auximg);
+                    Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                }
+                catch (Exception ex){
 
+                }
 
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                   //     imageView.setImageBitmap(bmp);
+                    }
+                });
+            }
+
+        }.start();
 
     }
 
 
-                //Se crea el Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
+        menuInflater.inflate(R.menu.menu2, menu);
         return true;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch(item.getItemId()){
-            case R.id.menuC:
-                Intent micuenta = new Intent(this,MainActivityPerfil.class);
+            case R.id.irlogeo:
+                Intent micuenta = new Intent(this,MainActivityRegUsuario.class);
                 startActivity(micuenta);
                 break;
 
-            case R.id.menuF:
-                Intent favoritos = new Intent(this,MainActivityBusEvento.class);
-                startActivity(favoritos);
-                break;
-
-            case R.id.mencCr:
-                Intent creevento = new Intent(this,MainActivityRegEvento.class);
-                startActivity(creevento);
-                break;
-            case R.id.menuL:
+            case R.id.itSalir:
                 Intent logout = new Intent(this,MainActivity.class);
                 startActivity(logout);
                 break;
@@ -101,11 +101,6 @@ public class MainActivityBusEvento extends AppCompatActivity {
         }
         return true;
     }
-
-
-
-
-    ///Cargo Listado
 
     public ArrayList<Model> dataqueue()
     {
@@ -116,8 +111,8 @@ public class MainActivityBusEvento extends AppCompatActivity {
         while (auxindex == 0){
 
         }
-        // comienzo loop I=1 hasta last
-
+// comienzo loop I=1 hasta last
+        //auxindex= 12;
 
         for(i=0; i<auxindex; i++){
             Model ob1=new Model();
@@ -126,6 +121,18 @@ public class MainActivityBusEvento extends AppCompatActivity {
             while(auxdir == null){
 
                 }
+         /*   Picasso.with(this)
+                    .load(auximg)
+                    .centerCrop()
+                    .into(imageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                        }
+                        @Override
+                        public void onError() {
+                        }
+                    });*/
+
 
             ob1.setHeader(auxNom);
             ob1.setDesc(auxdsc);
@@ -141,10 +148,30 @@ public class MainActivityBusEvento extends AppCompatActivity {
 
         return holder;
         }
+//fin loop
+    /*    Model ob2=new Model();
+        ob2.setHeader(auxNom);
+        ob2.setDesc(auxdsc);
+        ob2.setImgname(R.drawable.toque);
+        ob2.setFecha(auxfch);
+        ob2.setOrganizador(auxorg);
+        ob2.setTxtmapa(auxdir);
+
+        holder.add(ob2);
+
+        Model ob3=new Model();
+        ob3.setHeader(auxNom);
+        ob3.setDesc(auxdsc);
+        ob3.setImgname(R.drawable.banda3);
+        ob3.setFecha(auxfch);
+        ob3.setOrganizador(auxorg);
+   //     ob1.setTxtmapa( "busque aquí");
+
+        holder.add(ob3);*/
 
 
 
-            //***********Subrutinas ****************//
+
 
 
     private void traerEvento(){
@@ -176,29 +203,6 @@ public class MainActivityBusEvento extends AppCompatActivity {
 
                 Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getImagenEvento()));
                 auximg = String.valueOf(eventoDTOS.get(i).getImagenEvento());
-
-                new Thread()
-                {
-                    public void run()
-                    {
-                        try
-                        {
-                            URL url = new URL(auximg);
-                            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                        }
-                        catch (Exception ex){
-
-                        }
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                      //          imageView.setImageBitmap(bmp);
-                            }
-                        });
-                    }
-
-                }.start();
 
                 //Se ejecuta al terminar la tarea en segundo plano
                 runOnUiThread(new Runnable() {
@@ -241,8 +245,4 @@ public class MainActivityBusEvento extends AppCompatActivity {
 
 
     }
-
 }
-
-
-

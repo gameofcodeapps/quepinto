@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:title="@string/regis"
+        android:id="@+id/irlogeo"
+        android:icon="@drawable/ic_baseline_create_24"
+        />
+    <item android:title="@string/salir"
+        android:id="@+id/itSalir"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"/>
+</menu>

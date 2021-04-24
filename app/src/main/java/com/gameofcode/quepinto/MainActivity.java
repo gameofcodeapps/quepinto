@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void buscarEventos(View view) {
-        Intent buscar = new Intent(this,MainActivityBusEvento.class);
+        Intent buscar = new Intent(this,BuscarsinLogueo.class);
         startActivity(buscar);}
 
     public void noRegistro(View view) {
