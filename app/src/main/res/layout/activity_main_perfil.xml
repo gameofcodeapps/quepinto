@@ -54,10 +54,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/User_NAME_PERF"
             android:textColor="@color/black"
             android:textSize="18dp"
-            android:textStyle="bold" />
+            android:textStyle="normal" />
 
 
     </LinearLayout>
@@ -68,10 +69,11 @@
         android:layout_height="38dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:inputType="textPersonName"
+        android:fontFamily="@font/poppins_light"
         android:hint="Nombre de usuario"
-        android:textColorHint="@color/gray"
+        android:inputType="textPersonName"
         android:textColor="@color/red"
+        android:textColorHint="@color/gray"
         android:textSize="17dp" />
 
     <View
@@ -100,6 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/NAME_perf"
             android:textColor="@color/black"
             android:textSize="18dp"
@@ -114,6 +117,7 @@
         android:layout_height="38dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="@font/poppins_light"
         android:hint="Introduce tu Nombre"
         android:inputType="textPersonName"
         android:textColor="@color/red"
@@ -147,6 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/APELL_perf"
             android:textColor="@color/black"
             android:textSize="18dp"
@@ -161,10 +166,11 @@
         android:layout_height="38dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:inputType="textPersonName"
+        android:fontFamily="@font/poppins_light"
         android:hint="Introduce tu apellido"
-        android:textColorHint="@color/gray"
+        android:inputType="textPersonName"
         android:textColor="@color/red"
+        android:textColorHint="@color/gray"
         android:textSize="17dp" />
 
     <View
@@ -194,6 +200,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/EMAIL_perf"
             android:textColor="@color/black"
             android:textSize="18dp"
@@ -208,10 +215,11 @@
         android:layout_height="38dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:inputType="textPersonName"
+        android:fontFamily="@font/poppins_light"
         android:hint="Introduce tu Email"
-        android:textColorHint="@color/gray"
+        android:inputType="textPersonName"
         android:textColor="@color/red"
+        android:textColorHint="@color/gray"
         android:textSize="17dp" />
 
     <View
@@ -228,15 +236,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
+        android:background="@drawable/button_shape"
+        android:fontFamily="@font/poppins_light"
         android:onClick="cam_foto"
         android:text="@string/btn_cam_fot"
         android:textColor="@color/white" />
+
     <Button
         android:id="@+id/button2"
         android:layout_width="204dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
+        android:background="@drawable/button_shape"
+        android:fontFamily="@font/poppins_light"
         android:text="@string/btn_gard_camb"
         android:textColor="@color/white" />
 

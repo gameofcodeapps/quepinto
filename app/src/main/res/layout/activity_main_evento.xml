@@ -6,134 +6,148 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <TextView
         android:id="@+id/TxtNomEvento"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:background="@color/pink"
         android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
         android:text="@string/txt_nombre_evento"
-        android:textColor="@color/pink"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imgEvento"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtFecha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/txt_fecha_hora_fin"
-        android:textAllCaps="true"
-        android:textColor="@color/pink"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.674"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgEvento"
-        tools:text="@string/txt_fecha_hora_inicio" />
-
-    <ImageView
-        android:id="@+id/imgEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/ImgLogo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TxtNomEvento"
-        app:srcCompat="@drawable/crowd" />
-
-    <TextView
-        android:id="@+id/txtdscEvento"
-        android:layout_width="302dp"
-        android:layout_height="194dp"
-        android:autofillHints=""
-        android:contentDescription="@string/txt_description"
-        android:ems="10"
-        android:fontFamily="@font/poppins_light"
-        android:gravity="center_horizontal"
-        android:textColor="#404946"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFecha"
-        tools:text="@string/DESCRIPTION" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+              <TextView
+                  android:id="@+id/txtFecha"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="12dp"
+                  android:fontFamily="@font/poppins_medium"
+                  android:text="@string/txt_fecha_hora_fin"
+                  android:textAllCaps="true"
+                  android:textColor="@color/pink"
+                  android:textSize="18sp"
+                  android:textStyle="bold"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintHorizontal_bias="0.674"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/imgEvento"
+                  tools:text="@string/txt_fecha_hora_inicio" />
+
+              <ImageView
+                  android:id="@+id/imgEvento"
+                  android:layout_width="wrap_content"
+                  android:layout_height="200dp"
+                  android:layout_marginTop="10dp"
+                  android:contentDescription="@string/ImgLogo"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@id/imageButton3"
+                  app:srcCompat="@drawable/crowd" />
+
+              <TextView
+                  android:id="@+id/txtdscEvento"
+                  android:layout_width="280dp"
+                  android:layout_height="180dp"
+                  android:layout_marginTop="15dp"
+                  android:autofillHints=""
+                  android:contentDescription="@string/txt_description"
+                  android:ems="12"
+                  android:fontFamily="@font/poppins_light"
+                  android:textColor="#404946"
+                  android:textSize="14sp"
+                  android:textStyle="bold"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/txtFecha"
+                  tools:text="@string/DESCRIPTION" />
+
 
     <TextView
         android:id="@+id/txtOrganizador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center_horizontal"
         android:text="@string/txt_organizador"
         android:textAllCaps="true"
         android:textColor="@color/pink"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/txtdscEvento" />
 
-    <TextView
-        android:id="@+id/txtMapa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/txt_map"
-        android:layout_marginTop="30dp"
-        android:textAllCaps="true"
-        android:textColor="@color/pink"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtOrganizador" />
+              <TextView
+                  android:id="@+id/txtMapa"
+                  android:layout_width="302dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="24dp"
+                  android:layout_marginTop="15dp"
+                  android:layout_marginEnd="24dp"
+                  android:fontFamily="@font/poppins_medium"
+                  android:text="@string/txt_map"
+                  android:textAllCaps="true"
+                  android:textColor="@color/pink"
+                  android:textSize="16sp"
+                  android:textStyle="bold"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/txtOrganizador" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/org"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtdscEvento" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/fch"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txtdscEvento"
-        app:layout_constraintEnd_toStartOf="@+id/txtFecha"
-        app:layout_constraintHorizontal_bias="0.662"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgEvento"
-        app:layout_constraintVertical_bias="1.0" />
+              <TextView
+                  android:id="@+id/textView4"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:fontFamily="@font/poppins_medium"
+                  android:text="@string/fch"
+                  android:textColor="@color/black"
+                  android:textSize="18sp"
+                  android:textStyle="bold"
+                  app:layout_constraintBottom_toTopOf="@+id/txtdscEvento"
+                  app:layout_constraintEnd_toStartOf="@+id/txtFecha"
+                  app:layout_constraintHorizontal_bias="0.662"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/imgEvento" />
 
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
-        tools:layout_editor_absoluteX="296dp"
-        tools:layout_editor_absoluteY="54dp"
-        tools:ignore="MissingConstraints" />
+              <ImageButton
+                  android:id="@+id/imageButton3"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="right"
+                  android:layout_marginTop="10dp"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@id/TxtNomEvento"
+                  app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
