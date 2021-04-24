@@ -14,9 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="230dp"
+        android:fontFamily="@font/poppins_medium"
         android:text="@string/txt_nombre_evento"
-        android:textColor="@color/black"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -25,7 +26,7 @@
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_gravity="top|center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:contentDescription="@string/ImgLogo"
         app:srcCompat="@drawable/crowd" />
 
@@ -35,10 +36,18 @@
         android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="265dp"
+        android:fontFamily="@font/poppins_light"
         android:gravity="center_horizontal"
         android:text="fecha"
-        android:textColor="@color/red"
+        android:textColor="@color/pink"
         android:textSize="20sp" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
 
 </androidx.cardview.widget.CardView>
