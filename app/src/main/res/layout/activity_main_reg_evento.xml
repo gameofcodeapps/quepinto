@@ -8,10 +8,14 @@
     android:orientation="vertical"
     tools:context=".MainActivityRegEvento">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="65dp"
         tools:layout_editor_absoluteX="21dp"
         tools:layout_editor_absoluteY="18dp">
 
@@ -22,61 +26,78 @@
 
             <TextView
                 android:id="@+id/reg_evento"
-                android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center_horizontal"
                 android:text="@string/reg_evento"
-                android:textColor="@color/red"
+                android:textColor="@color/black"
                 android:textSize="30sp" />
+
             <TextView
                 android:id="@+id/txtNomEvent"
-                android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:gravity="center_horizontal"
                 android:text="@string/txt_nombre_evento"
-                android:textColor="#BF2E2E"
-                android:textSize="20sp" />
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_marginTop="15dp"/>
+
             <EditText
                 android:id="@+id/nombreEvento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/poppins_light"
                 android:hint="@string/NAME_EVENT"
                 android:inputType="textPersonName" />
+
             <TextView
                 android:id="@+id/txtOrganizador"
-                android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:gravity="center_horizontal"
                 android:text="@string/txt_organizador"
-                android:textColor="#BF2E2E"
-                android:textSize="20sp" />
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_marginTop="15dp"/>
             <EditText
                 android:id="@+id/organizador"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/ORGANIZER"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:fontFamily="@font/poppins_light"/>
+
             <TextView
                 android:id="@+id/textView9"
-                android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="@string/txt_evento"
-                android:textColor="#BF2E2E"
-                android:textSize="20sp" />
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_light"/>
+
 
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></Spinner>
+                android:layout_height="wrap_content"
+                >
+
+            </Spinner>
 
             <Button
                 android:id="@+id/btnFecha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Fecha" />
 
             <EditText
@@ -84,27 +105,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/poppins_medium"
                 android:inputType="textPersonName"
                 android:text="Fecha" />
+
             <Button
                 android:id="@+id/btnHora"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Hora" />
+
             <EditText
                 android:id="@+id/txtHora"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/poppins_medium"
                 android:inputType="textPersonName"
                 android:text="Hora" />
+
             <TextView
                 android:id="@+id/textView8"
-                android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center_horizontal"
                 android:text="@string/txt_description"
-                android:textColor="#BF2E2E"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <EditText
@@ -112,6 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="102dp"
                 android:ems="10"
+                android:fontFamily="@font/poppins_light"
                 android:gravity="top"
                 android:hint="@string/DESCRIPTION"
                 android:inputType="textMultiLine" />
@@ -120,9 +150,11 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_medium"
                 android:gravity="center_horizontal"
                 android:text="@string/txt_map"
-                android:textColor="#BF2E2E"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <fragment
@@ -130,12 +162,19 @@
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="341dp"></fragment>
+
             <Button
                 android:id="@+id/btnRegistroEvent"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
                 android:text="@string/btnregistrar"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/button_shape"
+                android:layout_marginTop="15dp"
+
+                />
 
         </LinearLayout>
     </ScrollView>

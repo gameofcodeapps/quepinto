@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CAE0F1"
-    android:orientation="vertical">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".MainActivityRegUsuario">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#CAE0F1"
+        android:background="#FFFFFF"
         android:orientation="vertical"
         tools:context=".MainActivityRegUsuario"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginTop="65dp"
         >
 
         <TextView
@@ -26,24 +31,25 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:gravity="center_horizontal"
             android:layout_marginTop="7dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center_horizontal"
             android:text="@string/reg_usuario"
-            android:textColor="@color/red"
+            android:textColor="@color/black"
             android:textSize="30sp" />
 
         <TextView
-        android:id="@+id/usuarioTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:text="@string/usurioRegistroTV"
-        android:textColor="#BF2E2E"
-        android:textSize="20sp" />
+            android:id="@+id/usuarioTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/usurioRegistroTV"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/usuarioET"
@@ -53,9 +59,11 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:ems="10"
+            android:fontFamily="@font/poppins_light"
             android:gravity="center_horizontal"
             android:hint="@string/usurioRegistroET"
             android:textSize="17sp" />
+
         <TextView
             android:id="@+id/nombreUsuarioTV"
             android:layout_width="wrap_content"
@@ -64,8 +72,9 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/txt_nom"
-            android:textColor="#BF2E2E"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <EditText
@@ -76,9 +85,11 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:ems="10"
+            android:fontFamily="@font/poppins_light"
             android:gravity="center_horizontal"
             android:hint="@string/NAME"
             android:textSize="17sp" />
+
         <TextView
             android:id="@+id/apellidoUsuarioTV"
             android:layout_width="wrap_content"
@@ -87,8 +98,9 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/apellido"
-            android:textColor="#BF2E2E"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <EditText
@@ -99,9 +111,11 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:ems="10"
+            android:fontFamily="@font/poppins_light"
             android:gravity="center_horizontal"
             android:hint="@string/SURNAME"
             android:textSize="17sp" />
+
         <TextView
             android:id="@+id/emailUsuarioTV"
             android:layout_width="wrap_content"
@@ -110,8 +124,9 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/correle"
-            android:textColor="#BF2E2E"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <EditText
@@ -122,9 +137,11 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:ems="10"
+            android:fontFamily="@font/poppins_light"
             android:gravity="center_horizontal"
             android:hint="@string/EMAIL"
             android:textSize="17sp" />
+
         <TextView
             android:id="@+id/passwordUsuarioTV"
             android:layout_width="wrap_content"
@@ -133,8 +150,9 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/txtContraseña"
-            android:textColor="#BF2E2E"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <EditText
@@ -145,10 +163,12 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:ems="10"
+            android:fontFamily="@font/poppins_light"
             android:gravity="center_horizontal"
             android:hint="@string/PASS"
             android:inputType="textPassword"
             android:textSize="17sp" />
+
         <TextView
             android:id="@+id/reptirPasswordUsuarioTV"
             android:layout_width="wrap_content"
@@ -157,8 +177,9 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/txtconfcont"
-            android:textColor="#BF2E2E"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <EditText
@@ -169,10 +190,12 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:ems="10"
+            android:fontFamily="@font/poppins_light"
             android:gravity="center_horizontal"
             android:hint="@string/CONF_PASS"
             android:inputType="textPassword"
             android:textSize="17sp" />
+
         <TextView
             android:id="@+id/requisioPasswordTV"
             android:layout_width="wrap_content"
@@ -181,6 +204,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_light"
             android:text="@string/requisitoPasswordTV"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -191,10 +215,12 @@
             android:layout_height="46dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="26dp"
+            android:background="@drawable/button_shape"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/bot_Env"
-            android:textColor="@color/white"
-            android:layout_gravity="center_horizontal"/>
+            android:textColor="@color/white" />
     </LinearLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

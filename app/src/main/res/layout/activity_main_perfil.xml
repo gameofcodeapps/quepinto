@@ -66,7 +66,7 @@
     <EditText
         android:id="@+id/Nom_Usuario_perf"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/poppins_light"
@@ -114,7 +114,7 @@
     <EditText
         android:id="@+id/UsuNom"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/poppins_light"
@@ -163,7 +163,7 @@
     <EditText
         android:id="@+id/Apellido"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/poppins_light"
@@ -212,7 +212,7 @@
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/poppins_light"
@@ -232,24 +232,24 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="205dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_shape"
-        android:fontFamily="@font/poppins_light"
+        android:fontFamily="@font/poppins_medium"
         android:onClick="cam_foto"
         android:text="@string/btn_cam_fot"
         android:textColor="@color/white" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="204dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/button_shape"
-        android:fontFamily="@font/poppins_light"
+        android:fontFamily="@font/poppins_medium"
         android:text="@string/btn_gard_camb"
         android:textColor="@color/white" />
 
