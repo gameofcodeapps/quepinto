@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -34,7 +35,7 @@ public class MainActivityEvento extends AppCompatActivity {
         txtdscEvento.setText(getIntent().getStringExtra("desc"));
         txtOrganizador.setText(getIntent().getStringExtra("organizador"));
         txtMapa.setText(getIntent().getStringExtra("mapa"));
-
+        txtdscEvento.setMovementMethod(new ScrollingMovementMethod());
 
         ride =(ImageButton)findViewById(R.id.ride);
         ticket=(ImageButton)findViewById(R.id.Ticket);

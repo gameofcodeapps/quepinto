@@ -58,6 +58,7 @@
                   android:autofillHints=""
                   android:contentDescription="@string/txt_description"
                   android:ems="12"
+                  android:scrollbars = "vertical"
                   android:fontFamily="@font/poppins_light"
                   android:textColor="#404946"
                   android:textSize="14sp"
