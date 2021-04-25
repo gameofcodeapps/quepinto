@@ -6,11 +6,15 @@ import com.gameofcode.quepinto.models.EventoModel;
 
 public class RegistrarEventoPresenter implements IRegistrarEventoPresenter {
 
+    //Si retorna 0 esta todo bien, si retorna 1 hay error
+
     @Override
     public int registrarEvento(EventoDTO pEvento) {
 
         EventoModel eventoModel = EventoModel.getInstance();
-
-        return 0;
+        if(eventoModel.agregarEvento(pEvento)){
+            return 0;
+        }
+        return 1;
     }
 }

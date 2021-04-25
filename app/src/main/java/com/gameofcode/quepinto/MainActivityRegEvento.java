@@ -10,6 +10,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.provider.MediaStore;
@@ -116,6 +117,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
                 String usuarioCreador = "";
 
                 EventoDTO nuevoEvento = new EventoDTO(id,evento,organiza,categoria,descripcion,Cargaimagen,ciudad,departamento,pais,fecha,"","",hora,latitud,direccion,longitud,usuarioCreador);
+                Log.i("evento",nuevoEvento.getDepartamento());
                 if(validarDatosEvent(nuevoEvento)){
                     ProgressDialog progressDialog = ProgressDialog.show(MainActivityRegEvento.this, "","Creando evento", true) ;
                     //////////////////////////////////////////////////////////////
@@ -124,13 +126,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
                         public void run() {
                             ////////Se ejecuta en segundo plano//////////////////////
                             IRegistrarEventoPresenter presenter = new RegistrarEventoPresenter();
-                            //Valores retorno
-                            /*
-                            0 = nombre de usuario y mail no registrado
-                            1 = email registrado
-                            2 = usuario registrado
-                            3 = nombre de usuario y mail registrado
-                             */
+
                             int resultado = presenter.registrarEvento(nuevoEvento);
                             ////////////////////////////////////////////////////////
                             //Se ejecuta al terminar la tarea en segundo plano
@@ -142,7 +138,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
                                         AlertDialog dialogo = new AlertDialog.Builder(MainActivityRegEvento.this).setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                Intent buscar = new Intent(MainActivityRegEvento.this,MainActivity.class);
+                                                Intent buscar = new Intent(MainActivityRegEvento.this,MainActivityBusEvento.class);
                                                 startActivity(buscar);
                                             }
                                         })
@@ -152,11 +148,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
                                      dialogo.show();
 
                                     }else if(resultado == 1){
-                                        Toast.makeText(getApplicationContext(),"El email ya esta registrado",Toast.LENGTH_LONG).show();
-                                    }else if(resultado == 2){
-                                        Toast.makeText(getApplicationContext(),"El usuario ya esta registrado",Toast.LENGTH_LONG).show();
-                                    }else if(resultado ==3){
-                                        Toast.makeText(getApplicationContext(),"El usuario y el email ya esta registrado. Te olvidaste de la clave?",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(),"Hubo un error al registrar el evento, intente nuevamente :)",Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -319,7 +311,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
             Toast.makeText(getApplicationContext(), "Debe ingresar una direccion", Toast.LENGTH_LONG).show();
             return false;
         }
-        return false;
+        return true;
     }
 
     public void cargarImagen(View view) {

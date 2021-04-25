@@ -202,8 +202,8 @@ public class EventoModel {
                     "\""+pEvento.getCiudad()+"\""+", " +
                     "\""+pEvento.getDepartamento()+"\""+", " +
                     "\""+pEvento.getPais()+"\""+", " +
-                    "\""+pEvento.getFechaInicio()+"\""+", " +
-                    "\""+"0000-00-00"+"\""+", " +
+                    "STR_TO_DATE('"+pEvento.getFechaInicio()+"','%d/%m/%Y')"+", " +
+                    "STR_TO_DATE('"+pEvento.getFechaInicio()+"','%d/%m/%Y')"+", " +
                     "\""+"00:00"+"\""+", " +
                     "\""+pEvento.getHoraInicio()+"\""+", " +
                     "\""+pEvento.getLatitud()+"\""+", " +

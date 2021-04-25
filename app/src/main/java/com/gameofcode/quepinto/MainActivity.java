@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         IMainPresenter iMainPresenter = new MainPresenter();
         //Si existe usuario grabado inicia sesion automaticamente
         if(iMainPresenter.existeUsuarioGrabado(getApplicationContext())){
-            logUsuario(null);
+           // logUsuario(null);
         }
 
        // PreferenciasSistema.getInstance().obtener().getString("nombre","lalala");
