@@ -15,7 +15,7 @@ import java.util.List;
 public  class UsuarioModel {
 
     private static UsuarioModel instance = null;
-    private UsuarioDTO usuarioLogeado = null;
+    public  UsuarioDTO usuarioLogeado = null;
 
     public  UsuarioModel(){
 

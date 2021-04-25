@@ -17,8 +17,7 @@ import android.widget.ImageView;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Callback;
+
 import com.bumptech.glide.Glide;
 import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.DTO.UsuarioDTO;
@@ -40,6 +39,7 @@ public class MainActivityBusEvento extends AppCompatActivity {
     ImageView imageView;
     myadapter adapter;
     Bitmap bmp;
+    private List<EventoDTO> eventos = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,68 +152,53 @@ public class MainActivityBusEvento extends AppCompatActivity {
 
 
     private void traerEvento(){
-        //Se ejecuta antes de la tarea en segundo plano
+        //Se ejecuta en segundo plano
 
-        new Thread(new Runnable() {
-            @Override
-           public void run() {
-                //Se ejecuta en segundo plano
+        //EventoModel instance = EventoModel.getInstance();
+        //List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
+        //Log.i("Eventos","holaa");
 
-                EventoModel instance = EventoModel.getInstance();
-                List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
-                //Log.i("Eventos","holaa");
+        Log.i("Eventos",String.valueOf(eventos.get(i).getNombreEvento()));
+        auxNom = String.valueOf(eventos.get(i).getNombreEvento());
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getNombreEvento()));
-                auxNom = String.valueOf(eventoDTOS.get(i).getNombreEvento());
+        Log.i("Eventos",String.valueOf(eventos.get(i).getDescripcion()));
+        auxdsc = String.valueOf(eventos.get(i).getDescripcion());
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getDescripcion()));
-                auxdsc = String.valueOf(eventoDTOS.get(i).getDescripcion());
+        Log.i("Eventos",String.valueOf(eventos.get(i).getFechaInicio()));
+        auxfch = String.valueOf(eventos.get(i).getFechaInicio());
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getFechaInicio()));
-                auxfch = String.valueOf(eventoDTOS.get(i).getFechaInicio());
+        Log.i("Eventos",String.valueOf(eventos.get(i).getOrganizador()));
+        auxorg = String.valueOf(eventos.get(i).getOrganizador());
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getOrganizador()));
-                auxorg = String.valueOf(eventoDTOS.get(i).getOrganizador());
+        Log.i("Eventos",String.valueOf(eventos.get(i).getDireccion()));
+        auxdir = String.valueOf(eventos.get(i).getDireccion());
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getDireccion()));
-                auxdir = String.valueOf(eventoDTOS.get(i).getDireccion());
-
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getImagenEvento()));
-                auximg = String.valueOf(eventoDTOS.get(i).getImagenEvento());
-
-                new Thread()
+        Log.i("Eventos",String.valueOf(eventos.get(i).getImagenEvento()));
+        auximg = String.valueOf(eventos.get(i).getImagenEvento());
+/*
+        new Thread()
+        {
+            public void run()
+            {
+                try
                 {
-                    public void run()
-                    {
-                        try
-                        {
-                            URL url = new URL(auximg);
-                            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                        }
-                        catch (Exception ex){
+                    URL url = new URL(auximg);
+                    Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                }
+                catch (Exception ex){
 
-                        }
+                }
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                      //          imageView.setImageBitmap(bmp);
-                            }
-                        });
-                    }
-
-                }.start();
-
-                //Se ejecuta al terminar la tarea en segundo plano
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //Toast.makeText(getApplicationContext(),eventoDTOS.size(),Toast.LENGTH_LONG).show();
+                        //          imageView.setImageBitmap(bmp);
                     }
                 });
             }
-        }).start();
 
+        }.start();
+*/
 
     }
     private void traerLastIndex(){
@@ -225,12 +210,12 @@ public class MainActivityBusEvento extends AppCompatActivity {
                 //Se ejecuta en segundo plano
 
                 EventoModel instance = EventoModel.getInstance();
-                List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
+                eventos = instance.obtenerTodosLosEventosHabilitados();
                 //Log.i("Eventos","holaa");
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.size()));
+                Log.i("Eventos",String.valueOf(eventos.size()));
               //  auxIntstr = String.valueOf(eventoDTOS.size());
-                auxindex = eventoDTOS.size();
+                auxindex = eventos.size();
 
 
                 //Se ejecuta al terminar la tarea en segundo plano
