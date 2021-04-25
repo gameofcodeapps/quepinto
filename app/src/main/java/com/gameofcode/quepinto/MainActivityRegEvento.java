@@ -37,6 +37,7 @@ import android.widget.Toast;
 
 import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.interfaces.IRegistrarEventoPresenter;
+import com.gameofcode.quepinto.models.UsuarioModel;
 import com.gameofcode.quepinto.presentadores.RegistrarEventoPresenter;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -103,7 +104,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
                 int id = 1;
                 String evento = nombreEvent.getText().toString();
                 String organiza = organizador.getText().toString();
-                String categoria = spinner.getAdapter().toString();
+                String categoria = spinner.getSelectedItem().toString();
                 String descripcion = descrip.getText().toString();
                 String Cargaimagen = imagen.getImageMatrix().toString();
                 String ciudad = city.getText().toString();
@@ -114,7 +115,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
                 String latitud = "";
                 String direccion = address.getText().toString();
                 String longitud = "";
-                String usuarioCreador = "";
+                String usuarioCreador = UsuarioModel.getInstance().usuarioLogeado.getUsername();
 
                 EventoDTO nuevoEvento = new EventoDTO(id,evento,organiza,categoria,descripcion,Cargaimagen,ciudad,departamento,pais,fecha,"","",hora,latitud,direccion,longitud,usuarioCreador);
                 Log.i("evento",nuevoEvento.getDepartamento());

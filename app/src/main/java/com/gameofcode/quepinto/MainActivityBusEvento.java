@@ -21,6 +21,7 @@ import android.graphics.BitmapFactory;
 import com.bumptech.glide.Glide;
 import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.DTO.UsuarioDTO;
+import com.gameofcode.quepinto.helpers.PreferenciasSistema;
 import com.gameofcode.quepinto.models.EventoModel;
 import com.gameofcode.quepinto.models.UsuarioModel;
 import com.bumptech.glide.annotation.GlideModule;
@@ -94,6 +95,9 @@ public class MainActivityBusEvento extends AppCompatActivity {
                 startActivity(creevento);
                 break;
             case R.id.menuL:
+                //So cierra sesion borro los datos grabados
+                PreferenciasSistema.agregarPreferencia(getApplicationContext(),"usuario","");
+                PreferenciasSistema.agregarPreferencia(getApplicationContext(),"password","pPassword");
                 Intent logout = new Intent(this,MainActivity.class);
                 startActivity(logout);
                 break;

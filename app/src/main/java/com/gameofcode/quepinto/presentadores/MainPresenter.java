@@ -22,13 +22,12 @@ public class MainPresenter  implements IMainPresenter  {
         UsuarioModel instance = UsuarioModel.getInstance();
         UsuarioDTO usuarioDTO;
         Log.i("usuario",usuarioGrabado);
-        if(usuarioGrabado.isEmpty()){
+        if(usuarioGrabado.isEmpty() && !pUsuarrio.isEmpty()){
             usuarioDTO=instance.obtenerDatosUsuario(pUsuarrio,pPassword);
             //Si el usuario se logea, se guarda el usuario y la clave
             PreferenciasSistema.agregarPreferencia(context,"usuario",pUsuarrio);
             PreferenciasSistema.agregarPreferencia(context,"password",pPassword);
         }else{
-
             usuarioDTO=instance.obtenerDatosUsuario(usuarioGrabado,passwordGrabado);
         }
 

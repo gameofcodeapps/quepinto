@@ -223,6 +223,37 @@ public class EventoModel {
         return true;
     }
 
+    public boolean actualizarDatosEvento(EventoDTO pEvento){
+        UsuarioModel instance = UsuarioModel.getInstance();
+        try {
+            ConnectDBHelper.establecerConexionBD();
+            String sqlInsert="UPDATE home_evento SET " +
+                    "nameEvent=\""+pEvento.getNombreEvento()+"\", "+
+                    "organizer=\""+pEvento.getOrganizador()+"\", "+
+                    "category=\""+pEvento.getCategoria()+"\", "+
+                    "description=\""+pEvento.getDescripcion()+"\", "+
+                    "gallery=\""+pEvento.getImagenEvento()+"\", "+
+                    "city=\""+pEvento.getCiudad()+"\", "+
+                    "department=\""+pEvento.getDepartamento()+"\", "+
+                    //"startDate="+"STR_TO_DATE('"+pEvento.getFechaInicio()+"','%Y-%m-%d')"+", "+
+                    "startDate="+"STR_TO_DATE('"+pEvento.getFechaInicio()+"','%d/%m/%Y')"+", "+
+                    "startTimeDate=\""+pEvento.getHoraInicio()+"\", "+
+                    "lat=\""+pEvento.getLatitud()+"\", "+
+                    "address=\""+pEvento.getDireccion()+"\", "+
+                    "home_evento.long=\""+pEvento.getLongitud()+"\" "+
+                    "WHERE " +
+                    "id="+pEvento.getId();
+            Log.i("SQL Insert",sqlInsert);
+            int devuelveInsert = ConnectDBHelper.ejecutarSQLInsertUpdate(sqlInsert);
+            Log.i("DevuelveInsert",String.valueOf(devuelveInsert));
+            ConnectDBHelper.desconectarBD();
+        }catch (Exception e){
+            Log.i("error insert",e.getMessage());
+            ConnectDBHelper.desconectarBD();
+            return false;
+        }
+        return true;
 
+    }
 
 }

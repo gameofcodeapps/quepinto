@@ -39,14 +39,15 @@ public class NoticacionService extends JobService {
                 Log.i("Manejador",usuario );
                 createNotificationChannel();
                 List<EventoDTO> listaFavoritos = (List<EventoDTO>) msg.obj;
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),"QuePinto")
-                        .setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle("Tenes "+String.valueOf(listaFavoritos.size()) +" eventos favoritos proximos")
-                        .setContentText("Hace click para ver tus favoritos")
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
-                // notificationId is a unique int for each notification that you must define
-                notificationManager.notify(100, builder.build());
+                if(listaFavoritos.size()>0){
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),"QuePinto")
+                            .setSmallIcon(R.mipmap.ic_launcher)
+                            .setContentTitle("Tenes "+String.valueOf(listaFavoritos.size()) +" eventos favoritos proximos")
+                            .setContentText("Hace click para ver tus favoritos")
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+                    // notificationId is a unique int for each notification that you must define
+                    notificationManager.notify(100, builder.build());}
                 super.handleMessage(msg);
             }
         };
