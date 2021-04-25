@@ -8,9 +8,6 @@
     android:orientation="vertical"
     tools:context=".MainActivityRegUsuario">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,9 +17,8 @@
         tools:context=".MainActivityRegUsuario"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="5dp"
         >
-
         <TextView
             android:id="@+id/reg_usuario"
             android:layout_width="match_parent"
@@ -38,189 +34,205 @@
             android:textColor="@color/black"
             android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/usuarioTV"
+        <ScrollView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/usurioRegistroTV"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/usuarioET"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:ems="10"
-            android:fontFamily="@font/poppins_light"
-            android:gravity="center_horizontal"
-            android:hint="@string/usurioRegistroET"
-            android:textSize="17sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="10dp">
 
-        <TextView
-            android:id="@+id/nombreUsuarioTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/txt_nom"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+                        <TextView
+                            android:id="@+id/usuarioTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/usurioRegistroTV"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/nombreUsuarioET"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:ems="10"
-            android:fontFamily="@font/poppins_light"
-            android:gravity="center_horizontal"
-            android:hint="@string/NAME"
-            android:textSize="17sp" />
+                        <EditText
+                            android:id="@+id/usuarioET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_light"
+                            android:gravity="center_horizontal"
+                            android:hint="@string/usurioRegistroET"
+                            android:textSize="17sp" />
 
-        <TextView
-            android:id="@+id/apellidoUsuarioTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/apellido"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+                        <TextView
+                            android:id="@+id/nombreUsuarioTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/txt_nom"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/apellidoUsuarioET"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:ems="10"
-            android:fontFamily="@font/poppins_light"
-            android:gravity="center_horizontal"
-            android:hint="@string/SURNAME"
-            android:textSize="17sp" />
+                        <EditText
+                            android:id="@+id/nombreUsuarioET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_light"
+                            android:gravity="center_horizontal"
+                            android:hint="@string/NAME"
+                            android:textSize="17sp" />
 
-        <TextView
-            android:id="@+id/emailUsuarioTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/correle"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+                        <TextView
+                            android:id="@+id/apellidoUsuarioTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/apellido"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/emailUsuarioET"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:ems="10"
-            android:fontFamily="@font/poppins_light"
-            android:gravity="center_horizontal"
-            android:hint="@string/EMAIL"
-            android:textSize="17sp" />
+                        <EditText
+                            android:id="@+id/apellidoUsuarioET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_light"
+                            android:gravity="center_horizontal"
+                            android:hint="@string/SURNAME"
+                            android:textSize="17sp" />
 
-        <TextView
-            android:id="@+id/passwordUsuarioTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/txtContraseña"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+                        <TextView
+                            android:id="@+id/emailUsuarioTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/correle"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/passwordUsuarioET"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:ems="10"
-            android:fontFamily="@font/poppins_light"
-            android:gravity="center_horizontal"
-            android:hint="@string/PASS"
-            android:inputType="textPassword"
-            android:textSize="17sp" />
+                        <EditText
+                            android:id="@+id/emailUsuarioET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_light"
+                            android:gravity="center_horizontal"
+                            android:hint="@string/EMAIL"
+                            android:textSize="17sp" />
 
-        <TextView
-            android:id="@+id/reptirPasswordUsuarioTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/txtconfcont"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+                        <TextView
+                            android:id="@+id/passwordUsuarioTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/txtContraseña"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/repetirPasswordUsuarioET"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:ems="10"
-            android:fontFamily="@font/poppins_light"
-            android:gravity="center_horizontal"
-            android:hint="@string/CONF_PASS"
-            android:inputType="textPassword"
-            android:textSize="17sp" />
+                        <EditText
+                            android:id="@+id/passwordUsuarioET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_light"
+                            android:gravity="center_horizontal"
+                            android:hint="@string/PASS"
+                            android:inputType="textPassword"
+                            android:textSize="17sp" />
 
-        <TextView
-            android:id="@+id/requisioPasswordTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/poppins_light"
-            android:text="@string/requisitoPasswordTV"
-            android:textColor="#000000"
-            android:textSize="15sp" />
+                        <TextView
+                            android:id="@+id/reptirPasswordUsuarioTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/txtconfcont"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/but_Env"
-            android:layout_width="162dp"
-            android:layout_height="46dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="26dp"
-            android:background="@drawable/button_shape"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/bot_Env"
-            android:textColor="@color/white" />
+                        <EditText
+                            android:id="@+id/repetirPasswordUsuarioET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:ems="10"
+                            android:fontFamily="@font/poppins_light"
+                            android:gravity="center_horizontal"
+                            android:hint="@string/CONF_PASS"
+                            android:inputType="textPassword"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/requisioPasswordTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/requisitoPasswordTV"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/but_Env"
+                            android:layout_width="162dp"
+                            android:layout_height="46dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="26dp"
+                            android:background="@drawable/button_shape"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/bot_Env"
+                            android:textColor="@color/white" />
+
+            </LinearLayout>
+        </ScrollView>
+
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

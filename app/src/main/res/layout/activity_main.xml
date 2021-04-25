@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/crowd"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
 
 <!---quité actionbar y bajé el logo-->
@@ -19,164 +20,197 @@
         android:contentDescription="@string/logoimg"
         app:srcCompat="@drawable/logo_red" />
 
-    <TableRow
+
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        tools:gravity="center_horizontal" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/rounded_shape" >
+        android:layout_marginTop="10dp"
+        >
 
-        <TextView
-            android:id="@+id/TxtLogo"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/poppins_medium"
-            android:gravity="center_horizontal"
-            android:text="@string/login"
-            android:textColor="#f91942"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp">
 
-        <EditText
-            android:id="@+id/TxtUsuNom"
-            android:layout_width="255dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:fontFamily="@font/poppins_light"
-            android:gravity="center_horizontal"
-            android:hint="@string/NoMUsu"
-            android:inputType="textPersonName"
-            android:textColor="@color/gray"
-            android:textColorHint="@color/gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TxtLogo" />
 
-        <EditText
-            android:id="@+id/TxtUsuPas"
-            android:layout_width="255dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="8dp"
-            android:autofillHints=""
-            android:fontFamily="@font/poppins_light"
-            android:gravity="center_horizontal"
-            android:hint="@string/txtContraseña"
-            android:inputType="textPassword"
-            android:textColor="@color/gray"
-            android:textColorHint="@color/gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TxtUsuNom" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/rounded_shape" >
 
-        <Button
-            android:id="@+id/btnIngresar"
-            android:layout_width="190dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/button_shape"
-            android:fontFamily="@font/poppins_medium"
-            android:onClick="logUsuario"
-            android:text="@string/btningresar"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TxtUsuPas" />
+                <TextView
+                    android:id="@+id/TxtLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center_horizontal"
+                    android:text="@string/login"
+                    android:textColor="#f91942"
+                    android:textSize="30sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/txtolvido"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/poppins_light"
-            android:gravity="center_horizontal"
-            android:onClick="olvidoCont"
-            android:text="@string/olvco"
-            android:textColor="@color/gray"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnIngresar" />
+                <EditText
+                    android:id="@+id/TxtUsuNom"
+                    android:layout_width="255dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="@font/poppins_light"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/NoMUsu"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/gray"
+                    android:textColorHint="@color/gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TxtLogo" />
 
-        <TextView
-            android:id="@+id/Txtreg"
-            android:layout_width="188dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:fontFamily="@font/poppins_light"
-            android:gravity="center_horizontal"
-            android:onClick="noRegistro"
-            android:text="@string/NRegis"
-            android:textColor="@color/gray"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtolvido" />
+                <EditText
+                    android:id="@+id/TxtUsuPas"
+                    android:layout_width="255dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="8dp"
+                    android:autofillHints=""
+                    android:fontFamily="@font/poppins_light"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/txtContraseña"
+                    android:inputType="textPassword"
+                    android:textColor="@color/gray"
+                    android:textColorHint="@color/gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TxtUsuNom" />
 
-        <Button
-            android:id="@+id/BtnEven"
-            android:layout_width="190dp"
-            android:layout_height="46dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/button_shape"
-            android:backgroundTint="@color/pink"
-            android:fontFamily="@font/poppins_medium"
-            android:onClick="buscarEventos"
-            android:text="@string/btnEventos"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Txtreg" />
+                <Button
+                    android:id="@+id/btnIngresar"
+                    android:layout_width="190dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/button_shape"
+                    android:fontFamily="@font/poppins_medium"
+                    android:onClick="logUsuario"
+                    android:text="@string/btningresar"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TxtUsuPas" />
 
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="61dp"
-            android:layout_height="52dp"
-            android:layout_marginStart="76dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toStartOf="@+id/sign_in_button"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/BtnEven"
-            app:srcCompat="@drawable/fblogo" />
+                    <TextView
+                        android:id="@+id/txtolvido"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:gravity="center_horizontal"
+                        android:onClick="olvidoCont"
+                        android:text="@string/olvco"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.497"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btnIngresar" />
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="130dp"
-            android:layout_height="61dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="76dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/BtnEven" />
+                    <TextView
+                        android:id="@+id/Txtreg"
+                        android:layout_width="188dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:gravity="center_horizontal"
+                        android:onClick="noRegistro"
+                        android:text="@string/NRegis"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.497"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtolvido" />
 
-        <Button
-            android:id="@+id/testBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/pink"
-            android:gravity="center_horizontal"
-            android:onClick="doStaff"
-            android:text="Boton de Pruebas"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
+                    <TextView
+                        android:id="@+id/Registrate"
+                        android:layout_width="188dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:gravity="center_horizontal"
+                        android:onClick="noRegistro"
+                        android:text="@string/Registrate"
+                        android:textColor="@color/pink"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.497"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/Txtreg" />
 
-        />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/BtnEven"
+                    android:layout_width="190dp"
+                    android:layout_height="46dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/button_shape"
+                    android:backgroundTint="@color/pink"
+                    android:fontFamily="@font/poppins_medium"
+                    android:onClick="buscarEventos"
+                    android:text="@string/btnEventos"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Registrate" />
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="61dp"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="76dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toStartOf="@+id/sign_in_button"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/BtnEven"
+                    app:srcCompat="@drawable/fblogo" />
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/sign_in_button"
+                    android:layout_width="130dp"
+                    android:layout_height="61dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="76dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/BtnEven" />
+
+                    <Button
+                        android:id="@+id/testBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/pink"
+                        android:gravity="center_horizontal"
+                        android:onClick="doStaff"
+                        android:text="Boton de Pruebas"
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
+
+                />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>
