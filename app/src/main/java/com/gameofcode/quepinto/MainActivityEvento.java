@@ -14,9 +14,9 @@ import android.widget.TextView;
 public class MainActivityEvento extends AppCompatActivity {
     ImageView imgEvento;
     TextView txtNomEvento,txtFecha,txtdscEvento,txtOrganizador,txtMapa;
-    ImageButton share,ticket;
+    ImageButton share,ticket,ride;
     String _url = "https://tickantel.com.uy/inicio/?0";
-
+    String _url2 = "https://www.uber.com/uy/es/ride/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +35,8 @@ public class MainActivityEvento extends AppCompatActivity {
         txtOrganizador.setText(getIntent().getStringExtra("organizador"));
         txtMapa.setText(getIntent().getStringExtra("mapa"));
 
+
+        ride =(ImageButton)findViewById(R.id.ride);
         ticket=(ImageButton)findViewById(R.id.Ticket);
         share=(ImageButton)findViewById(R.id.share);
         share.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +62,14 @@ public class MainActivityEvento extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+        ride.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri _link = Uri.parse(_url2);
+                Intent i  =new Intent(Intent.ACTION_VIEW,_link);
+                startActivity(i);
+            }
+        });
     }
 
 }
