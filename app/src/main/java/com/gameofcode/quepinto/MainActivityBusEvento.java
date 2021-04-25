@@ -97,6 +97,10 @@ public class MainActivityBusEvento extends AppCompatActivity {
                 Intent logout = new Intent(this,MainActivity.class);
                 startActivity(logout);
                 break;
+            case R.id.menuA:
+                Intent acercade = new Intent(this,MainActivityAcercade.class);
+                startActivity(acercade);
+                break;
 
         }
         return true;

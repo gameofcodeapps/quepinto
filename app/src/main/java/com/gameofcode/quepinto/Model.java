@@ -1,7 +1,6 @@
 package com.gameofcode.quepinto;
 
-public class Model
-{
+public class Model{
     private String header;
     private String fecha;
     private String txtmapa;

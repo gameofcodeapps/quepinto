@@ -9,4 +9,6 @@
     <item android:title="@string/salir"
         android:id="@+id/itSalir"
         android:icon="@drawable/ic_baseline_exit_to_app_24"/>
+    <item android:title="Acerca de"
+        android:id="@+id/irAcerca"/>
 </menu>

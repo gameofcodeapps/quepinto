@@ -121,17 +121,6 @@ public class BuscarsinLogueo extends AppCompatActivity {
             while(auxdir == null){
 
                 }
-         /*   Picasso.with(this)
-                    .load(auximg)
-                    .centerCrop()
-                    .into(imageView, new Callback() {
-                        @Override
-                        public void onSuccess() {
-                        }
-                        @Override
-                        public void onError() {
-                        }
-                    });*/
 
 
             ob1.setHeader(auxNom);
@@ -148,29 +137,6 @@ public class BuscarsinLogueo extends AppCompatActivity {
 
         return holder;
         }
-//fin loop
-    /*    Model ob2=new Model();
-        ob2.setHeader(auxNom);
-        ob2.setDesc(auxdsc);
-        ob2.setImgname(R.drawable.toque);
-        ob2.setFecha(auxfch);
-        ob2.setOrganizador(auxorg);
-        ob2.setTxtmapa(auxdir);
-
-        holder.add(ob2);
-
-        Model ob3=new Model();
-        ob3.setHeader(auxNom);
-        ob3.setDesc(auxdsc);
-        ob3.setImgname(R.drawable.banda3);
-        ob3.setFecha(auxfch);
-        ob3.setOrganizador(auxorg);
-   //     ob1.setTxtmapa( "busque aquí");
-
-        holder.add(ob3);*/
-
-
-
 
 
 
