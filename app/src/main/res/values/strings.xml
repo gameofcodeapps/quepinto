@@ -12,6 +12,7 @@
     <string name="string_btningresar" />
     <string name="txtredsoc">Ingresa mediante las redes Sociales</string>
     <string name="adnd_vamos">A dónde vamos hoy?</string>
+    <string name="eventos_creados">Mis Eventos Creados</string>
     <string name="favoritos">Mis Eventos Favoritos</string>
     <string name="busqueda_favoritos">Busca tus eventos</string>
     <string name="barra_busqueda">buscar</string>
