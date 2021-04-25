@@ -45,7 +45,7 @@ public class MainActivityEvento extends AppCompatActivity {
             public void onClick(View view) {
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
-                String shareBody="Accede a nuestra aplicación desde aquí; http://quepinto.pythonanywhere.com";
+                String shareBody="Accede a nuestra aplicación desde aquí; http://quepinto.pythonanywhere.com/home/ficha/"+getIntent().getIntExtra("idEvento",0);
                 String shareSub="QuePintó?";
 
                 shareIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);

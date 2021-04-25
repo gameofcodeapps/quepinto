@@ -53,8 +53,6 @@ public class MainActivityPerfil extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu, menu);
         return true;
-
-
     }
 
     @Override

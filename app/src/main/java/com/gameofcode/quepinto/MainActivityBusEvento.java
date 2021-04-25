@@ -41,6 +41,7 @@ public class MainActivityBusEvento extends AppCompatActivity {
     myadapter adapter;
     Bitmap bmp;
     private List<EventoDTO> eventos = null;
+    private int idEvento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +142,8 @@ public class MainActivityBusEvento extends AppCompatActivity {
             ob1.setFecha(auxfch);
             ob1.setOrganizador(auxorg);
             ob1.setTxtmapa(auxdir);
+            //Agregado para compartir web
+            ob1.setId(idEvento);
 
             holder.add(ob1);
             auxdir = null;
@@ -179,6 +182,8 @@ public class MainActivityBusEvento extends AppCompatActivity {
 
         Log.i("Eventos",String.valueOf(eventos.get(i).getImagenEvento()));
         auximg = String.valueOf(eventos.get(i).getImagenEvento());
+        //Agregado para compartir web
+        idEvento = eventos.get(i).getId();
 /*
         new Thread()
         {

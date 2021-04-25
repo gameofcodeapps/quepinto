@@ -57,6 +57,8 @@ public class myadapter extends RecyclerView.Adapter<myviewholder>
                 intent.putExtra("fecha",temp.getFecha());
                 intent.putExtra("organizador",temp.getOrganizador());
                 intent.putExtra("mapa",temp.getTxtmapa());
+                //Agregado para compartir en la web
+                intent.putExtra("idEvento",temp.getId());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

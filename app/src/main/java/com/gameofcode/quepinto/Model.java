@@ -8,6 +8,16 @@ public class Model{
     private String desc;
     private int imgname;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
+
 
     public int getImgname() {
         return imgname;
