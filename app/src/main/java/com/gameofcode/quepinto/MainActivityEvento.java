@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class MainActivityEvento extends AppCompatActivity {
     ImageView imgEvento;
     TextView txtNomEvento,txtFecha,txtdscEvento,txtOrganizador,txtMapa;
@@ -29,13 +31,18 @@ public class MainActivityEvento extends AppCompatActivity {
         txtOrganizador = (TextView)findViewById(R.id.txtOrganizador);
         txtMapa = (TextView)findViewById(R.id.txtMapa);
 
-        imgEvento.setImageResource(getIntent().getIntExtra("imagename",0));
+        //imgEvento.setImageResource(getIntent().getIntExtra("imagename",0));
         txtNomEvento.setText(getIntent().getStringExtra("header"));
         txtFecha.setText(getIntent().getStringExtra("fecha"));
         txtdscEvento.setText(getIntent().getStringExtra("desc"));
         txtOrganizador.setText(getIntent().getStringExtra("organizador"));
         txtMapa.setText(getIntent().getStringExtra("mapa"));
         txtdscEvento.setMovementMethod(new ScrollingMovementMethod());
+
+        String string = getIntent().getStringExtra("imagen");
+        string=string.replace("http:/", "https:/");
+        Picasso.with(imgEvento.getContext()).load(string).into(imgEvento);
+
 
         ride =(ImageButton)findViewById(R.id.ride);
         ticket=(ImageButton)findViewById(R.id.Ticket);

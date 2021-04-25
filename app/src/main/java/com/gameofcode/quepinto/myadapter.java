@@ -10,10 +10,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class myadapter extends RecyclerView.Adapter<myviewholder>
 {
+    String string;
     ArrayList<Model> data;
     Context context;
     public myadapter(ArrayList<Model> data, Context context)
@@ -44,7 +47,10 @@ public class myadapter extends RecyclerView.Adapter<myviewholder>
      //   holder.t4.setText(temp.getOrganizador());
 /*        holder.t5.setText(temp.getTxtmapa());*/
 
-        holder.img.setImageResource(temp.getImgname());
+   //     holder.img.setImageResource(temp.getImgname());
+        String string = temp.getUrlimagen();
+        string=string.replace("http:/", "https:/");
+        Picasso.with(holder.img.getContext()).load(string).into(holder.img);
         holder.img.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -57,6 +63,7 @@ public class myadapter extends RecyclerView.Adapter<myviewholder>
                 intent.putExtra("fecha",temp.getFecha());
                 intent.putExtra("organizador",temp.getOrganizador());
                 intent.putExtra("mapa",temp.getTxtmapa());
+                intent.putExtra("imagen",temp.getUrlimagen());
                 //Agregado para compartir en la web
                 intent.putExtra("idEvento",temp.getId());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

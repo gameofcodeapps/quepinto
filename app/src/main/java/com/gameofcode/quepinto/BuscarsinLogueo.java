@@ -27,10 +27,12 @@ import java.util.List;
 public class BuscarsinLogueo extends AppCompatActivity {
     RecyclerView rcv;
     int i,auxindex;
-    String auxNom,auxdsc,auxfch,auxorg,auxdir,auximg,auxIntstr;
+    String auxNom,auxdsc,auxfch,auxorg,auxdir,auximg,auxIntstr,auxurlimg;
     ImageView imageView;
     myadapter adapter;
     Bitmap bmp;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,7 @@ public class BuscarsinLogueo extends AppCompatActivity {
         //placing toolbar in place of actionbar
         setSupportActionBar(toolbar2);
 
-        new Thread()
+       /* new Thread()
         {
             public void run()
             {
@@ -73,7 +75,7 @@ public class BuscarsinLogueo extends AppCompatActivity {
                 });
             }
 
-        }.start();
+        }.start();*/
 
     }
 
@@ -105,15 +107,16 @@ public class BuscarsinLogueo extends AppCompatActivity {
     public ArrayList<Model> dataqueue()
     {
         ArrayList<Model> holder=new ArrayList<>();
-    //traigo last index
 
+
+    //traigo last index
         traerLastIndex();
+
         while (auxindex == 0){
 
         }
-// comienzo loop I=1 hasta last
-        //auxindex= 12;
 
+        // comienzo loop I=1 hasta last
         for(i=0; i<auxindex; i++){
             Model ob1=new Model();
             traerEvento();
@@ -129,6 +132,7 @@ public class BuscarsinLogueo extends AppCompatActivity {
             ob1.setFecha(auxfch);
             ob1.setOrganizador(auxorg);
             ob1.setTxtmapa(auxdir);
+            ob1.setUrlimagen(auximg);
 
             holder.add(ob1);
             auxdir = null;

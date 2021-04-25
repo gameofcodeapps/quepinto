@@ -7,6 +7,11 @@ public class Model{
     private String organizador;
     private String desc;
     private int imgname;
+    private String urlimagen;
+
+    public String getUrlimagen() {return urlimagen;}
+
+    public void setUrlimagen(String urlimagen) {this.urlimagen = urlimagen;}
 
     public int getId() {
         return id;

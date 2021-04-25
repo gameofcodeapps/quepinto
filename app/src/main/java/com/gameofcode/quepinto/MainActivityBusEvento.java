@@ -142,6 +142,7 @@ public class MainActivityBusEvento extends AppCompatActivity {
             ob1.setFecha(auxfch);
             ob1.setOrganizador(auxorg);
             ob1.setTxtmapa(auxdir);
+            ob1.setUrlimagen(auximg);
             //Agregado para compartir web
             ob1.setId(idEvento);
 
