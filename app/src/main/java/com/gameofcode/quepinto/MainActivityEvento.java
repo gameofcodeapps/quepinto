@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,7 +14,8 @@ import android.widget.TextView;
 public class MainActivityEvento extends AppCompatActivity {
     ImageView imgEvento;
     TextView txtNomEvento,txtFecha,txtdscEvento,txtOrganizador,txtMapa;
-    ImageButton share;
+    ImageButton share,ticket;
+    String _url = "https://tickantel.com.uy/inicio/?0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class MainActivityEvento extends AppCompatActivity {
         txtOrganizador.setText(getIntent().getStringExtra("organizador"));
         txtMapa.setText(getIntent().getStringExtra("mapa"));
 
+        ticket=(ImageButton)findViewById(R.id.Ticket);
         share=(ImageButton)findViewById(R.id.share);
         share.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +51,16 @@ public class MainActivityEvento extends AppCompatActivity {
                 startActivity(Intent.createChooser(shareIntent,"Compartir usando:"));
             }
         });
+
+        ticket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri _link = Uri.parse(_url);
+                Intent i  =new Intent(Intent.ACTION_VIEW,_link);
+                startActivity(i);
+            }
+        });
+
     }
 
 }
