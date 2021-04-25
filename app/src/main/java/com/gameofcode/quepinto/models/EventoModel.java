@@ -51,8 +51,19 @@ public class EventoModel {
                 "from home_evento, " +
                 "home_usuario_favorito " +
                 "WHERE " +
-                "home_usuario_favorito.idUsuario = '41' and " +
+                "home_usuario_favorito.idUsuario = \""+usuarioLogeado.getId()+"\" and " +
                 "home_usuario_favorito.idEvento=home_evento.id";
+        return obtenerEventos(sql);
+
+    }
+
+    public List<EventoDTO> obtenerEventosPorCategoriaONombre(String pBusqueda){
+        String sql = "select *  " +
+                "from home_evento " +
+                "WHERE " +
+                "(lower(category) like trim(lower(\"%"+pBusqueda+"%\"))) or " +
+                "(trim(lower(nameEvent)) like trim(lower(\"%"+pBusqueda+"%\")))";
+        Log.i("SQL",sql);
         return obtenerEventos(sql);
 
     }
@@ -255,5 +266,7 @@ public class EventoModel {
         return true;
 
     }
+
+
 
 }

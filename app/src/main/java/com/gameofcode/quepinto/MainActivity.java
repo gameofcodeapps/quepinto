@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         IMainPresenter iMainPresenter = new MainPresenter();
         //Si existe usuario grabado inicia sesion automaticamente
         if(iMainPresenter.existeUsuarioGrabado(getApplicationContext())){
-            logUsuario(null);
+            //logUsuario(null);
         }
 
        // PreferenciasSistema.getInstance().obtener().getString("nombre","lalala");
@@ -139,13 +139,13 @@ public class MainActivity extends AppCompatActivity {
                 //EventoDTO evento = new EventoDTO(
                 //    1,"evento Prueba","yo","clande","re piola","imagen","maldonado","maldonado","uruguay","2021-04-25","","","20:00","548484984","la direccion","51651651561651", "juan1");
                 //instance.agregarEvento(evento);
-                List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
-                EventoDTO eventoDTO = eventoDTOS.get(12);
-                eventoDTO.setNombreEvento("Hackaton 2021 modificado");
-                instance.actualizarDatosEvento(eventoDTO);
+               // List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
+               // EventoDTO eventoDTO = eventoDTOS.get(12);
+                //eventoDTO.setNombreEvento("Hackaton 2021 modificado");
+                //instance.actualizarDatosEvento(eventoDTO);
 
-
-                //Log.i("Eventos",String.valueOf(eventoDTOS.size()));
+                List<EventoDTO> hack = instance.obtenerEventosPorCategoriaONombre("hack");
+                Log.i("Eventos",String.valueOf(hack.size()));
                 //Log.i("Eventos",String.valueOf(eventoDTOS.get(1).getImagenEvento()));
 
                 //Crear Usuario
