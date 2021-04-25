@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingTop="15dp">
@@ -230,27 +230,17 @@
         android:layout_marginRight="15dp"
         android:background="@color/black" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/button_shape"
-        android:fontFamily="@font/poppins_medium"
-        android:onClick="cam_foto"
-        android:text="@string/btn_cam_fot"
-        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:layout_width="204dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="45dp"
         android:background="@drawable/button_shape"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/btn_gard_camb"
+        android:fontFamily="@font/poppins_light"
+        android:onClick="onClick_btn"
+        android:text="@string/btn_guard_camb"
         android:textColor="@color/white" />
 
 

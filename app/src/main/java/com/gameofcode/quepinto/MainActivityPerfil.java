@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.net.URI;
 
@@ -21,18 +22,21 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivityPerfil extends AppCompatActivity {
 
 
-    CircleImageView imagen;
-
-    private static final int REQUEST_PERMISSION_CAMERA = 100;
-    private static final int REQUEST_IMAGE_CAMERA = 101;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_perfil);
 
-        imagen = findViewById(R.id.imagen_id);
+
+        EditText Usu = findViewById(R.id.usuarioET);
+        EditText UsuNom = findViewById(R.id.nombreUsuarioET);
+        EditText UsuApe = findViewById(R.id.apellidoUsuarioET);
+        EditText UsuMail = findViewById(R.id.emailUsuarioET);
+        EditText UsuPwd = findViewById(R.id.passwordUsuarioET);
+        EditText UsuValPwd = findViewById(R.id.repetirPasswordUsuarioET);
+
+        Button btn_guard_camb = findViewById(R.id.button2);
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -76,28 +80,12 @@ public class MainActivityPerfil extends AppCompatActivity {
         return true;
     }
 
-    public void cam_foto(View view) {
-        cargarImagen();
-    }
+    ///////////// onclick boton cambios ///////////
 
-    private void cargarImagen() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("imagen/");
-        startActivityForResult(intent.createChooser(intent, "Selecione la Aplicación"), 10);
+    public void onClick_btn(View view) {
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            Uri path = data.getData();
-            imagen.setImageURI(path);
-        }
     }
 }
-
-
 
 
 

@@ -56,8 +56,7 @@
     <string name="EMAIL_perf">EMAIL:</string>
     <string name="User_NAME_PERF">NOMBRE DE USUARIO:</string>
     <string name="ImgLogo">Imagen</string>
-    <string name="btn_cam_fot">Cambiar foto perfil</string>
-    <string name="btn_gard_camb">Guardar Cambios</string>
+    <string name="btn_guard_camb">Guardar Cambios</string>
     ---------------------------------------------------
     <string name="usurioRegistroTV">Usuario</string>
     <string name="usurioRegistroET">USUARIO</string>
