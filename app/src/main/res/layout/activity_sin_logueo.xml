@@ -64,7 +64,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView"
         app:layout_constraintVertical_bias="0.153"
-        tools:context=".MainActivityBusEvento">
+        tools:context=".MainActivityBusEvento"
+        android:layout_marginTop="30dp"
+        >
 
 
     </androidx.recyclerview.widget.RecyclerView>

@@ -3,7 +3,7 @@
     <style name="Theme.QuePinto" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#f61942</item>
-        <item name="colorPrimaryVariant">#ab000d</item>
+        <item name="colorPrimaryVariant">#f61942</item>
         <item name="colorOnPrimary">#ff6f60</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

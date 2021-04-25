@@ -85,7 +85,7 @@ public class MainActivityBusEvento extends AppCompatActivity {
                 break;
 
             case R.id.menuF:
-                Intent favoritos = new Intent(this,MainActivityBusEvento.class);
+                Intent favoritos = new Intent(this,MainActivityFavoritos.class);
                 startActivity(favoritos);
                 break;
 

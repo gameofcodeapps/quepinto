@@ -66,7 +66,7 @@ public class MainActivityFavoritos extends AppCompatActivity {
                 break;
 
             case R.id.menuF:
-                Intent favoritos = new Intent(this,MainActivityBusEvento.class);
+                Intent favoritos = new Intent(this,MainActivityFavoritos.class);
                 startActivity(favoritos);
                 break;
 
@@ -151,7 +151,7 @@ public class MainActivityFavoritos extends AppCompatActivity {
                 //Se ejecuta en segundo plano
 
                 EventoModel instance = EventoModel.getInstance();
-                List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
+                List<EventoDTO> eventoDTOS = instance.obtenerEventosFavoritosUsuarioLogeado();
                 //Log.i("Eventos","holaa");
 
                 Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getNombreEvento()));
@@ -193,7 +193,7 @@ public class MainActivityFavoritos extends AppCompatActivity {
                 //Se ejecuta en segundo plano
 
                 EventoModel instance = EventoModel.getInstance();
-                List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
+                List<EventoDTO> eventoDTOS = instance.obtenerEventosFavoritosUsuarioLogeado();
                 //Log.i("Eventos","holaa");
 
                 Log.i("Eventos",String.valueOf(eventoDTOS.size()));
