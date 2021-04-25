@@ -78,7 +78,15 @@ public class MainActivityFavoritos extends AppCompatActivity {
                 Intent logout = new Intent(this,MainActivity.class);
                 startActivity(logout);
                 break;
+            case R.id.menuA:
+                Intent acercade = new Intent(this,MainActivityAcercade.class);
+                startActivity(acercade);
+                break;
 
+                case R.id.menuM:
+                Intent miseventos = new Intent(this,MainActivityMisEventosCreados.class);
+                startActivity(miseventos);
+                break;
         }
         return true;
     }

@@ -106,6 +106,10 @@ public class MainActivityBusEvento extends AppCompatActivity {
                 Intent acercade = new Intent(this,MainActivityAcercade.class);
                 startActivity(acercade);
                 break;
+            case R.id.menuM:
+                Intent miseventos = new Intent(this,MainActivityMisEventosCreados.class);
+                startActivity(miseventos);
+                break;
 
         }
         return true;
