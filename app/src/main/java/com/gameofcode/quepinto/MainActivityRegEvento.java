@@ -5,6 +5,15 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
+import android.widget.ImageView;
+import android.provider.MediaStore;
+
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -26,6 +35,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.gameofcode.quepinto.DTO.EventoDTO;
+import com.gameofcode.quepinto.interfaces.IRegistrarEventoPresenter;
+import com.gameofcode.quepinto.presentadores.RegistrarEventoPresenter;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -46,6 +57,8 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
     Button bfecha,bhora;
     EditText efecha,ehora;
     private int dia,mes,ano,hora,minutos;
+    ImageView imagen;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +68,10 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
         EditText nombreEvent = findViewById(R.id.nombreEvento);
         EditText organizador = findViewById(R.id.organizador);
         EditText descrip = findViewById(R.id.descripcion);
+        EditText departament = findViewById(R.id.departamento);
+        EditText city = findViewById(R.id.ciudad);
+        EditText address = findViewById(R.id.direccion);
+        imagen = (ImageView)findViewById(R.id.imageView);
 
         Button Registrar = (Button)findViewById(R.id.btnRegistroEvent);
 
@@ -82,12 +99,70 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
         Registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int id = 1;
                 String evento = nombreEvent.getText().toString();
                 String organiza = organizador.getText().toString();
                 String categoria = spinner.getAdapter().toString();
+                String descripcion = descrip.getText().toString();
+                String Cargaimagen = imagen.getImageMatrix().toString();
+                String ciudad = city.getText().toString();
+                String departamento = departament.getText().toString();
+                String pais = "Uruguay";
                 String fecha = efecha.getText().toString();
                 String hora = ehora.getText().toString();
-                String descripcion = descrip.getText().toString();
+                String latitud = "";
+                String direccion = address.getText().toString();
+                String longitud = "";
+                String usuarioCreador = "";
+
+                EventoDTO nuevoEvento = new EventoDTO(id,evento,organiza,categoria,descripcion,Cargaimagen,ciudad,departamento,pais,fecha,"","",hora,latitud,direccion,longitud,usuarioCreador);
+                if(validarDatosEvent(nuevoEvento)){
+                    ProgressDialog progressDialog = ProgressDialog.show(MainActivityRegEvento.this, "","Creando evento", true) ;
+                    //////////////////////////////////////////////////////////////
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ////////Se ejecuta en segundo plano//////////////////////
+                            IRegistrarEventoPresenter presenter = new RegistrarEventoPresenter();
+                            //Valores retorno
+                            /*
+                            0 = nombre de usuario y mail no registrado
+                            1 = email registrado
+                            2 = usuario registrado
+                            3 = nombre de usuario y mail registrado
+                             */
+                            int resultado = presenter.registrarEvento(nuevoEvento);
+                            ////////////////////////////////////////////////////////
+                            //Se ejecuta al terminar la tarea en segundo plano
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressDialog.dismiss();
+                                    if (resultado == 0) {
+                                        AlertDialog dialogo = new AlertDialog.Builder(MainActivityRegEvento.this).setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Intent buscar = new Intent(MainActivityRegEvento.this,MainActivity.class);
+                                                startActivity(buscar);
+                                            }
+                                        })
+                                        .setTitle("Creando Evento")
+                                        .setMessage("El evento fue creado exitosamente")
+                                        .create();
+                                     dialogo.show();
+
+                                    }else if(resultado == 1){
+                                        Toast.makeText(getApplicationContext(),"El email ya esta registrado",Toast.LENGTH_LONG).show();
+                                    }else if(resultado == 2){
+                                        Toast.makeText(getApplicationContext(),"El usuario ya esta registrado",Toast.LENGTH_LONG).show();
+                                    }else if(resultado ==3){
+                                        Toast.makeText(getApplicationContext(),"El usuario y el email ya esta registrado. Te olvidaste de la clave?",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        }
+                    }).start();
+                }
 
             }
         });
@@ -145,7 +220,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miUbicacion,15));
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(miUbicacion)
-                        .zoom(1)
+                        .zoom(20)
                         .bearing(90)
                         .tilt(45)
                         .build();
@@ -231,7 +306,38 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
         } else if (pEvento.getHoraInicio().isEmpty()) {
             Toast.makeText(getApplicationContext(), "Debe ingresar una hora para el evento", Toast.LENGTH_LONG).show();
             return false;
+        }else if (pEvento.getDescripcion().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Debe ingresar una descripcion", Toast.LENGTH_LONG).show();
+            return false;
+        }else if (pEvento.getDepartamento().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Debe ingresar un departamento", Toast.LENGTH_LONG).show();
+            return false;
+        }else if (pEvento.getCiudad().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Debe ingresar una ciudad", Toast.LENGTH_LONG).show();
+            return false;
+        }else if (pEvento.getDireccion().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Debe ingresar una direccion", Toast.LENGTH_LONG).show();
+            return false;
         }
         return false;
+    }
+
+    public void cargarImagen(View view) {
+        cargarImagen();
+    }
+
+    private void cargarImagen() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/");
+        startActivityForResult(intent.createChooser(intent,"Seleccione la imagen"), 10);
+    }
+
+    @Override
+    protected  void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode,data);
+        if (requestCode==RESULT_OK){
+            Uri path = data.getData();
+            imagen.setImageURI(path);
+        }
     }
 }

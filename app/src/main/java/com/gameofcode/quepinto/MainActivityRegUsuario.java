@@ -145,5 +145,8 @@ public class MainActivityRegUsuario extends AppCompatActivity {
         return true;
 
     }
+
+    public void onClick(View view) {
+    }
 }
 

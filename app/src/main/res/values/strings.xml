@@ -35,6 +35,12 @@
     <string name="ORGANIZER">ORGANIZADOR</string>
     <string name="txt_description">Descripción</string>
     <string name="DESCRIPTION">DESCRIPCIÓN</string>
+    <string name="txt_departamento">Departamento</string>
+    <string name="departamento">Departamento</string>
+    <string name="txt_ciudad">Ciudad</string>
+    <string name="ciudad">Ciudad</string>
+    <string name="txtdireccion">Direccion</string>
+    <string name="direccion">Direccion</string>
     <string name="txt_map">Ubicar en Mapa</string>
     <string name="btnregistrar">Registrar</string>
     <string name="txt_fecha_hora_inicio">Fecha y Hora de inicio</string>
