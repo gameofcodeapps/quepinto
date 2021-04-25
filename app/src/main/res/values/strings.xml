@@ -35,6 +35,10 @@
     <string name="txt_organizador">Organizador</string>
     <string name="ORGANIZER">ORGANIZADOR</string>
     <string name="txt_description">Descripción</string>
+    <string name="txt_Comentarios">Comentarios:</string>
+    <string name="txt_EscribirComentarios">Escribir Comentario:</string>
+    <string name="txt_VerComentarios">Leer Comentarios</string>
+    <string name="txt_EscribeComentario">Mensaje</string>
     <string name="DESCRIPTION">DESCRIPCIÓN</string>
     <string name="txt_departamento">Departamento</string>
     <string name="departamento">Departamento</string>

@@ -8,22 +8,20 @@
     android:orientation="vertical"
     tools:context=".MainActivityRegEvento">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="21dp"
         tools:layout_editor_absoluteY="18dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="20dp"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingBottom="10dp"
             >
 
             <TextView
