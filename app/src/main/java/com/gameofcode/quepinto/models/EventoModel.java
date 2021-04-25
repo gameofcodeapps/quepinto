@@ -35,7 +35,7 @@ public class EventoModel {
     }
 
     public List<EventoDTO> obtenerEventosCreadosPorUsuarioLogeado(){
-        String sql = "SELECT * from home_evento where user_owner="+UsuarioModel.getInstance().getUsuarioLogeado().getUsername();
+        String sql = "SELECT * from home_evento where user_owner=\""+UsuarioModel.getInstance().getUsuarioLogeado().getUsername()+"\"";
         return obtenerEventos(sql);
     }
 
