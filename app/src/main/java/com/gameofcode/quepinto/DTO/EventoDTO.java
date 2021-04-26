@@ -2,7 +2,9 @@ package com.gameofcode.quepinto.DTO;
 
 import android.graphics.Bitmap;
 
-public class EventoDTO {
+import java.io.Serializable;
+
+public class EventoDTO implements Serializable {
 
     private int id;
     private String nombreEvento;

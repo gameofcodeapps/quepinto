@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,11 +14,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.models.EventoModel;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
