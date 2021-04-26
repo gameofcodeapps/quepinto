@@ -125,6 +125,7 @@ public class EventoModel {
                 eventoDTO.setImagenEventoBMP(bmp);*/
                 ////////////////////////////////////
                 eventos.add(eventoDTO);
+                //Log.i("fecha",resultSet.getString(18));
             }
             ConnectDBHelper.desconectarBD();
         } catch (Exception e) {

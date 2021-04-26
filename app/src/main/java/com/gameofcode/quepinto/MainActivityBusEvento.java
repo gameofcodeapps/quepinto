@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.widget.SearchView;
 
 
 import com.bumptech.glide.Glide;
@@ -60,18 +61,35 @@ public class MainActivityBusEvento extends AppCompatActivity {
         //placing toolbar in place of actionbar
         setSupportActionBar(toolbar);
 
-        inicializar();
+        SearchView simpleSearchView = (SearchView) findViewById(R.id.searchView);
+        simpleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                inicializar(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(newText.isEmpty()){
+                    inicializar("");
+                }
+                return false;
+            }
+        });
+
+        inicializar("");
 
     }
 
 
-    private void inicializar(){
+    private void inicializar(String pBusqueda){
         ProgressDialog progressDialog= ProgressDialog.show(this, "",
                 "Buscando Eventos...", true);
         new Thread(new Runnable() {
             @Override
             public void run() {
-                ArrayList<Model> holder = dataqueue();
+                ArrayList<Model> holder = dataqueue(pBusqueda);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -139,13 +157,13 @@ public class MainActivityBusEvento extends AppCompatActivity {
 
     //Cargo Listado
 
-    public ArrayList<Model> dataqueue()
+    public ArrayList<Model> dataqueue(String pBusqueda)
     {
         ArrayList<Model> holder=new ArrayList<>();
 
 
         //traigo last index
-        traerLastIndex();
+        traerLastIndex(pBusqueda);
         while (auxindex == 0){
 
         }
@@ -216,7 +234,7 @@ public class MainActivityBusEvento extends AppCompatActivity {
         //////////////////////////////////
     }
 
-    private void traerLastIndex(){
+    private void traerLastIndex(String pBusqueda){
         //Se ejecuta antes de la tarea en segundo plano
 
         //new Thread(new Runnable() {
@@ -225,7 +243,12 @@ public class MainActivityBusEvento extends AppCompatActivity {
                 //Se ejecuta en segundo plano
 
                 EventoModel instance = EventoModel.getInstance();
-                eventos = instance.obtenerTodosLosEventosHabilitados();
+                if(pBusqueda.isEmpty()){
+                    eventos = instance.obtenerTodosLosEventosHabilitados();
+                }else{
+                    eventos = instance.obtenerEventosPorCategoriaONombre(pBusqueda);
+                }
+
                 //Log.i("Eventos","holaa");
 
                 Log.i("Eventos",String.valueOf(eventos.size()));
