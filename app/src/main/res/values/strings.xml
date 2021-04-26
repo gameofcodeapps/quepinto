@@ -51,6 +51,7 @@
     <string name="txt_map">Ubicar en Mapa</string>
     <string name="btnregistrar">Registrar</string>
     <string name="btnModificarEvento">Modificar</string>
+    <string name="btnEliminarEvento">Eliminar</string>
     <string name="txt_fecha_hora_inicio">Fecha y Hora de inicio</string>
     <string name="txt_fecha_hora_fin">Fecha y Hora de finalización</string>
     <string name="btningresar">Ingresar</string>
