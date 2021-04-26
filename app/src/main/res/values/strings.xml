@@ -29,13 +29,14 @@
     <string name="confirmar_correo">Confirmar Correo</string>
     <string name="txtcontr">Contraseña</string>
     <string name="reg_evento">REGISTRO DE EVENTO</string>
+    <string name="mod_evento">MODIFICAR EVENTO</string>
     <string name="txtconfcont">Confirmar Contraseña</string>
     <string name="NAME_EVENT">INGRESE NOMBRE DEL EVENTO</string>
     <string name="txt_nombre_evento">Nombre del evento</string>
     <string name="txt_evento">Categorias</string>
     <string name="txt_organizador">Organizador</string>
     <string name="ORGANIZER">ORGANIZADOR</string>
-    <string name="txt_description">Descripción</string>
+    <string name="txt_description">Descripción:</string>
     <string name="txt_Comentarios">Comentarios:</string>
     <string name="txt_EscribirComentarios">Escribir Comentario:</string>
     <string name="txt_VerComentarios">Leer Comentarios</string>

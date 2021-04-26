@@ -99,17 +99,18 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/fch"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/txtdscEvento"
-        app:layout_constraintEnd_toStartOf="@+id/txtFecha"
-        app:layout_constraintHorizontal_bias="0.662"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgEvento" />
-
+        app:layout_constraintTop_toBottomOf="@+id/imgEvento"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/txtFecha"
@@ -131,42 +132,43 @@
 
     <TextView
         android:id="@+id/txtdscEvento"
-        android:layout_width="280dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="300dp"
+        android:layout_height="137dp"
+        android:layout_marginTop="10dp"
         android:autofillHints=""
         android:contentDescription="@string/txt_description"
         android:ems="12"
-        android:scrollbars = "vertical"
         android:fontFamily="@font/poppins_light"
+        android:scrollbars="vertical"
         android:textColor="#404946"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFecha"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescripcion"
         tools:text="@string/DESCRIPTION" />
+
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/org"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtdscEvento" />
-
 
     <TextView
         android:id="@+id/txtOrganizador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center_horizontal"
         android:text="@string/txt_organizador"
@@ -175,9 +177,9 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintHorizontal_bias="0.779"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtdscEvento" />
-
 
 
     <TextView
@@ -194,9 +196,9 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtOrganizador" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
         android:id="@+id/txtComentarios"
@@ -218,11 +220,10 @@
 
     <TextView
         android:id="@+id/txtVerComentarios"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="326dp"
+        android:layout_height="25dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/txt_VerComentarios"
         android:textAllCaps="true"
@@ -230,16 +231,16 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.295"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtComentarios" />
-
 
     <TextView
         android:id="@+id/txtEnviarComentarios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/txt_EscribirComentarios"
@@ -253,29 +254,59 @@
 
     <EditText
         android:id="@+id/escribirComentario"
-        android:layout_width="match_parent"
-        android:layout_height="102dp"
+        android:layout_width="403dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:fontFamily="@font/poppins_light"
         android:gravity="top"
         android:hint="@string/txt_EscribeComentario"
         android:inputType="textMultiLine"
-        app:layout_constraintTop_toBottomOf="@+id/txtEnviarComentarios"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEnviarComentarios" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/bot_Env"
-        android:textColor="@color/white"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/escribirComentario"
+        android:layout_marginTop="10dp"
         android:background="@drawable/button_shape"
         android:fontFamily="@font/poppins_medium"
-        />
+        android:text="@string/bot_Env"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/escribirComentario" />
+
+    <TextView
+        android:id="@+id/txtDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/txt_description"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFecha" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Dirección:"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOrganizador" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
