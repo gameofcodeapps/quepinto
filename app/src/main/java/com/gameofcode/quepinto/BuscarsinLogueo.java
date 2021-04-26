@@ -31,6 +31,7 @@ public class BuscarsinLogueo extends AppCompatActivity {
     ImageView imageView;
     myadapter adapter;
     Bitmap bmp;
+    private int idEvento;
 
 
     @Override
@@ -54,29 +55,6 @@ public class BuscarsinLogueo extends AppCompatActivity {
         //placing toolbar in place of actionbar
         setSupportActionBar(toolbar2);
 
-       /* new Thread()
-        {
-            public void run()
-            {
-                try
-                {
-                    URL url = new URL(auximg);
-                    Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                }
-                catch (Exception ex){
-
-                }
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                   //     imageView.setImageBitmap(bmp);
-                    }
-                });
-            }
-
-        }.start();*/
-
     }
 
 
@@ -99,7 +77,6 @@ public class BuscarsinLogueo extends AppCompatActivity {
                 Intent logout = new Intent(this,MainActivity.class);
                 startActivity(logout);
                 break;
-
         }
         return true;
     }
@@ -113,7 +90,6 @@ public class BuscarsinLogueo extends AppCompatActivity {
         traerLastIndex();
 
         while (auxindex == 0){
-
         }
 
         // comienzo loop I=1 hasta last
@@ -122,9 +98,7 @@ public class BuscarsinLogueo extends AppCompatActivity {
             traerEvento();
 
             while(auxdir == null){
-
                 }
-
 
             ob1.setHeader(auxNom);
             ob1.setDesc(auxdsc);
@@ -133,6 +107,8 @@ public class BuscarsinLogueo extends AppCompatActivity {
             ob1.setOrganizador(auxorg);
             ob1.setTxtmapa(auxdir);
             ob1.setUrlimagen(auximg);
+            //Agregado para compartir web
+            ob1.setId(idEvento);
 
             holder.add(ob1);
             auxdir = null;
@@ -173,7 +149,7 @@ public class BuscarsinLogueo extends AppCompatActivity {
 
                 Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getImagenEvento()));
                 auximg = String.valueOf(eventoDTOS.get(i).getImagenEvento());
-
+                idEvento = eventoDTOS.get(i).getId();
                 //Se ejecuta al terminar la tarea en segundo plano
                 runOnUiThread(new Runnable() {
                     @Override

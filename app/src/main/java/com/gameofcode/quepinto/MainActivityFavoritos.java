@@ -29,6 +29,7 @@ public class MainActivityFavoritos extends AppCompatActivity {
     String auxNom,auxdsc,auxfch,auxorg,auxdir,auximg,auxIntstr;
     ImageView imageView;
     myadapter adapter;
+    private int idEvento;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,9 @@ public class MainActivityFavoritos extends AppCompatActivity {
         //placing toolbar in place of actionbar
         setSupportActionBar(toolbar);
     }
+
+    //Cargo Menu
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -91,31 +95,39 @@ public class MainActivityFavoritos extends AppCompatActivity {
         return true;
     }
 
+        //Cargo lista
+
     public ArrayList<Model> dataqueue()
     {
         ArrayList<Model> holder=new ArrayList<>();
-        //traigo last index
 
+        //traigo last index
         traerLastIndex();
+
         while (auxindex == 0){
 
         }
-// comienzo loop I=1 hasta last
-        //auxindex= 12;
 
+        // comienzo loop I=1 hasta last
         for(i=0; i<auxindex; i++){
             Model ob1=new Model();
+
+            //Traigo Eventos
             traerEvento();
 
             while(auxdir == null){
 
             }
+
             ob1.setHeader(auxNom);
             ob1.setDesc(auxdsc);
             ob1.setImgname(R.drawable.banda1);
             ob1.setFecha(auxfch);
             ob1.setOrganizador(auxorg);
             ob1.setTxtmapa(auxdir);
+            ob1.setUrlimagen(auximg);
+            //Agregado para compartir web
+            ob1.setId(idEvento);
 
             holder.add(ob1);
             auxdir = null;
@@ -124,29 +136,10 @@ public class MainActivityFavoritos extends AppCompatActivity {
 
         return holder;
     }
-//fin loop
-    /*    Model ob2=new Model();
-        ob2.setHeader(auxNom);
-        ob2.setDesc(auxdsc);
-        ob2.setImgname(R.drawable.toque);
-        ob2.setFecha(auxfch);
-        ob2.setOrganizador(auxorg);
-        ob2.setTxtmapa(auxdir);
-
-        holder.add(ob2);
-
-        Model ob3=new Model();
-        ob3.setHeader(auxNom);
-        ob3.setDesc(auxdsc);
-        ob3.setImgname(R.drawable.banda3);
-        ob3.setFecha(auxfch);
-        ob3.setOrganizador(auxorg);
-   //     ob1.setTxtmapa( "busque aquí");
-
-        holder.add(ob3);*/
 
 
 
+            //***********Subrtinas*********************//
 
 
 
@@ -179,6 +172,7 @@ public class MainActivityFavoritos extends AppCompatActivity {
 
                 Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getImagenEvento()));
                 auximg = String.valueOf(eventoDTOS.get(i).getImagenEvento());
+                idEvento = eventoDTOS.get(i).getId();
 
                 //Se ejecuta al terminar la tarea en segundo plano
                 runOnUiThread(new Runnable() {
