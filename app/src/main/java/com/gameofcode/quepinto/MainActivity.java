@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.content.Intent;
 
+import com.gameofcode.quepinto.DTO.ComentarioDTO;
 import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.DTO.UsuarioDTO;
 import com.gameofcode.quepinto.broadcast_reciver.BootReceiver;
@@ -135,6 +136,10 @@ public class MainActivity extends AppCompatActivity {
                 //Se ejecuta en segundo plano
 
                 EventoModel instance = EventoModel.getInstance();
+                EventoDTO test = new EventoDTO();
+                test.setId(17);
+                List<ComentarioDTO> comentarioDTOS = instance.obtenerComentariosDeEvento(test);
+                Log.i("Comentario",comentarioDTOS.get(0).getUsuario());
                 //List<EventoDTO> eventoDTOS = instance.obtenerEventosFavoritosServicio("juan1");
                 //EventoDTO evento = new EventoDTO(
                 //    1,"evento Prueba","yo","clande","re piola","imagen","maldonado","maldonado","uruguay","2021-04-25","","","20:00","548484984","la direccion","51651651561651", "juan1");
@@ -144,8 +149,8 @@ public class MainActivity extends AppCompatActivity {
                 //eventoDTO.setNombreEvento("Hackaton 2021 modificado");
                 //instance.actualizarDatosEvento(eventoDTO);
 
-                List<EventoDTO> hack = instance.obtenerEventosPorCategoriaONombre("hack");
-                Log.i("Eventos",String.valueOf(hack.size()));
+                //List<EventoDTO> hack = instance.obtenerEventosPorCategoriaONombre("hack");
+                //Log.i("Eventos",String.valueOf(hack.size()));
                 //Log.i("Eventos",String.valueOf(eventoDTOS.get(1).getImagenEvento()));
 
                 //Crear Usuario

@@ -78,7 +78,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
         bfecha.setOnClickListener(this);
         bhora.setOnClickListener(this);
 
-        Spinner spinner = findViewById(R.id.spinner);
+        Spinner spinner = findViewById(R.id.spinnerModificarEvento);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Categorias, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);

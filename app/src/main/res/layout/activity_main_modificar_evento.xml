@@ -86,7 +86,7 @@
                 android:textSize="20sp" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/spinnerModificarEvento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></Spinner>
 
@@ -113,6 +113,12 @@
                 android:fontFamily="@font/poppins_medium"
                 android:text="Hora" />
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="109dp"
+                app:srcCompat="@android:drawable/ic_menu_gallery" />
+
             <EditText
                 android:id="@+id/txtHora"
                 android:layout_width="match_parent"
@@ -121,12 +127,6 @@
                 android:fontFamily="@font/poppins_medium"
                 android:inputType=""
                 android:text="" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="109dp"
-                app:srcCompat="@android:drawable/ic_menu_gallery" />
 
             <Button
                 android:id="@+id/btnCargaImagen"
@@ -242,35 +242,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="341dp"></fragment>
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnModificarEvento"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnEliminarEvento"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="90dp"
-                    android:background="@drawable/button_shape"
-                    android:text="@string/btnEliminarEvento"
-                    android:textColor="@color/white" />
-
-                <Button
-                    android:id="@+id/btnModificarEvento"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/button_shape"
-                    android:text="@string/btnModificarEvento"
-                    android:textColor="@color/white" />
-            </LinearLayout>
+                android:text="@string/btnModificarEvento"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/button_shape"
+                android:layout_marginTop="20dp"
+                />
 
         </LinearLayout>
     </ScrollView>

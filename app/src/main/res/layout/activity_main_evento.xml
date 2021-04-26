@@ -270,7 +270,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtEnviarComentarios" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnAgregarComentario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

@@ -10,6 +10,17 @@ public class Model{
     private String desc;
     private int imgname;
     private String urlimagen;
+    private boolean esFavorito;
+
+    public boolean isEsFavorito() {
+        return esFavorito;
+    }
+
+    public void setEsFavorito(boolean esFavorito) {
+        this.esFavorito = esFavorito;
+    }
+
+
 
 ////Alternativa a cargar imagen/////
  /*   private Bitmap imgen;

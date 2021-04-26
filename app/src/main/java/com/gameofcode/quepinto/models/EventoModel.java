@@ -110,7 +110,7 @@ public class EventoModel {
                         resultSet.getString(7),
                         resultSet.getString(8),
                         resultSet.getString(9),
-                        resultSet.getString(10),
+                        resultSet.getString(10) + " " +resultSet.getString(13).substring(0,5),
                         resultSet.getString(11),
                         resultSet.getString(12),
                         resultSet.getString(13),
@@ -134,7 +134,7 @@ public class EventoModel {
         return eventos;
     }
 
-    public boolean agregarComentario(EventoDTO pEvento, String pComentario){
+    public boolean agregarComentario(int pEventoID, String pComentario){
         UsuarioModel instance = UsuarioModel.getInstance();
         try {
             ConnectDBHelper.establecerConexionBD();
@@ -142,7 +142,7 @@ public class EventoModel {
                     "(\""+pComentario+"\",\""
                     +instance.getUsuarioLogeado().getId()+"\","
                     +" NOW(),\""
-                    +pEvento.getId()+"\")";
+                    +pEventoID+"\")";
             Log.i("SQL Insert",sqlInsert);
             int devuelveInsert = ConnectDBHelper.ejecutarSQLInsertUpdate(sqlInsert);
             Log.i("DevuelveInsert",String.valueOf(devuelveInsert));
@@ -179,7 +179,10 @@ public class EventoModel {
 
         ResultSet resultSet = null;
         List<ComentarioDTO> comentarios = new ArrayList<ComentarioDTO>();
-        String sql = "SELECT * from home_evento_comentario where id_evento =\""+pEvento.getId()+"\"";
+        String sql = "SELECT home_evento_comentario.*,auth_user.username from home_evento_comentario,auth_user where" +
+                " id_evento ="+pEvento.getId()+" and " +
+                "auth_user.id=home_evento_comentario.idUsuario";
+        Log.i("SQL",sql);
         try {
             ConnectDBHelper.establecerConexionBD();
             resultSet = ConnectDBHelper.ejecutarSQL(sql);
@@ -189,12 +192,14 @@ public class EventoModel {
                         resultSet.getString(2),
                         resultSet.getInt(3),
                         resultSet.getString(4),
-                        resultSet.getInt(5)
+                        resultSet.getInt(5),
+                        resultSet.getString(6)
                 );
                 comentarios.add(comentarioDTO);
             }
             ConnectDBHelper.desconectarBD();
         } catch (Exception e) {
+            ConnectDBHelper.desconectarBD();
             e.printStackTrace();
         }
         return comentarios;
@@ -251,11 +256,11 @@ public class EventoModel {
                     "organizer=\""+pEvento.getOrganizador()+"\", "+
                     "category=\""+pEvento.getCategoria()+"\", "+
                     "description=\""+pEvento.getDescripcion()+"\", "+
-                    "gallery=\""+pEvento.getImagenEvento()+"\", "+
+                    //"gallery=\""+pEvento.getImagenEvento()+"\", "+
                     "city=\""+pEvento.getCiudad()+"\", "+
                     "department=\""+pEvento.getDepartamento()+"\", "+
-                    //"startDate="+"STR_TO_DATE('"+pEvento.getFechaInicio()+"','%Y-%m-%d')"+", "+
-                    "startDate="+"STR_TO_DATE('"+pEvento.getFechaInicio()+"','%d/%m/%Y')"+", "+
+                    "startDate="+"STR_TO_DATE('"+pEvento.getFechaInicio()+"','%Y-%m-%d')"+", "+
+                    //"startDate="+"STR_TO_DATE('"+pEvento.getFechaInicio()+"','%d/%m/%Y')"+", "+
                     "startTimeDate=\""+pEvento.getHoraInicio()+"\", "+
                     "lat=\""+pEvento.getLatitud()+"\", "+
                     "address=\""+pEvento.getDireccion()+"\", "+

@@ -7,13 +7,15 @@ public class ComentarioDTO {
     private int idUsuario;
     private String fecha;
     private int idEvento;
+    private String usuario;
 
-    public ComentarioDTO(int id, String comentario, int idUsuario, String fecha, int idEvento) {
+    public ComentarioDTO(int id, String comentario, int idUsuario, String fecha, int idEvento, String usuario) {
         this.id = id;
         this.comentario = comentario;
         this.idUsuario = idUsuario;
         this.fecha = fecha;
         this.idEvento = idEvento;
+        this.usuario = usuario;
     }
 
     public int getId() {
@@ -54,5 +56,13 @@ public class ComentarioDTO {
 
     public void setIdEvento(int idEvento) {
         this.idEvento = idEvento;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 }

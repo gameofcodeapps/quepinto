@@ -146,6 +146,7 @@ public class MainActivityFavoritos extends AppCompatActivity {
             ob1.setOrganizador(auxorg);
             ob1.setTxtmapa(auxdir);
             ob1.setUrlimagen(auximg);
+            ob1.setEsFavorito(true);
             //Agregado para compartir web
             ob1.setId(idEvento);
 
