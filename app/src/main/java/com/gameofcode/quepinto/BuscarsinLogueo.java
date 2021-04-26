@@ -33,6 +33,9 @@ public class BuscarsinLogueo extends AppCompatActivity {
     myadapter adapter;
     Bitmap bmp;
     private int idEvento;
+    private List<EventoDTO> eventos = null;
+
+
     ////Alternativa cargar imagen/////////
     //private Bitmap imagen;
     //////////////////////////////////////
@@ -103,24 +106,30 @@ public class BuscarsinLogueo extends AppCompatActivity {
         return true;
     }
 
+    //Cargo Listado
+
     public ArrayList<Model> dataqueue()
     {
         ArrayList<Model> holder=new ArrayList<>();
 
 
-    //traigo last index
+        //traigo last index
         traerLastIndex();
-
         while (auxindex == 0){
+
         }
 
         // comienzo loop I=1 hasta last
         for(i=0; i<auxindex; i++){
             Model ob1=new Model();
+
+
+            //Traigo el evento
             traerEvento();
 
             while(auxdir == null){
-                }
+
+            }
 
             ob1.setHeader(auxNom);
             ob1.setDesc(auxdsc);
@@ -135,91 +144,75 @@ public class BuscarsinLogueo extends AppCompatActivity {
             ///Alternativa a cargar imagen/////
             //ob1.setImgen(imagen);
             ////////////////////////////////////
-
             holder.add(ob1);
             auxdir = null;
         }
 
 
         return holder;
-        }
+    }
 
+
+
+    //***********Subrutinas ****************//
 
 
     private void traerEvento(){
-        //Se ejecuta antes de la tarea en segundo plano
+        //Se ejecuta en segundo plano
 
-        new Thread(new Runnable() {
-            @Override
-           public void run() {
-                //Se ejecuta en segundo plano
+        Log.i("Eventos",String.valueOf(eventos.get(i).getNombreEvento()));
+        auxNom = String.valueOf(eventos.get(i).getNombreEvento());
 
-                EventoModel instance = EventoModel.getInstance();
-                List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
-                //Log.i("Eventos","holaa");
+        Log.i("Eventos",String.valueOf(eventos.get(i).getDescripcion()));
+        auxdsc = String.valueOf(eventos.get(i).getDescripcion());
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getNombreEvento()));
-                auxNom = String.valueOf(eventoDTOS.get(i).getNombreEvento());
+        Log.i("Eventos",String.valueOf(eventos.get(i).getFechaInicio()));
+        auxfch = String.valueOf(eventos.get(i).getFechaInicio());
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getDescripcion()));
-                auxdsc = String.valueOf(eventoDTOS.get(i).getDescripcion());
+        Log.i("Eventos",String.valueOf(eventos.get(i).getOrganizador()));
+        auxorg = String.valueOf(eventos.get(i).getOrganizador());
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getFechaInicio()));
-                auxfch = String.valueOf(eventoDTOS.get(i).getFechaInicio());
+        Log.i("Eventos",String.valueOf(eventos.get(i).getDireccion()));
+        auxdir = String.valueOf(eventos.get(i).getDireccion());
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getOrganizador()));
-                auxorg = String.valueOf(eventoDTOS.get(i).getOrganizador());
+        Log.i("Eventos",String.valueOf(eventos.get(i).getImagenEvento()));
+        auximg = String.valueOf(eventos.get(i).getImagenEvento());
+        //Agregado para compartir web
+        idEvento = eventos.get(i).getId();
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getDireccion()));
-                auxdir = String.valueOf(eventoDTOS.get(i).getDireccion());
-
-                Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getImagenEvento()));
-                auximg = String.valueOf(eventoDTOS.get(i).getImagenEvento());
-                idEvento = eventoDTOS.get(i).getId();
-
-
-                ///Alternativa a cargar imagen/////
-                //imagen=eventoDTOS.get(i).getImagenEventoBMP();
-                //////////////////////////////////
-                //Se ejecuta al terminar la tarea en segundo plano
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Toast.makeText(getApplicationContext(),eventoDTOS.size(),Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        }).start();
-
-
+        ///Alternativa a cargar imagen/////
+        //imagen=eventos.get(i).getImagenEventoBMP();
+        //////////////////////////////////
     }
+
     private void traerLastIndex(){
         //Se ejecuta antes de la tarea en segundo plano
 
         //new Thread(new Runnable() {
-          //  @Override
-           // public void run() {
-                //Se ejecuta en segundo plano
+        // @Override
+        //public void run() {
+        //Se ejecuta en segundo plano
 
-                EventoModel instance = EventoModel.getInstance();
-                List<EventoDTO> eventoDTOS = instance.obtenerTodosLosEventosHabilitados();
-                //Log.i("Eventos","holaa");
+        EventoModel instance = EventoModel.getInstance();
+        eventos = instance.obtenerTodosLosEventosHabilitados();
+        //Log.i("Eventos","holaa");
 
-                Log.i("Eventos",String.valueOf(eventoDTOS.size()));
-              //  auxIntstr = String.valueOf(eventoDTOS.size());
-                auxindex = eventoDTOS.size();
+        Log.i("Eventos",String.valueOf(eventos.size()));
+        //  auxIntstr = String.valueOf(eventoDTOS.size());
+        auxindex = eventos.size();
 
 
-                //Se ejecuta al terminar la tarea en segundo plano
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Toast.makeText(getApplicationContext(),eventoDTOS.size(),Toast.LENGTH_LONG).show();
-                    }
-                });
+        //Se ejecuta al terminar la tarea en segundo plano
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                //Toast.makeText(getApplicationContext(),eventoDTOS.size(),Toast.LENGTH_LONG).show();
             }
-        //}).start();
+        });
+    }
+    //}).start();
 
+    // }
 
-    //}
 }

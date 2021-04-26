@@ -18,6 +18,7 @@ public class MainActivityEvento extends AppCompatActivity {
     ImageView imgEvento;
     TextView txtNomEvento,txtFecha,txtdscEvento,txtOrganizador,txtMapa;
     ImageButton share,ticket,ride;
+    TextView verCom,ingCom;
     String _url = "https://tickantel.com.uy/inicio/?0";
     String _url2 = "https://www.uber.com/uy/es/ride/";
     @Override
@@ -30,6 +31,9 @@ public class MainActivityEvento extends AppCompatActivity {
         txtdscEvento= (TextView)findViewById(R.id.txtdscEvento);
         txtOrganizador = (TextView)findViewById(R.id.txtOrganizador);
         txtMapa = (TextView)findViewById(R.id.txtMapa);
+        verCom = (TextView)findViewById(R.id.txtVerComentarios);
+        ingCom = (TextView)findViewById(R.id.escribirComentario);
+
 
         //imgEvento.setImageResource(getIntent().getIntExtra("imagename",0));
         txtNomEvento.setText(getIntent().getStringExtra("header"));
@@ -47,6 +51,7 @@ public class MainActivityEvento extends AppCompatActivity {
         ride =(ImageButton)findViewById(R.id.ride);
         ticket=(ImageButton)findViewById(R.id.Ticket);
         share=(ImageButton)findViewById(R.id.share);
+
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,6 +75,7 @@ public class MainActivityEvento extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
         ride.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,6 +84,7 @@ public class MainActivityEvento extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
     }
 
 }
