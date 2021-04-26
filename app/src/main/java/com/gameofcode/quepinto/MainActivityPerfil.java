@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.gameofcode.quepinto.interfaces.IMainPresenter;
+import com.gameofcode.quepinto.interfaces.IPerfilUsuarioPresenter;
+import com.gameofcode.quepinto.models.UsuarioModel;
+import com.gameofcode.quepinto.presentadores.MainPresenter;
+import com.gameofcode.quepinto.presentadores.PerfilUsuarioPresenter;
 
 import java.net.URI;
 
@@ -21,7 +29,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivityPerfil extends AppCompatActivity {
 
-
+   private EditText usuario;
+   private EditText usuNom;
+   private EditText usuApe;
+   private EditText usuMail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +40,22 @@ public class MainActivityPerfil extends AppCompatActivity {
         setContentView(R.layout.activity_main_perfil);
 
 
-        EditText Usu = findViewById(R.id.usuarioET);
-        EditText UsuNom = findViewById(R.id.nombreUsuarioET);
-        EditText UsuApe = findViewById(R.id.apellidoUsuarioET);
-        EditText UsuMail = findViewById(R.id.emailUsuarioET);
-        EditText UsuPwd = findViewById(R.id.passwordUsuarioET);
-        EditText UsuValPwd = findViewById(R.id.repetirPasswordUsuarioET);
+        usuario = findViewById(R.id.Nom_Usuario_perf);
+        usuNom = findViewById(R.id.UsuNom);
+        usuApe = findViewById(R.id.Apellido);
+        usuMail = findViewById(R.id.email);
+        //EditText usuPasswd = findViewById(R.id.passwordUsuarioET);
+        //EditText UsuValPwd = findViewById(R.id.repetirPasswordUsuarioET);
 
         Button btn_guard_camb = findViewById(R.id.button2);
+
+        //El usuario no se puede modificar, pero se muestra
+        usuario.setText(UsuarioModel.getInstance().getUsuarioLogeado().getUsername());
+        usuario.setEnabled(false);
+        //Datos que se pueden modificar
+        usuNom.setText(UsuarioModel.getInstance().getUsuarioLogeado().getFirstName());
+        usuApe.setText(UsuarioModel.getInstance().getUsuarioLogeado().getLastName());
+        usuMail.setText(UsuarioModel.getInstance().getUsuarioLogeado().getEmail());
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -45,9 +64,41 @@ public class MainActivityPerfil extends AppCompatActivity {
 
         //placing toolbar in place of actionbar
         setSupportActionBar(toolbar);
+
+
     }
 
-
+    public void actualizarDatos(View v){
+        UsuarioModel.getInstance().getUsuarioLogeado().setFirstName(usuNom.getText().toString());
+        UsuarioModel.getInstance().getUsuarioLogeado().setLastName(usuApe.getText().toString());
+        UsuarioModel.getInstance().getUsuarioLogeado().setEmail(usuMail.getText().toString());
+        ProgressDialog progressDialog= ProgressDialog.show(this, "",
+                "Actualizando Datos...", true);
+        /////////////////////////////////////////////////////////////////
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ////////Se ejecuta en segundo plano//////////////////////
+                IPerfilUsuarioPresenter iMainPresenter = new PerfilUsuarioPresenter();
+                boolean boolBsuarioValido = iMainPresenter.actulizarDatosUsuarioLogeado();
+                ////////////////////////////////////////////////////////
+                //Se ejecuta al terminar la tarea en segundo plano
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialog.dismiss();
+                        if(boolBsuarioValido){
+                            Intent buscar = new Intent(getApplicationContext(),MainActivityBusEvento.class);
+                            startActivity(buscar);
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Error al actualizar los datos, intente nuevamente.",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                /////////////////////////////////////////////////////////
+            }
+        }).start();
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();

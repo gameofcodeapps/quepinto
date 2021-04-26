@@ -203,10 +203,10 @@ public  class UsuarioModel {
     public boolean actulizarDatosUsuarioLogeado(){
 
         String sql= "UPDATE auth_user set first_name=\"" +
-                usuarioLogeado.getFirstName()+"\" "+
-                "email = \""+usuarioLogeado.getEmail()+"\" "+
+                usuarioLogeado.getFirstName()+"\", "+
+                "email = \""+usuarioLogeado.getEmail()+"\", "+
                 "last_name= \""+usuarioLogeado.getLastName()+"\" " +
-                "WHERE" +
+                "WHERE " +
                 "id="+usuarioLogeado.getId();
 
         ResultSet resultSet = null;

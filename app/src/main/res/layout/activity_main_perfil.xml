@@ -72,18 +72,19 @@
 
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/Nom_Usuario_perf"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="Nombre de usuario"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/red"
-                    android:textColorHint="@color/gray"
-                    android:textSize="17dp" />
+            <EditText
+                android:id="@+id/Nom_Usuario_perf"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+
+                android:fontFamily="@font/poppins_light"
+                android:hint="Nombre de usuario"
+                android:inputType="textPersonName"
+                android:textColor="@color/red"
+                android:textColorHint="@color/gray"
+                android:textSize="17dp" />
 
 
 
@@ -114,18 +115,18 @@
 
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/UsuNom"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="Introduce tu Nombre"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/red"
-                    android:textColorHint="@color/gray"
-                    android:textSize="17dp" />
+            <EditText
+                android:id="@+id/UsuNom"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/poppins_light"
+                android:hint="Introduce tu Nombre"
+                android:inputType="textPersonName"
+                android:textColor="@color/red"
+                android:textColorHint="@color/gray"
+                android:textSize="17dp" />
 
 
 
@@ -157,18 +158,18 @@
 
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/Apellido"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="Introduce tu apellido"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/red"
-                    android:textColorHint="@color/gray"
-                    android:textSize="17dp" />
+            <EditText
+                android:id="@+id/Apellido"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/poppins_light"
+                android:hint="Introduce tu apellido"
+                android:inputType="textPersonName"
+                android:textColor="@color/red"
+                android:textColorHint="@color/gray"
+                android:textSize="17dp" />
 
 
 
@@ -200,18 +201,18 @@
 
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="Introduce tu Email"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/red"
-                    android:textColorHint="@color/gray"
-                    android:textSize="17dp" />
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/poppins_light"
+                android:hint="Introduce tu Email"
+                android:inputType="textPersonName"
+                android:textColor="@color/red"
+                android:textColorHint="@color/gray"
+                android:textSize="17dp" />
 
 
 
@@ -224,7 +225,7 @@
                     android:layout_marginTop="25dp"
                     android:background="@drawable/button_shape"
                     android:fontFamily="@font/poppins_light"
-                    android:onClick="onClick_btn"
+                    android:onClick="actualizarDatos"
                     android:text="@string/btn_guard_camb"
                     android:textColor="@color/white" />
 
