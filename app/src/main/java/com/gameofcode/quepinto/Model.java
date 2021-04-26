@@ -1,5 +1,7 @@
 package com.gameofcode.quepinto;
 
+import android.graphics.Bitmap;
+
 public class Model{
     private String header;
     private String fecha;
@@ -8,6 +10,17 @@ public class Model{
     private String desc;
     private int imgname;
     private String urlimagen;
+
+////Alternativa a cargar imagen/////
+ /*   private Bitmap imgen;
+    public Bitmap getImgen() {
+        return imgen;
+    }
+
+    public void setImgen(Bitmap imgen) {
+        this.imgen = imgen;
+    }*/
+///////////////////////////////////////
 
     public String getUrlimagen() {return urlimagen;}
 

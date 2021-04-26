@@ -1,5 +1,7 @@
 package com.gameofcode.quepinto.models;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.format.DateFormat;
 import android.util.Log;
 
@@ -8,6 +10,7 @@ import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.DTO.UsuarioDTO;
 import com.gameofcode.quepinto.helpers.ConnectDBHelper;
 
+import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
@@ -103,7 +106,7 @@ public class EventoModel {
                         resultSet.getString(3),
                         resultSet.getString(4),
                         resultSet.getString(5),
-                        "http://quepinto.pythonanywhere.com/media/"+resultSet.getString(6),
+                        "https://quepinto.pythonanywhere.com/media/"+resultSet.getString(6),
                         resultSet.getString(7),
                         resultSet.getString(8),
                         resultSet.getString(9),
@@ -116,6 +119,11 @@ public class EventoModel {
                         resultSet.getString(16),
                         resultSet.getString(17)
                 );
+                ///Alternativa a cargar imagen/////
+               /* URL url = new URL(eventoDTO.getImagenEvento());
+                Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                eventoDTO.setImagenEventoBMP(bmp);*/
+                ////////////////////////////////////
                 eventos.add(eventoDTO);
             }
             ConnectDBHelper.desconectarBD();

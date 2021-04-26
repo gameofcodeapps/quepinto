@@ -48,9 +48,17 @@ public class myadapter extends RecyclerView.Adapter<myviewholder>
 /*        holder.t5.setText(temp.getTxtmapa());*/
 
    //     holder.img.setImageResource(temp.getImgname());
+
+
         String string = temp.getUrlimagen();
-        string=string.replace("http:/", "https:/");
+        //string=string.replace("http:/", "https:/");
         Picasso.with(holder.img.getContext()).load(string).into(holder.img);
+
+
+        ///Alternativa a cargar imagen/////
+        //holder.img.setImageBitmap(temp.getImgen());
+        ////////////////////////////////////////////
+
         holder.img.setOnClickListener(new View.OnClickListener() {
 
             @Override

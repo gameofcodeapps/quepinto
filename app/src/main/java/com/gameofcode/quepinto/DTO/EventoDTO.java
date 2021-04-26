@@ -1,5 +1,7 @@
 package com.gameofcode.quepinto.DTO;
 
+import android.graphics.Bitmap;
+
 public class EventoDTO {
 
     private int id;
@@ -19,7 +21,9 @@ public class EventoDTO {
     private String direccion;
     private String longitud;
     private String usuarioCreador;
-
+    ////Alternativa a cargar imagen
+    //private Bitmap imagenEventoBMP;
+    /////////////////////////////////
     public EventoDTO(int id, String nombreEvento, String organizador, String categoria, String descripcion, String imagenEvento, String ciudad, String departamento, String pais, String fechaInicio, String fechaFin, String horaFin, String horaInicio, String latitud, String direccion, String longitud, String usuarioCreador) {
         this.id = id;
         this.nombreEvento = nombreEvento;
@@ -179,4 +183,14 @@ public class EventoDTO {
     public void setUsuarioCreador(String usuarioCreador) {
         this.usuarioCreador = usuarioCreador;
     }
+
+    //Alternativa a cargar imagen
+   /* public Bitmap getImagenEventoBMP() {
+        return imagenEventoBMP;
+    }
+
+    public void setImagenEventoBMP(Bitmap imagenEventoBMP) {
+        this.imagenEventoBMP = imagenEventoBMP;
+    }*/
+    ///////////////////////////
 }

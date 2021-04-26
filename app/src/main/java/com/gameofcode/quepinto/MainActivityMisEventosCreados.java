@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -54,12 +55,7 @@ public class MainActivityMisEventosCreados extends AppCompatActivity {
         //pongo Título
         toolbar.setTitle("Qué Pintó?");
 
-        adapter = new myadapter(dataqueue(),getApplicationContext());
-        rcv.setHasFixedSize(true);
-        rcv.setAdapter(adapter);
-
-        GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
-        rcv.setLayoutManager(gridLayoutManager);
+        inicializar();
 
         //placing toolbar in place of actionbar
         setSupportActionBar(toolbar);
@@ -69,7 +65,29 @@ public class MainActivityMisEventosCreados extends AppCompatActivity {
 
     }
 
+    private void inicializar(){
+        ProgressDialog progressDialog= ProgressDialog.show(this, "",
+                "Cargando Mis Eventos...", true);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<Model> holder = dataqueue();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter = new myadapter(holder,getApplicationContext());
+                        rcv.setHasFixedSize(true);
+                        rcv.setAdapter(adapter);
 
+                        GridLayoutManager gridLayoutManager=new GridLayoutManager(getApplicationContext(),2);
+                        rcv.setLayoutManager(gridLayoutManager);
+                        progressDialog.dismiss();
+                    }
+                });
+            }
+        }).start();
+
+    }
     //Se crea el Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -214,9 +232,9 @@ public class MainActivityMisEventosCreados extends AppCompatActivity {
     private void traerLastIndex(){
         //Se ejecuta antes de la tarea en segundo plano
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        //new Thread(new Runnable() {
+        //    @Override
+         //   public void run() {
                 //Se ejecuta en segundo plano
 
                 EventoModel instance = EventoModel.getInstance();
@@ -236,9 +254,9 @@ public class MainActivityMisEventosCreados extends AppCompatActivity {
                     }
                 });
             }
-        }).start();
+        //}).start();
 
 
-    }
+    //}
 
 }

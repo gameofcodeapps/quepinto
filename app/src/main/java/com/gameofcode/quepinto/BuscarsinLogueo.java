@@ -1,5 +1,6 @@
 package com.gameofcode.quepinto;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -32,6 +33,9 @@ public class BuscarsinLogueo extends AppCompatActivity {
     myadapter adapter;
     Bitmap bmp;
     private int idEvento;
+    ////Alternativa cargar imagen/////////
+    //private Bitmap imagen;
+    //////////////////////////////////////
 
 
     @Override
@@ -45,18 +49,36 @@ public class BuscarsinLogueo extends AppCompatActivity {
         //pongo Título
         toolbar2.setTitle("Qué Pintó?");
 
-        adapter = new myadapter(dataqueue(),getApplicationContext());
-        rcv.setHasFixedSize(true);
-        rcv.setAdapter(adapter);
-
-        GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
-        rcv.setLayoutManager(gridLayoutManager);
+       inicializar();
 
         //placing toolbar in place of actionbar
         setSupportActionBar(toolbar2);
 
     }
 
+    private void inicializar(){
+        ProgressDialog progressDialog= ProgressDialog.show(this, "",
+                "Buscando Eventos...", true);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<Model> holder = dataqueue();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter = new myadapter(holder,getApplicationContext());
+                        rcv.setHasFixedSize(true);
+                        rcv.setAdapter(adapter);
+
+                        GridLayoutManager gridLayoutManager=new GridLayoutManager(getApplicationContext(),2);
+                        rcv.setLayoutManager(gridLayoutManager);
+                        progressDialog.dismiss();
+                    }
+                });
+            }
+        }).start();
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -110,6 +132,10 @@ public class BuscarsinLogueo extends AppCompatActivity {
             //Agregado para compartir web
             ob1.setId(idEvento);
 
+            ///Alternativa a cargar imagen/////
+            //ob1.setImgen(imagen);
+            ////////////////////////////////////
+
             holder.add(ob1);
             auxdir = null;
         }
@@ -150,6 +176,11 @@ public class BuscarsinLogueo extends AppCompatActivity {
                 Log.i("Eventos",String.valueOf(eventoDTOS.get(i).getImagenEvento()));
                 auximg = String.valueOf(eventoDTOS.get(i).getImagenEvento());
                 idEvento = eventoDTOS.get(i).getId();
+
+
+                ///Alternativa a cargar imagen/////
+                //imagen=eventoDTOS.get(i).getImagenEventoBMP();
+                //////////////////////////////////
                 //Se ejecuta al terminar la tarea en segundo plano
                 runOnUiThread(new Runnable() {
                     @Override
@@ -165,9 +196,9 @@ public class BuscarsinLogueo extends AppCompatActivity {
     private void traerLastIndex(){
         //Se ejecuta antes de la tarea en segundo plano
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        //new Thread(new Runnable() {
+          //  @Override
+           // public void run() {
                 //Se ejecuta en segundo plano
 
                 EventoModel instance = EventoModel.getInstance();
@@ -187,8 +218,8 @@ public class BuscarsinLogueo extends AppCompatActivity {
                     }
                 });
             }
-        }).start();
+        //}).start();
 
 
-    }
+    //}
 }

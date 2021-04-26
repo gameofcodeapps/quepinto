@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -42,7 +43,9 @@ public class MainActivityBusEvento extends AppCompatActivity {
     Bitmap bmp;
     private List<EventoDTO> eventos = null;
     private int idEvento;
-
+    ////Alternativa cargar imagen/////////
+    //private Bitmap imagen;
+    //////////////////////////////////////
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,18 +57,37 @@ public class MainActivityBusEvento extends AppCompatActivity {
         //pongo Título
         toolbar.setTitle("Qué Pintó?");
 
-        adapter = new myadapter(dataqueue(),getApplicationContext());
-        rcv.setHasFixedSize(true);
-        rcv.setAdapter(adapter);
-
-        GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
-        rcv.setLayoutManager(gridLayoutManager);
-
         //placing toolbar in place of actionbar
         setSupportActionBar(toolbar);
 
+        inicializar();
+
     }
 
+
+    private void inicializar(){
+        ProgressDialog progressDialog= ProgressDialog.show(this, "",
+                "Buscando Eventos...", true);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<Model> holder = dataqueue();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter = new myadapter(holder,getApplicationContext());
+                        rcv.setHasFixedSize(true);
+                        rcv.setAdapter(adapter);
+
+                        GridLayoutManager gridLayoutManager=new GridLayoutManager(getApplicationContext(),2);
+                        rcv.setLayoutManager(gridLayoutManager);
+                        progressDialog.dismiss();
+                    }
+                });
+            }
+        }).start();
+
+    }
 
                 //Se crea el Menu
     @Override
@@ -150,6 +172,9 @@ public class MainActivityBusEvento extends AppCompatActivity {
             //Agregado para compartir web
             ob1.setId(idEvento);
 
+            ///Alternativa a cargar imagen/////
+            //ob1.setImgen(imagen);
+            ////////////////////////////////////
             holder.add(ob1);
             auxdir = null;
         }
@@ -185,14 +210,18 @@ public class MainActivityBusEvento extends AppCompatActivity {
         auximg = String.valueOf(eventos.get(i).getImagenEvento());
         //Agregado para compartir web
         idEvento = eventos.get(i).getId();
+
+        ///Alternativa a cargar imagen/////
+        //imagen=eventos.get(i).getImagenEventoBMP();
+        //////////////////////////////////
     }
 
     private void traerLastIndex(){
         //Se ejecuta antes de la tarea en segundo plano
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        //new Thread(new Runnable() {
+           // @Override
+            //public void run() {
                 //Se ejecuta en segundo plano
 
                 EventoModel instance = EventoModel.getInstance();
@@ -208,13 +237,14 @@ public class MainActivityBusEvento extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+
                         //Toast.makeText(getApplicationContext(),eventoDTOS.size(),Toast.LENGTH_LONG).show();
                     }
                 });
             }
-        }).start();
+        //}).start();
 
-    }
+   // }
 
 }
 
