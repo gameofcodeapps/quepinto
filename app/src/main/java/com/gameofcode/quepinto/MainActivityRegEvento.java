@@ -3,7 +3,6 @@ package com.gameofcode.quepinto;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -20,12 +19,10 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,7 +36,6 @@ import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.interfaces.IRegistrarEventoPresenter;
 import com.gameofcode.quepinto.models.UsuarioModel;
 import com.gameofcode.quepinto.presentadores.RegistrarEventoPresenter;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -48,9 +44,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class MainActivityRegEvento extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener, View.OnClickListener {
 
@@ -75,7 +69,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
         EditText address = findViewById(R.id.direccion);
         imagen = (ImageView)findViewById(R.id.imageView);
 
-        Button Registrar = (Button)findViewById(R.id.btnRegistroEvent);
+        Button Registrar = (Button)findViewById(R.id.btnModificarEvento);
 
         bfecha=(Button)findViewById(R.id.btnFecha);
         bhora=(Button)findViewById(R.id.btnHora);

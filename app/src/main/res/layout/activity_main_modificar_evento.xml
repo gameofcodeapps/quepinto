@@ -113,6 +113,12 @@
                 android:fontFamily="@font/poppins_medium"
                 android:text="Hora" />
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="109dp"
+                app:srcCompat="@android:drawable/ic_menu_gallery" />
+
             <EditText
                 android:id="@+id/txtHora"
                 android:layout_width="match_parent"
@@ -132,12 +138,6 @@
                 android:background="@drawable/button_shape"
                 />
 
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="109dp"
-                app:srcCompat="@android:drawable/ic_menu_gallery" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -243,10 +243,10 @@
                 android:layout_height="341dp"></fragment>
 
             <Button
-                android:id="@+id/btnRegistroEvent"
+                android:id="@+id/btnModificarEvento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/btnregistrar"
+                android:text="@string/btnModificarEvento"
                 android:textColor="@color/white"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/button_shape"
