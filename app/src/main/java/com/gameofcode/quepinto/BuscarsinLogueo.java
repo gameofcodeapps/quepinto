@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -52,20 +53,38 @@ public class BuscarsinLogueo extends AppCompatActivity {
         //pongo Título
         toolbar2.setTitle("Qué Pintó?");
 
-       inicializar();
 
         //placing toolbar in place of actionbar
         setSupportActionBar(toolbar2);
 
+        SearchView simpleSearchView = (SearchView) findViewById(R.id.searchView);
+        simpleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                inicializar(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(newText.isEmpty()){
+                    inicializar("");
+                }
+                return false;
+            }
+        });
+
+        inicializar("");
+
     }
 
-    private void inicializar(){
+    private void inicializar(String pBusqueda){
         ProgressDialog progressDialog= ProgressDialog.show(this, "",
                 "Buscando Eventos...", true);
         new Thread(new Runnable() {
             @Override
             public void run() {
-                ArrayList<Model> holder = dataqueue();
+                ArrayList<Model> holder = dataqueue(pBusqueda);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -102,13 +121,17 @@ public class BuscarsinLogueo extends AppCompatActivity {
                 Intent logout = new Intent(this,MainActivity.class);
                 startActivity(logout);
                 break;
+            case R.id.menuA:
+                Intent acercade = new Intent(this,MainActivityAcercade.class);
+                startActivity(acercade);
+                break;
         }
         return true;
     }
 
     //Cargo Listado
 
-    public ArrayList<Model> dataqueue()
+    public ArrayList<Model> dataqueue(String pBusqueda)
     {
         ArrayList<Model> holder=new ArrayList<>();
 

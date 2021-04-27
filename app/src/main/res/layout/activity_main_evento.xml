@@ -19,7 +19,7 @@
         android:id="@+id/TxtNomEvento"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/pink"
+        android:background="#BFDF2D2D"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center"
         android:text="@string/txt_nombre_evento"

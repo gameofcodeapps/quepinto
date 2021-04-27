@@ -25,7 +25,7 @@ import com.squareup.picasso.Picasso;
 public class MainActivityEvento extends AppCompatActivity {
     ImageView imgEvento;
     TextView txtNomEvento,txtFecha,txtdscEvento,txtOrganizador,txtMapa;
-    ImageButton share,ticket,ride;
+    ImageButton share,ticket,ride,fav;
     String _url = "https://tickantel.com.uy/inicio/?0";
     String _url2 = "https://www.uber.com/uy/es/ride/";
     @Override
@@ -38,6 +38,14 @@ public class MainActivityEvento extends AppCompatActivity {
         txtdscEvento= (TextView)findViewById(R.id.txtdscEvento);
         txtOrganizador = (TextView)findViewById(R.id.txtOrganizador);
         txtMapa = (TextView)findViewById(R.id.txtMapa);
+        fav =(ImageButton)findViewById(R.id.imageButton3);
+
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fav.setBackgroundColor(getResources().getColor(R.color.fav));
+            }
+        });
 
         //imgEvento.setImageResource(getIntent().getIntExtra("imagename",0));
         txtNomEvento.setText(getIntent().getStringExtra("header"));
