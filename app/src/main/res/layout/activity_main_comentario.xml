@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#D8D8D8">
 
     <View
         android:id="@+id/divider2"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_marginTop="5dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,22 +21,26 @@
         android:id="@+id/txtpersona"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
         android:hint="TextView"
+        android:textColor="#2B9C02"
         android:textSize="20sp"
-        android:textStyle="bold"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/comcomentario"
-        android:layout_width="234dp"
-        android:layout_height="128dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="213dp"
+        android:layout_height="153dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/comentario"
+        android:fontFamily="@font/lemon"
+        android:gravity="center"
         android:hint="comentarios"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintHorizontal_bias="0.101"
         app:layout_constraintStart_toEndOf="@+id/txtpersona"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
@@ -43,17 +48,18 @@
         android:id="@+id/comfecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:hint="fecha"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/comcomentario"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.585"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtpersona" />
+        app:layout_constraintTop_toBottomOf="@+id/txtpersona"
+        app:layout_constraintVertical_bias="0.327" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_marginTop="12dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toBottomOf="parent"
