@@ -8,6 +8,10 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.ImageDecoder;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
@@ -44,6 +48,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
 import java.util.Calendar;
 
 public class MainActivityRegEvento extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener, View.OnClickListener {
@@ -54,7 +59,8 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
     EditText efecha,ehora;
     private int dia,mes,ano,hora,minutos;
     ImageView imagen;
-
+    private static final int PICK_IMAGE = 100;
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +73,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
         EditText departament = findViewById(R.id.departamento);
         EditText city = findViewById(R.id.ciudad);
         EditText address = findViewById(R.id.direccion);
-        imagen = (ImageView)findViewById(R.id.imageView);
+        imagen = (ImageView)findViewById(R.id.imagenEventoReg);
 
         Button Registrar = (Button)findViewById(R.id.btnModificarEvento);
 
@@ -111,7 +117,10 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
                 String longitud = "";
                 String usuarioCreador = UsuarioModel.getInstance().usuarioLogeado.getUsername();
 
+
                 EventoDTO nuevoEvento = new EventoDTO(id,evento,organiza,categoria,descripcion,Cargaimagen,ciudad,departamento,pais,fecha,"","",hora,latitud,direccion,longitud,usuarioCreador);
+                nuevoEvento.setImagenEventoBMP(bitmap);
+
                 Log.i("evento",nuevoEvento.getDepartamento());
                 if(validarDatosEvent(nuevoEvento)){
                     ProgressDialog progressDialog = ProgressDialog.show(MainActivityRegEvento.this, "","Creando evento", true) ;
@@ -120,6 +129,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
                         @Override
                         public void run() {
                             ////////Se ejecuta en segundo plano//////////////////////
+
                             IRegistrarEventoPresenter presenter = new RegistrarEventoPresenter();
 
                             int resultado = presenter.registrarEvento(nuevoEvento);
@@ -315,16 +325,24 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
 
     private void cargarImagen() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/");
-        startActivityForResult(intent.createChooser(intent,"Seleccione la imagen"), 10);
+        //intent.setType("image/");
+        startActivityForResult(intent.createChooser(intent,"Seleccione la imagen"), PICK_IMAGE);
     }
 
     @Override
     protected  void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode,data);
-        if (requestCode==RESULT_OK){
+        super.onActivityResult(PICK_IMAGE, resultCode,data);
+        if (resultCode==RESULT_OK){
             Uri path = data.getData();
             imagen.setImageURI(path);
+            BitmapDrawable drawable = (BitmapDrawable) imagen.getDrawable();
+            bitmap = drawable.getBitmap();
+            /*try {
+                Bitmap bitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(this.getContentResolver(), path));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }*/
+
         }
     }
 }

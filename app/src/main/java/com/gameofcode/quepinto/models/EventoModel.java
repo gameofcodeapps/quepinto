@@ -3,18 +3,29 @@ package com.gameofcode.quepinto.models;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.format.DateFormat;
+import android.util.Base64;
 import android.util.Log;
 
 import com.gameofcode.quepinto.DTO.ComentarioDTO;
 import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.DTO.UsuarioDTO;
+import com.gameofcode.quepinto.R;
 import com.gameofcode.quepinto.helpers.ConnectDBHelper;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import okhttp3.Headers;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class EventoModel {
 
@@ -209,6 +220,7 @@ public class EventoModel {
     public boolean agregarEvento(EventoDTO pEvento){
         String sqlUltimoID =  "select  id from home_evento order by id desc limit 1";
         ResultSet resultSet = null;
+        String nombreFoto="";
         int ultimoID=0;
         try {
             ConnectDBHelper.establecerConexionBD();
@@ -217,13 +229,20 @@ public class EventoModel {
                 ultimoID = resultSet.getInt(1);
             }
             ultimoID = ultimoID+1;
+            if (pEvento.getImagenEventoBMP() != null){
+                nombreFoto=String.valueOf(ultimoID)+"_"+pEvento.getNombreEvento()+".jpeg";
+                nombreFoto.replaceAll("\\s+","_");
+            }else{
+                nombreFoto="sinfoto.jpg";
+            }
+
             String sqlInsert="INSERT INTO home_evento values (" +
                     ultimoID+" ,"+
                     "\""+pEvento.getNombreEvento()+"\""+", " +
                     "\""+pEvento.getOrganizador()+"\""+", " +
                     "\""+pEvento.getCategoria()+"\""+", " +
                     "\""+pEvento.getDescripcion()+"\""+", " +
-                    "\""+"images/sinfoto.jpg"+"\""+", " +
+                    "\""+"images/"+nombreFoto+"\""+", " +
                     "\""+pEvento.getCiudad()+"\""+", " +
                     "\""+pEvento.getDepartamento()+"\""+", " +
                     "\""+pEvento.getPais()+"\""+", " +
@@ -239,6 +258,9 @@ public class EventoModel {
             int devuelveInsert = ConnectDBHelper.ejecutarSQLInsertUpdate(sqlInsert);
             //Log.i("DevuelveInsert",String.valueOf(devuelveInsert));
             ConnectDBHelper.desconectarBD();
+            if (pEvento.getImagenEventoBMP() != null){
+                subirFotoServidor(pEvento.getImagenEventoBMP(), nombreFoto);
+            }
         }catch (Exception e){
             Log.i("error insert",e.getMessage());
             ConnectDBHelper.desconectarBD();
@@ -250,24 +272,49 @@ public class EventoModel {
 
     public boolean actualizarDatosEvento(EventoDTO pEvento){
         UsuarioModel instance = UsuarioModel.getInstance();
+        String sqlInsert="";
         try {
             ConnectDBHelper.establecerConexionBD();
-            String sqlInsert="UPDATE home_evento SET " +
-                    "nameEvent=\""+pEvento.getNombreEvento()+"\", "+
-                    "organizer=\""+pEvento.getOrganizador()+"\", "+
-                    "category=\""+pEvento.getCategoria()+"\", "+
-                    "description=\""+pEvento.getDescripcion()+"\", "+
-                    //"gallery=\""+pEvento.getImagenEvento()+"\", "+
-                    "city=\""+pEvento.getCiudad()+"\", "+
-                    "department=\""+pEvento.getDepartamento()+"\", "+
-                    "startDate="+"STR_TO_DATE('"+pEvento.getFechaInicio()+"','%Y-%m-%d')"+", "+
-                    //"startDate="+"STR_TO_DATE('"+pEvento.getFechaInicio()+"','%d/%m/%Y')"+", "+
-                    "startTimeDate=\""+pEvento.getHoraInicio()+"\", "+
-                    "lat=\""+pEvento.getLatitud()+"\", "+
-                    "address=\""+pEvento.getDireccion()+"\", "+
-                    "home_evento.long=\""+pEvento.getLongitud()+"\" "+
-                    "WHERE " +
-                    "id="+pEvento.getId();
+            if(pEvento.getImagenEventoBMP()!= null){
+                String nombreFoto=pEvento.getId()+"_"+(pEvento.getId()+1)+"_"+pEvento.getNombreEvento()+".jpeg";
+                nombreFoto.replaceAll("\\s+","_");
+                sqlInsert="UPDATE home_evento SET " +
+                        "nameEvent=\""+pEvento.getNombreEvento()+"\", "+
+                        "organizer=\""+pEvento.getOrganizador()+"\", "+
+                        "category=\""+pEvento.getCategoria()+"\", "+
+                        "description=\""+pEvento.getDescripcion()+"\", "+
+                        "gallery=\"images/"+nombreFoto+"\", "+
+                        "city=\""+pEvento.getCiudad()+"\", "+
+                        "department=\""+pEvento.getDepartamento()+"\", "+
+                        "startDate="+"STR_TO_DATE('"+pEvento.getFechaInicio()+"','%Y-%m-%d')"+", "+
+                        //"startDate="+"STR_TO_DATE('"+pEvento.getFechaInicio()+"','%d/%m/%Y')"+", "+
+                        "startTimeDate=\""+pEvento.getHoraInicio()+"\", "+
+                        "lat=\""+pEvento.getLatitud()+"\", "+
+                        "address=\""+pEvento.getDireccion()+"\", "+
+                        "home_evento.long=\""+pEvento.getLongitud()+"\" "+
+                        "WHERE " +
+                        "id="+pEvento.getId();
+                Log.i("nombreFoto",nombreFoto);
+                subirFotoServidor(pEvento.getImagenEventoBMP(), nombreFoto);
+            }else{
+                sqlInsert="UPDATE home_evento SET " +
+                        "nameEvent=\""+pEvento.getNombreEvento()+"\", "+
+                        "organizer=\""+pEvento.getOrganizador()+"\", "+
+                        "category=\""+pEvento.getCategoria()+"\", "+
+                        "description=\""+pEvento.getDescripcion()+"\", "+
+                        //"gallery=\""+nombreFoto+"\", "+
+                        "city=\""+pEvento.getCiudad()+"\", "+
+                        "department=\""+pEvento.getDepartamento()+"\", "+
+                        "startDate="+"STR_TO_DATE('"+pEvento.getFechaInicio()+"','%Y-%m-%d')"+", "+
+                        //"startDate="+"STR_TO_DATE('"+pEvento.getFechaInicio()+"','%d/%m/%Y')"+", "+
+                        "startTimeDate=\""+pEvento.getHoraInicio()+"\", "+
+                        "lat=\""+pEvento.getLatitud()+"\", "+
+                        "address=\""+pEvento.getDireccion()+"\", "+
+                        "home_evento.long=\""+pEvento.getLongitud()+"\" "+
+                        "WHERE " +
+                        "id="+pEvento.getId();
+            }
+
             Log.i("SQL Insert",sqlInsert);
             int devuelveInsert = ConnectDBHelper.ejecutarSQLInsertUpdate(sqlInsert);
             Log.i("DevuelveInsert",String.valueOf(devuelveInsert));
@@ -279,6 +326,42 @@ public class EventoModel {
         }
         return true;
 
+    }
+    private String codificarImagenBASE64(Bitmap pBitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        pBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        byte[] imageBytes = byteArrayOutputStream.toByteArray();
+        String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        String resultado = "data:image/jpeg;base64,"+imageString;
+        return resultado;
+    }
+
+    private boolean subirFotoServidor(Bitmap pBitmap, String pNombre) throws  Exception{
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("imagen", codificarImagenBASE64(pBitmap))
+                .addFormDataPart("nombre", pNombre)
+                .build();
+
+        Request request = new Request.Builder()
+                .url("https://quepinto.pythonanywhere.com/home/upload_image")
+                .post(requestBody)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        if (!response.isSuccessful()) {
+            return false;
+        };
+        /*Headers responseHeaders = response.headers();
+        for (int i = 0; i < responseHeaders.size(); i++) {
+                System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
+        }*/
+        //Log.i("llegue ","makepost");
+        Log.i("resultado POST",response.body().string());
+        //System.out.println(response.body().string());
+        return true;
     }
 
 

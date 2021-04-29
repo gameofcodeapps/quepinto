@@ -1,4 +1,4 @@
-package com.gameofcode.quepinto.helpers;
+    package com.gameofcode.quepinto.helpers;
 
 import android.util.Base64;
 import com.jcraft.jsch.JSch;

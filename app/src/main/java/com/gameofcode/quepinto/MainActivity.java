@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,8 +34,17 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+
+import okhttp3.Headers;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -135,11 +147,11 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 //Se ejecuta en segundo plano
 
-                EventoModel instance = EventoModel.getInstance();
-                EventoDTO test = new EventoDTO();
-                test.setId(17);
-                List<ComentarioDTO> comentarioDTOS = instance.obtenerComentariosDeEvento(test);
-                Log.i("Comentario",comentarioDTOS.get(0).getUsuario());
+               // EventoModel instance = EventoModel.getInstance();
+               // EventoDTO test = new EventoDTO();
+               // test.setId(17);
+               // List<ComentarioDTO> comentarioDTOS = instance.obtenerComentariosDeEvento(test);
+               // Log.i("Comentario",comentarioDTOS.get(0).getUsuario());
                 //List<EventoDTO> eventoDTOS = instance.obtenerEventosFavoritosServicio("juan1");
                 //EventoDTO evento = new EventoDTO(
                 //    1,"evento Prueba","yo","clande","re piola","imagen","maldonado","maldonado","uruguay","2021-04-25","","","20:00","548484984","la direccion","51651651561651", "juan1");
@@ -163,6 +175,19 @@ public class MainActivity extends AppCompatActivity {
                 //Log.i("evento ID",String.valueOf(evento.getId()));
                 //EventoModel.getInstance().agregarComentario(evento,"Esto es un comentario");
 
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.common_full_open_on_phone);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                byte[] imageBytes = byteArrayOutputStream.toByteArray();
+                String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+                String resultado = "data:image/jpeg;base64,"+imageString;
+                //textView.setText(imageString);
+                //Log.i("llegue ",imageString);
+                try{
+                    makePost(resultado);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 //Se ejecuta al terminar la tarea en segundo plano
                 runOnUiThread(new Runnable() {
                     @Override
@@ -206,6 +231,34 @@ public class MainActivity extends AppCompatActivity {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("Error", "signInResult:failed code=" + e.getStatusCode());
+        }
+    }
+
+
+    private void makePost(String imagen) throws  Exception{
+        OkHttpClient client = new OkHttpClient();
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("imagen", imagen)
+                .addFormDataPart("nombre", "test20.jpeg")
+
+                .build();
+
+        Request request = new Request.Builder()
+                .url("https://quepinto.pythonanywhere.com/home/upload_image")
+                .post(requestBody)
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+            Headers responseHeaders = response.headers();
+            for (int i = 0; i < responseHeaders.size(); i++) {
+                System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
+            }
+            //Log.i("llegue ","makepost");
+            Log.i("resultado POST",response.body().string());
+            //System.out.println(response.body().string());
         }
     }
 

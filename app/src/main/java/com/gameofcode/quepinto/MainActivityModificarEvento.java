@@ -6,8 +6,11 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,6 +24,10 @@ import com.gameofcode.quepinto.interfaces.IModificarEventoPresenter;
 import com.gameofcode.quepinto.presentadores.ModificarEventoPresenter;
 
 public class MainActivityModificarEvento extends AppCompatActivity {
+
+    private Bitmap bitmap;
+    private static final int PICK_IMAGE = 100;
+    private ImageView imagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +45,7 @@ public class MainActivityModificarEvento extends AppCompatActivity {
         EditText organizador = (EditText) findViewById(R.id.organizador);
         EditText fecha = (EditText) findViewById(R.id.txtFecha);
         EditText hora = (EditText) findViewById(R.id.txtHora);
-        ImageView imagen = (ImageView) findViewById(R.id.imageView);
+        imagen = (ImageView) findViewById(R.id.imagenEventoReg);
         EditText descripcion = (EditText) findViewById(R.id.descripcion);
         EditText departamento = (EditText) findViewById(R.id.departamento);
         EditText ciudad = (EditText) findViewById(R.id.ciudad);
@@ -82,6 +89,7 @@ public class MainActivityModificarEvento extends AppCompatActivity {
                 evento.setDepartamento(departamento.getText().toString());
                 evento.setCiudad(ciudad.getText().toString());
                 evento.setDireccion(direccion.getText().toString());
+                evento.setImagenEventoBMP(bitmap);
                 ProgressDialog progressDialog= ProgressDialog.show(v.getContext(), "",
                         "Modificando Evento...", true);
                 new Thread(new Runnable() {
@@ -116,5 +124,33 @@ public class MainActivityModificarEvento extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    public void cargarImagen(View view) {
+        cargarImagen();
+    }
+
+    private void cargarImagen() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        //intent.setType("image/");
+        startActivityForResult(intent.createChooser(intent,"Seleccione la imagen"), PICK_IMAGE);
+    }
+
+    @Override
+    protected  void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(PICK_IMAGE, resultCode,data);
+        if (resultCode==RESULT_OK){
+            Uri path = data.getData();
+            imagen.setImageURI(path);
+            BitmapDrawable drawable = (BitmapDrawable) imagen.getDrawable();
+            bitmap = drawable.getBitmap();
+            /*try {
+                Bitmap bitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(this.getContentResolver(), path));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }*/
+
+        }
     }
 }

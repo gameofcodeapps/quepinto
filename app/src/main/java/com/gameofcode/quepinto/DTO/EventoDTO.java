@@ -24,7 +24,8 @@ public class EventoDTO implements Serializable {
     private String longitud;
     private String usuarioCreador;
     ////Alternativa a cargar imagen
-    //private Bitmap imagenEventoBMP;
+    ///Lo uso para grabar la imagen y convertirla en base64
+    private Bitmap imagenEventoBMP;
     /////////////////////////////////
     public EventoDTO(int id, String nombreEvento, String organizador, String categoria, String descripcion, String imagenEvento, String ciudad, String departamento, String pais, String fechaInicio, String fechaFin, String horaFin, String horaInicio, String latitud, String direccion, String longitud, String usuarioCreador) {
         this.id = id;
@@ -186,13 +187,13 @@ public class EventoDTO implements Serializable {
         this.usuarioCreador = usuarioCreador;
     }
 
-    //Alternativa a cargar imagen
-   /* public Bitmap getImagenEventoBMP() {
+
+    public Bitmap getImagenEventoBMP() {
         return imagenEventoBMP;
     }
 
     public void setImagenEventoBMP(Bitmap imagenEventoBMP) {
         this.imagenEventoBMP = imagenEventoBMP;
-    }*/
+    }
     ///////////////////////////
 }

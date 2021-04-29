@@ -114,7 +114,7 @@
                 android:text="Hora" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imagenEventoReg"
                 android:layout_width="match_parent"
                 android:layout_height="109dp"
                 app:srcCompat="@android:drawable/ic_menu_gallery" />
@@ -132,7 +132,7 @@
                 android:id="@+id/btnCargaImagen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:onClick="cargarImagen"
                 android:text="Cargar imagen"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/button_shape"

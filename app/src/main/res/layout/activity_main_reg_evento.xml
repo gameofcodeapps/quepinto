@@ -134,7 +134,7 @@
 
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imagenEventoReg"
                 android:layout_width="match_parent"
                 android:layout_height="109dp"
                 app:srcCompat="@android:drawable/ic_menu_gallery" />
