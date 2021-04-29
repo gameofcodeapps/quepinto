@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_red"
@@ -23,7 +24,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuePinto">
-        <activity android:name=".MainActivityModificarEvento"></activity>
+        <activity android:name=".CrearNuevaPassword"></activity>
+        <activity android:name=".MainActivityModificarEvento" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -64,7 +66,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MainActivityRegEvento">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -86,7 +87,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MainActivityComentario">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -94,7 +94,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MainActivityFavoritos">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

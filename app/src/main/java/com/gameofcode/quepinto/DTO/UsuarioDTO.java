@@ -15,7 +15,7 @@ public class UsuarioDTO {
     private String lastName;
 
     public UsuarioDTO() {
-
+        this.email="";
     }
 
     public UsuarioDTO(String password, String username, String firstName, String email, String lastName) {

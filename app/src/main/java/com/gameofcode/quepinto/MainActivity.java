@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //doStaff();
+        //doStaff(null);
         EditText UsuNom = findViewById(R.id.TxtUsuNom);
         EditText UsuPwd = findViewById(R.id.TxtUsuPas);
         BtnEven = findViewById(R.id.BtnEven);
@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
        // PreferenciasSistema.getInstance().obtener().getString("nombre","lalala");
        // SharedPreferences preferenciasSistema = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
        // preferenciasSistema.getString("nombre","lalala");
-
         PreferenciasSistema.leerPreferencia(getApplicationContext(),"name");
 
     }
@@ -174,17 +173,18 @@ public class MainActivity extends AppCompatActivity {
                 //EventoDTO evento = eventoDTOS.get(1);
                 //Log.i("evento ID",String.valueOf(evento.getId()));
                 //EventoModel.getInstance().agregarComentario(evento,"Esto es un comentario");
-
+/*
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.common_full_open_on_phone);
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                 byte[] imageBytes = byteArrayOutputStream.toByteArray();
                 String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
                 String resultado = "data:image/jpeg;base64,"+imageString;
+               */
                 //textView.setText(imageString);
                 //Log.i("llegue ",imageString);
                 try{
-                    makePost(resultado);
+                    makePost();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -235,17 +235,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void makePost(String imagen) throws  Exception{
+    private void makePost() throws  Exception{
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("imagen", imagen)
-                .addFormDataPart("nombre", "test20.jpeg")
+                .addFormDataPart("email", "elfozi@gmail.com")
+                .addFormDataPart("codigo", "123456789")
 
                 .build();
 
         Request request = new Request.Builder()
-                .url("https://quepinto.pythonanywhere.com/home/upload_image")
+                .url("https://quepinto.pythonanywhere.com/home/enviarMail")
                 .post(requestBody)
                 .build();
 

@@ -225,6 +225,58 @@ public  class UsuarioModel {
 
     }
 
+    public  UsuarioDTO obtenerDatosUsuarioPorMail(String pMail){
+
+        String sql="SELECT * FROM auth_user where email=\""+pMail+"\" limit 1";
+        ResultSet resultSet = null;
+        UsuarioDTO usuarioDevuelto = new UsuarioDTO();
+        try {
+            ConnectDBHelper.establecerConexionBD();
+            resultSet = ConnectDBHelper.ejecutarSQL(sql);
+            while (resultSet.next()) {
+                usuarioDevuelto.setId(resultSet.getString(1));
+                usuarioDevuelto.setPassword(resultSet.getString(2));
+                usuarioDevuelto.setLastLogin((resultSet.getString(3)));
+                usuarioDevuelto.setIsSuperUser(resultSet.getString(4));
+                usuarioDevuelto.setUsername(resultSet.getString(5));
+                usuarioDevuelto.setFirstName((resultSet.getString(6)));
+                usuarioDevuelto.setEmail(resultSet.getString(7));
+                usuarioDevuelto.setIsStaff(resultSet.getString(8));
+                usuarioDevuelto.setIsActive(resultSet.getString(9));
+                usuarioDevuelto.setDateJoined(resultSet.getString(10));
+                usuarioDevuelto.setLastName((resultSet.getString(11)));
+            }
+            ConnectDBHelper.desconectarBD();
+        } catch (Exception e) {
+            ConnectDBHelper.desconectarBD();
+            return usuarioDevuelto;
+            //e.printStackTrace();
+        }
+        return usuarioDevuelto;
+    }
+
+    public boolean actulizarPassword(String pMail, String pPassword){
+
+        String sql= "UPDATE auth_user set password=\"" +
+                encriptarMD5(pPassword)+"\" "+
+                "WHERE " +
+                "email=\""+pMail+"\"";
+
+        ResultSet resultSet = null;
+        try {
+            ConnectDBHelper.establecerConexionBD();
+            int devuelveInsert = ConnectDBHelper.ejecutarSQLInsertUpdate(sql);
+            Log.i("DevuelveInsert",String.valueOf(devuelveInsert));
+            ConnectDBHelper.desconectarBD();
+        }catch (Exception e){
+            Log.i("error insert",e.getMessage());
+            ConnectDBHelper.desconectarBD();
+            return false;
+        }
+
+        return true;
+
+    }
 
 
 }
