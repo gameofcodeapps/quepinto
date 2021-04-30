@@ -200,12 +200,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
+    <Button
+        android:id="@+id/verMapa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center_horizontal"
+        android:text="@string/ver_map"
+        android:textAllCaps="false"
+        android:background="@drawable/button_shape"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtMapa" />
+
+
     <TextView
         android:id="@+id/txtComentarios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/txt_Comentarios"
@@ -215,7 +236,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtMapa" />
+        app:layout_constraintTop_toBottomOf="@id/verMapa" />
 
 
     <androidx.recyclerview.widget.RecyclerView

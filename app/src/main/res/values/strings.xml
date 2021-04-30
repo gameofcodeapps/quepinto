@@ -49,6 +49,7 @@
     <string name="txtdireccion">Direccion</string>
     <string name="direccion">Direccion</string>
     <string name="txt_map">Ubicar en Mapa</string>
+    <string name="ver_map">Ver en Mapa</string>
     <string name="btnregistrar">Registrar</string>
     <string name="btnModificarEvento">Modificar</string>
     <string name="btnEliminarEvento">Eliminar</string>

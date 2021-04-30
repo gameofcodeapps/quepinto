@@ -34,7 +34,7 @@ import java.util.List;
 
 public class MainActivityEvento extends AppCompatActivity {
     ImageView imgEvento;
-    TextView txtNomEvento,txtFecha,txtdscEvento,txtOrganizador,txtMapa;
+    TextView txtNomEvento,txtFecha,txtdscEvento,txtOrganizador,txtMapa, verMapa;
     ImageButton share,ticket,ride,fav;
     String _url = "https://tickantel.com.uy/inicio/?0";
     String _url2 = "https://www.uber.com/uy/es/ride/";
@@ -59,6 +59,7 @@ public class MainActivityEvento extends AppCompatActivity {
         txtdscEvento= (TextView)findViewById(R.id.txtdscEvento);
         txtOrganizador = (TextView)findViewById(R.id.txtOrganizador);
         txtMapa = (TextView)findViewById(R.id.txtMapa);
+        verMapa = (TextView)findViewById(R.id.verMapa);
         fav =(ImageButton)findViewById(R.id.imageButton3);
         rcv= findViewById(R.id.recview);
 
@@ -94,6 +95,8 @@ public class MainActivityEvento extends AppCompatActivity {
         ride =(ImageButton)findViewById(R.id.ride);
         ticket=(ImageButton)findViewById(R.id.Ticket);
         share=(ImageButton)findViewById(R.id.share);
+        txtMapa=(TextView)findViewById(R.id.txtMapa);
+        verMapa=(TextView)findViewById(R.id.verMapa);
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,6 +126,18 @@ public class MainActivityEvento extends AppCompatActivity {
                 Uri _link = Uri.parse(_url2);
                 Intent i  =new Intent(Intent.ACTION_VIEW,_link);
                 startActivity(i);
+            }
+        });
+
+        verMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String _direccionaux = getIntent().getStringExtra("mapa").replaceAll(" ","+");
+                String _mapaUrl= "https://www.google.com.uy/maps/search/"+_direccionaux;
+                Uri _link = Uri.parse(_mapaUrl);
+                Intent i  =new Intent(Intent.ACTION_VIEW,_link);
+                startActivity(i);
+
             }
         });
 
