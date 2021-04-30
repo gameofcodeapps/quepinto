@@ -269,7 +269,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    efecha.setText(dayOfMonth+"/"+month+"/"+year);
+                    efecha.setText(dayOfMonth+"/"+(month+1)+"/"+year);
 
                 }
             }
