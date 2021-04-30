@@ -284,9 +284,21 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
             TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    ehora.setText(hourOfDay+":"+minute);
+                    String hora;
+                    String minutos;
+                    if (minute<=9){
+                        minutos = "0"+String.valueOf(minute);
+                    }else{
+                        minutos = String.valueOf(minute);
+                    }
+                    if (hourOfDay<=9){
+                        hora = "0" + String.valueOf(hourOfDay);
+                    }else{
+                        hora = String.valueOf(hourOfDay);
+                    }
+                    ehora.setText(hora+":"+minutos);
                 }
-            },hora,minutos,false);
+            },hora,minutos,true);
             timePickerDialog.show();
         }
     }
