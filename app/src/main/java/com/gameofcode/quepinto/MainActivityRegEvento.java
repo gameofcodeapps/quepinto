@@ -96,6 +96,7 @@ public class MainActivityRegEvento extends AppCompatActivity implements OnMapRea
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        mapFragment.getView().setVisibility(View.INVISIBLE);
         getLocalizacion();
 
         Registrar.setOnClickListener(new View.OnClickListener() {
