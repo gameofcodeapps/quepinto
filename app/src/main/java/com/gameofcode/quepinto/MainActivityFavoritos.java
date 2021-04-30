@@ -124,10 +124,6 @@ public class MainActivityFavoritos extends AppCompatActivity {
         //traigo last index
         traerLastIndex();
 
-        while (auxindex == 0){
-
-        }
-
         // comienzo loop I=1 hasta last
         for(i=0; i<auxindex; i++){
             Model ob1=new Model();
@@ -135,9 +131,6 @@ public class MainActivityFavoritos extends AppCompatActivity {
             //Traigo Eventos
             traerEvento();
 
-            while(auxdir == null){
-
-            }
 
             ob1.setHeader(auxNom);
             ob1.setDesc(auxdsc);

@@ -5,6 +5,7 @@
     <string name="nombre_de_usuario">Nombre de Usuario</string>
     <string name="txtContraseña">Contraseña</string>
     <string name="NoMUsu">Mail del Usuario</string>
+    <string name="usuarioNombre">Nombre de usuario</string>
     <string name="NRegis">No estás registrado?</string>
     <string name="Registrate">Regístrate aquí</string>
     <string name="btnEventos">Buscar eventos!</string>

@@ -40,11 +40,12 @@ public class MainActivityEvento extends AppCompatActivity {
     String _url2 = "https://www.uber.com/uy/es/ride/";
     EventoDTO eventoDTO;
 
+
     int i,auxindex,id,idusuario,auxindex2;
     String auxNom,auxdsc,auxfch,auxorg,auxdir,auximg,auxIntstr,fecha,usuario,comentario;
     ImageView imageView;
     myadaptercomentario adapter;
-    private int idEvento;
+    public int idEvento;
     private List<EventoDTO> eventos = null;
     private  List<EventoDTO> eventoDTOS;
     RecyclerView rcv;
@@ -190,13 +191,14 @@ public class MainActivityEvento extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        progressDialog.dismiss();
                         adapter = new myadaptercomentario(holder,getApplicationContext());
                         rcv.setHasFixedSize(true);
                         rcv.setAdapter(adapter);
 
                         GridLayoutManager gridLayoutManager=new GridLayoutManager(getApplicationContext(),1);
                         rcv.setLayoutManager(gridLayoutManager);
-                        progressDialog.dismiss();
+
                     }
                 });
             }
@@ -208,118 +210,24 @@ public class MainActivityEvento extends AppCompatActivity {
     public ArrayList<ComentarioDTO> dataqueue()
     {
         ArrayList<ComentarioDTO> holder=new ArrayList<>();
-
-        //traigo last index
-        traerLastIndex();
-
-        while (auxindex2 == 0){
-
-        }
-
-        // comienzo loop I=1 hasta last
-        for(i=0; i<auxindex2; i++){
-            ComentarioDTO ob2 = new ComentarioDTO(id,comentario,idusuario,fecha,idEvento,usuario);
-
-            obtenerComentarios();
-
-            while(comentario == null){
-
-            }
-
-            ob2.setId(id);
-            ob2.setComentario(comentario);
-            ob2.setIdUsuario(idusuario);
-            ob2.setFecha(fecha);
-            ob2.setUsuario(usuario);
-            holder.add(ob2);
-/*
-            ob.setHeader(auxNom);
-            ob1.setDesc(auxdsc);
-            ob1.setImgname(R.drawable.banda1);
-            ob1.setFecha(auxfch);
-            ob1.setOrganizador(auxorg);
-            ob1.setTxtmapa(auxdir);
-            ob1.setUrlimagen(auximg);
-            ob1.setEsFavorito(true);
-            //Agregado para compartir web
-            ob1.setId(idEvento);
-
-            ///Alternativa a cargar imagen/////
-            //ob1.setImgen(imagen);
-            ////////////////////////////////////
-
-            holder.add(ob1);*/
-            comentario = null;
-        }
-
-
-        return holder;
-    }
-
-    private void obtenerComentarios(){
-        //Se ejecuta antes de la tarea en segundo plano
-
-        Log.i("Eventos",String.valueOf(comentarios.get(i).getId()));
-        id = comentarios.get(i).getId();
-        Log.i("Eventos",String.valueOf(comentarios.get(i).getFecha()));
-        fecha = String.valueOf(comentarios.get(i).getFecha());
-        Log.i("Eventos",String.valueOf(comentarios.get(i).getFecha()));
-        idusuario = comentarios.get(i).getIdUsuario();
-        Log.i("Eventos",String.valueOf(comentarios.get(i).getFecha()));
-        usuario = String.valueOf(comentarios.get(i).getUsuario());
-        Log.i("Eventos",String.valueOf(comentarios.get(i).getComentario()));
-        comentario = String.valueOf(comentarios.get(i).getComentario());
-
-      //  idEvento = eventoDTOS.get(i).getId();
-
-        ///Alternativa a cargar imagen/////
-        //imagen=eventoDTOS.get(i).getImagenEventoBMP();
-        //////////////////////////////////
-
-        //Se ejecuta al terminar la tarea en segundo plano
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                //Toast.makeText(getApplicationContext(),eventoDTOS.size(),Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    private void traerLastIndex(){
-        //Se ejecuta antes de la tarea en segundo plano
-
-        //new Thread(new Runnable() {
-        // @Override
-        //public void run() {
-        //Se ejecuta en segundo plano
-
         EventoModel instance = EventoModel.getInstance();
+        EventoDTO eventoDTO = new EventoDTO();
+        eventoDTO.setId(idEvento);
+        comentarios  = instance.obtenerComentariosDeEvento(eventoDTO);
+        for (ComentarioDTO c:comentarios) {
+            ComentarioDTO ob2 = new ComentarioDTO(
+            c.getId(),
+            c.getComentario(),
+            c.getIdUsuario(),
+            c.getFecha(),
+            idEvento,
+            c.getUsuario());
 
-            eventos = instance.obtenerTodosLosEventosHabilitados();
-            auxindex = eventos.size();
-
-        while (auxindex == 0){
-
-        }
-
-        // comienzo loop I=1 hasta last
-        for(int j=0; j<auxindex; j++) {
-
-            if (eventos.get(j).getId() == idEvento){
-                comentarios  = instance.obtenerComentariosDeEvento(eventos.get(j));
-                auxindex2 =comentarios.size();
-                j = auxindex;
+                holder.add(ob2);
             }
 
+         return holder;
         }
-        //Se ejecuta al terminar la tarea en segundo plano
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-
-                //Toast.makeText(getApplicationContext(),eventoDTOS.size(),Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 
 }
+
