@@ -23,8 +23,11 @@ import com.gameofcode.quepinto.DTO.ComentarioDTO;
 import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.helpers.ConnectDBHelper;
 import com.gameofcode.quepinto.interfaces.IEventoPresenter;
+import com.gameofcode.quepinto.interfaces.IMainPresenter;
 import com.gameofcode.quepinto.models.EventoModel;
+import com.gameofcode.quepinto.models.UsuarioModel;
 import com.gameofcode.quepinto.presentadores.EventoPresenter;
+import com.gameofcode.quepinto.presentadores.MainPresenter;
 import com.gameofcode.quepinto.services.myadaptercomentario;
 import com.squareup.picasso.Picasso;
 
@@ -63,14 +66,72 @@ public class MainActivityEvento extends AppCompatActivity {
         verMapa = (TextView)findViewById(R.id.verMapa);
         fav =(ImageButton)findViewById(R.id.imageButton3);
         rcv= findViewById(R.id.recview);
-
+        //En caso de que lo vea una persona que no tenga usuario
+        deshabilitarAccionesSiUsuarioNoLogeado();
 
         inicializar();
 
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fav.setBackgroundColor(getResources().getColor(R.color.fav));
+                EventoDTO eventoFavorito = new EventoDTO();
+                eventoFavorito.setId(idEvento);
+                IEventoPresenter presenter = new EventoPresenter();
+                String mensaje;
+                if(saberSiEventoEsFavorito()){
+                    mensaje = "Quitando de favorito...";
+                }else{
+                    mensaje="Agregando Favorito...";
+
+                }
+                ProgressDialog progressDialog= ProgressDialog.show(view.getContext(), "",
+                        mensaje, true);
+                /////////////////////////////////////////////////////////////////
+                new Thread(new Runnable() {
+                    boolean resultado=false;
+                    @Override
+                    public void run() {
+
+                        ////////Se ejecuta en segundo plano//////////////////////
+                        if(saberSiEventoEsFavorito()){
+
+                            resultado= presenter.borrarFavorito(eventoFavorito);
+
+                        }else{
+                            resultado = presenter.agregarFavorito(eventoFavorito);
+
+
+                        }
+                        ////////////////////////////////////////////////////////
+                        //Se ejecuta al terminar la tarea en segundo plano
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(saberSiEventoEsFavorito()){
+                                    if (resultado){
+                                        fav.setBackgroundColor(getResources().getColor(R.color.fav));
+                                    }else{
+                                        Toast.makeText(view.getContext(),"Error al quitar favorito, intente nuevamente",Toast.LENGTH_LONG).show();
+                                    }
+
+                                }else{
+                                    if (resultado){
+                                        fav.setBackgroundColor(getResources().getColor(R.color.gray));
+                                    }else{
+                                        Toast.makeText(view.getContext(),"Error al agregar favorito, intente nuevamente",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                                progressDialog.dismiss();
+
+                            }
+                        });
+                        /////////////////////////////////////////////////////////
+                    }
+                }).start();
+
+
+
+
             }
         });
 
@@ -82,6 +143,9 @@ public class MainActivityEvento extends AppCompatActivity {
         txtMapa.setText(getIntent().getStringExtra("mapa"));
         txtdscEvento.setMovementMethod(new ScrollingMovementMethod());
         idEvento = getIntent().getIntExtra("idEvento",0);
+
+
+
 
         if(getIntent().getBooleanExtra("esFavorito",false)){
             Log.i("es favorito","seee");
@@ -176,8 +240,27 @@ public class MainActivityEvento extends AppCompatActivity {
             }
         });
 
+        if(UsuarioModel.getInstance().getUsuarioLogeado()!=null){
+            if(saberSiEventoEsFavorito()){
+                fav.setBackgroundColor(getResources().getColor(R.color.fav));
+            }
+        }
 
 
+
+    }
+
+    private void deshabilitarAccionesSiUsuarioNoLogeado(){
+        if(UsuarioModel.getInstance().getUsuarioLogeado()==null){
+
+            TextView tvEnviarComentario = findViewById(R.id.txtEnviarComentarios);
+            EditText etComentario = (EditText) findViewById(R.id.escribirComentario);
+            Button btnAgregarComentario = (Button) findViewById(R.id.btnAgregarComentario);
+            fav.setVisibility(View.INVISIBLE);
+            tvEnviarComentario.setVisibility(View.INVISIBLE);
+            etComentario.setVisibility(View.INVISIBLE);
+            btnAgregarComentario.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void inicializar(){
@@ -185,7 +268,6 @@ public class MainActivityEvento extends AppCompatActivity {
                 "Cargando comentarios...", true);
         new Thread(new Runnable() {
             @Override
-
             public void run() {
                 ArrayList<ComentarioDTO> holder = dataqueue();
                 runOnUiThread(new Runnable() {
@@ -227,6 +309,18 @@ public class MainActivityEvento extends AppCompatActivity {
             }
 
          return holder;
+        }
+
+        private boolean saberSiEventoEsFavorito(){
+            UsuarioModel instance = UsuarioModel.getInstance();
+            List<EventoDTO> eventoFavoritos = instance.getUsuarioLogeado().getEventoFavoritos();
+            boolean esFavorito = false;
+            for( EventoDTO evento : eventoFavoritos){
+                if(evento.getId()==this.idEvento){
+                    esFavorito=true;
+                }
+            }
+            return esFavorito;
         }
 
 }

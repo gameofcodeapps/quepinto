@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //doStaff(null);
+        doStaff(null);
         EditText UsuNom = findViewById(R.id.TxtUsuNom);
         EditText UsuPwd = findViewById(R.id.TxtUsuPas);
         BtnEven = findViewById(R.id.BtnEven);
@@ -136,11 +136,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void doStaff(View view){
+
+
         //BootReceiver.scheduleJob(getApplicationContext());
         //Log.i("md5", UsuarioModel.getInstance().encriptarMD5("pepe1234"));
-
+            /*
         //Se ejecuta antes de la tarea en segundo plano
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -180,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 byte[] imageBytes = byteArrayOutputStream.toByteArray();
                 String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
                 String resultado = "data:image/jpeg;base64,"+imageString;
-               */
+
                 //textView.setText(imageString);
                 //Log.i("llegue ",imageString);
                 try{
@@ -198,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
-        }).start();
+        }).start();**/
 
     }
 

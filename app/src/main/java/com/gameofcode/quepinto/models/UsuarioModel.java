@@ -17,6 +17,7 @@ public  class UsuarioModel {
     private static UsuarioModel instance = null;
     public  UsuarioDTO usuarioLogeado = null;
 
+
     public  UsuarioModel(){
 
     }
@@ -49,11 +50,16 @@ public  class UsuarioModel {
                 usuarioDevuelto.setDateJoined(resultSet.getString(10));
                 usuarioDevuelto.setLastName((resultSet.getString(11)));
             }
+            usuarioLogeado = usuarioDevuelto;
+            EventoModel modelEvento = EventoModel.getInstance();
+            usuarioDevuelto.setEventoFavoritos(modelEvento.obtenerEventosFavoritosUsuario());
             ConnectDBHelper.desconectarBD();
         } catch (Exception e) {
+            ConnectDBHelper.desconectarBD();
             e.printStackTrace();
+
         }
-        usuarioLogeado = usuarioDevuelto;
+
         return usuarioDevuelto;
     }
 

@@ -45,12 +45,12 @@ public class EventoModel {
 
     public List<EventoDTO> obtenerTodosLosEventosHabilitados(){
         String sql = "SELECT * FROM home_evento";
-        return obtenerEventos(sql);
+        return obtenerEventos(sql,true);
     }
 
     public List<EventoDTO> obtenerEventosCreadosPorUsuarioLogeado(){
         String sql = "SELECT * from home_evento where user_owner=\""+UsuarioModel.getInstance().getUsuarioLogeado().getUsername()+"\"";
-        return obtenerEventos(sql);
+        return obtenerEventos(sql,true);
     }
 
     public List<EventoDTO> obtenerEventosFavoritosUsuarioLogeado(){
@@ -61,15 +61,40 @@ public class EventoModel {
                 "WHERE " +
                 "favorito.idUsuario = \"" + usuarioLogeado.getId() +"\"and " +
                 "favorito.id_evento=evento.id";*/
-        String sql = "SELECT home_evento.* " +
-                "from home_evento, " +
-                "home_usuario_favorito " +
-                "WHERE " +
-                "home_usuario_favorito.idUsuario = \""+usuarioLogeado.getId()+"\" and " +
-                "home_usuario_favorito.idEvento=home_evento.id";
-        return obtenerEventos(sql);
+
+        return usuarioLogeado.getEventoFavoritos();
 
     }
+    public List<EventoDTO> obtenerEventosFavoritosUsuario(){
+        UsuarioDTO usuarioLogeado = UsuarioModel.getInstance().getUsuarioLogeado();
+        String sql = "SELECT evento.* " +
+                "from home_evento as evento, " +
+                "home_usuario_favorito as favorito " +
+                "WHERE " +
+                "favorito.idUsuario = " + usuarioLogeado.getId() +" and " +
+                "favorito.idEvento=evento.id";
+        Log.i("SQL favoritos",sql);
+        return obtenerEventos(sql,false);
+    }
+
+    public boolean borrarFavorito(EventoDTO pEvento){
+        UsuarioModel instance = UsuarioModel.getInstance();
+        String SQL = "delete from home_usuario_favorito where idEvento = "+pEvento.getId() +
+                " and idUsuario= " + instance.getUsuarioLogeado().getId();
+        try {
+            ConnectDBHelper.establecerConexionBD();
+            ConnectDBHelper.ejecutarSQLInsertUpdate(SQL);
+            instance.getUsuarioLogeado().setEventoFavoritos(this.obtenerEventosFavoritosUsuario());
+            ConnectDBHelper.desconectarBD();
+        } catch (Exception e) {
+            Log.i("error insert",e.getMessage());
+            ConnectDBHelper.desconectarBD();
+            return false;
+        }
+        return true;
+    }
+
+
 
     public List<EventoDTO> obtenerEventosPorCategoriaONombre(String pBusqueda){
         String sql = "select *  " +
@@ -78,7 +103,7 @@ public class EventoModel {
                 "(lower(category) like trim(lower(\"%"+pBusqueda+"%\"))) or " +
                 "(trim(lower(nameEvent)) like trim(lower(\"%"+pBusqueda+"%\")))";
         Log.i("SQL",sql);
-        return obtenerEventos(sql);
+        return obtenerEventos(sql,true);
 
     }
 
@@ -93,7 +118,7 @@ public class EventoModel {
                 "favorito.idEvento=evento.id";
         //String sql = "SELECT home_evento.* FROM home_evento,home_usuario_favorito where home_evento.id=home_usuario_favorito.idEvento";
        // String sql = "SELECT * FROM home_evento";
-        List<EventoDTO> eventoDTOS = obtenerEventos(sql);
+        List<EventoDTO> eventoDTOS = obtenerEventos(sql,true);
         //Log.i("cantidad",sql);
         return eventoDTOS;
 
@@ -101,12 +126,14 @@ public class EventoModel {
 
 
 
-    private List<EventoDTO> obtenerEventos(String pSQL){
+    private List<EventoDTO> obtenerEventos(String pSQL, boolean pConectarse){
 
         ResultSet resultSet = null;
         List<EventoDTO> eventos = new ArrayList<EventoDTO>();
         try {
-            ConnectDBHelper.establecerConexionBD();
+            if(pConectarse) {
+                ConnectDBHelper.establecerConexionBD();
+            }
             resultSet = ConnectDBHelper.ejecutarSQL(pSQL);
             Log.i("SQL",pSQL);
             while (resultSet.next()) {
@@ -138,9 +165,13 @@ public class EventoModel {
                 eventos.add(eventoDTO);
                 //Log.i("fecha",resultSet.getString(18));
             }
-            ConnectDBHelper.desconectarBD();
+            if(pConectarse){
+                ConnectDBHelper.desconectarBD();
+            }
         } catch (Exception e) {
-            ConnectDBHelper.desconectarBD();
+            if(pConectarse){
+                ConnectDBHelper.desconectarBD();
+            }
             e.printStackTrace();
         }
         return eventos;
@@ -172,12 +203,13 @@ public class EventoModel {
         UsuarioModel instance = UsuarioModel.getInstance();
         try {
             ConnectDBHelper.establecerConexionBD();
-            String sqlInsert="INSERT INTO home_usuario_favorito (idEvento,IdUsuario) values" +
-                    "(\""+pEvento.getId()+"\",\""
-                    +instance.getUsuarioLogeado().getId()+"\")";
+            String sqlInsert="INSERT INTO home_usuario_favorito (idEvento,idUsuario) values " +
+                    "("+pEvento.getId()+","
+                    +instance.getUsuarioLogeado().getId()+")";
             Log.i("SQL Insert",sqlInsert);
             int devuelveInsert = ConnectDBHelper.ejecutarSQLInsertUpdate(sqlInsert);
             Log.i("DevuelveInsert",String.valueOf(devuelveInsert));
+            instance.getUsuarioLogeado().setEventoFavoritos(this.obtenerEventosFavoritosUsuario());
             ConnectDBHelper.desconectarBD();
         }catch (Exception e){
             Log.i("error insert",e.getMessage());

@@ -121,7 +121,7 @@ public class BuscarsinLogueo extends AppCompatActivity {
                 Intent logout = new Intent(this,MainActivity.class);
                 startActivity(logout);
                 break;
-            case R.id.menuA:
+            case R.id.irAcerca:
                 Intent acercade = new Intent(this,MainActivityAcercade.class);
                 startActivity(acercade);
                 break;
@@ -137,7 +137,7 @@ public class BuscarsinLogueo extends AppCompatActivity {
 
 
         //traigo last index
-        traerLastIndex();
+        traerLastIndex(pBusqueda);
 
 
         // comienzo loop I=1 hasta last
@@ -203,7 +203,7 @@ public class BuscarsinLogueo extends AppCompatActivity {
         //////////////////////////////////
     }
 
-    private void traerLastIndex(){
+    private void traerLastIndex(String pBusqueda){
         //Se ejecuta antes de la tarea en segundo plano
 
         //new Thread(new Runnable() {
@@ -212,7 +212,7 @@ public class BuscarsinLogueo extends AppCompatActivity {
         //Se ejecuta en segundo plano
 
         EventoModel instance = EventoModel.getInstance();
-        eventos = instance.obtenerTodosLosEventosHabilitados();
+        eventos = instance.obtenerEventosPorCategoriaONombre(pBusqueda);
         //Log.i("Eventos","holaa");
 
         Log.i("Eventos",String.valueOf(eventos.size()));

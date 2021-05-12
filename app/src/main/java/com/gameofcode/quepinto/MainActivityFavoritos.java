@@ -29,6 +29,7 @@ public class MainActivityFavoritos extends AppCompatActivity {
     private int idEvento;
     private  List<EventoDTO> eventoDTOS;
 
+
     ////Alternativa cargar imagen/////////
     //private Bitmap imagen;
     //////////////////////////////////////
@@ -72,8 +73,14 @@ public class MainActivityFavoritos extends AppCompatActivity {
         }).start();
 
     }
-    //Cargo Menu
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        inicializar();
+    }
+
+    //Cargo Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();

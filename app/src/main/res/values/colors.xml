@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#AF0D0D</color>
     <color name="gray">#FF888888</color>
+    <color name="gray_clarito">#FF888876</color>
     <color name="pink">#f61942</color>
     <color name="fav">#D3EC0933</color>
     #f61942

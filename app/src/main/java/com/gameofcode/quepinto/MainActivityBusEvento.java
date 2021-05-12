@@ -79,7 +79,7 @@ public class MainActivityBusEvento extends AppCompatActivity {
         });
 
         inicializar("");
-
+        Log.i("favoritos",String.valueOf(UsuarioModel.getInstance().getUsuarioLogeado().getEventoFavoritos().size()));
     }
 
 

@@ -1,5 +1,7 @@
 package com.gameofcode.quepinto.DTO;
 
+import java.util.List;
+
 public class UsuarioDTO {
 
     private String id;
@@ -13,6 +15,10 @@ public class UsuarioDTO {
     private String isActive;
     private String dateJoined;
     private String lastName;
+
+
+
+    private List<EventoDTO> eventoFavoritos;
 
     public UsuarioDTO() {
         this.email="";
@@ -126,5 +132,13 @@ public class UsuarioDTO {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<EventoDTO> getEventoFavoritos() {
+        return eventoFavoritos;
+    }
+
+    public void setEventoFavoritos(List<EventoDTO> eventoFavoritos) {
+        this.eventoFavoritos = eventoFavoritos;
     }
 }
