@@ -12,7 +12,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.interfaces.IMainPresenter;
@@ -68,6 +71,11 @@ public class MainActivityFavoritos extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        if(eventoDTOS.isEmpty()){
+                            Toast.makeText(getApplicationContext(),"No hay favoritos", Toast.LENGTH_LONG).show();
+                            TextView tvSinFavoritos =  findViewById(R.id.tvSinFavoritos);
+                            tvSinFavoritos.setVisibility(View.VISIBLE);
+                        }
                         adapter = new myadapter(holder,getApplicationContext());
                         rcv.setHasFixedSize(true);
                         rcv.setAdapter(adapter);

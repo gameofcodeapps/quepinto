@@ -17,12 +17,12 @@ public class BootReceiver extends BroadcastReceiver {
     }
 
     public static void scheduleJob(Context context) {
-        ComponentName serviceComponent = new ComponentName(context, NoticacionService.class);
+        /*ComponentName serviceComponent = new ComponentName(context, NoticacionService.class);
         JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
         //builder.setPeriodic(PERIOD_MS);
         builder.setMinimumLatency(PERIOD_MS);
         builder.setOverrideDeadline(PERIOD_MS);
         JobScheduler jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
-        jobScheduler.schedule(builder.build());
+        jobScheduler.schedule(builder.build());*/
     }
 }

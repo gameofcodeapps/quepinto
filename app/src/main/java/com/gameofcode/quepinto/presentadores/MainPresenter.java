@@ -7,10 +7,13 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.DTO.UsuarioDTO;
 import com.gameofcode.quepinto.helpers.PreferenciasSistema;
 import com.gameofcode.quepinto.interfaces.IMainPresenter;
 import com.gameofcode.quepinto.models.UsuarioModel;
+
+import java.util.LinkedList;
 
 public class MainPresenter  implements IMainPresenter  {
 
@@ -48,5 +51,11 @@ public class MainPresenter  implements IMainPresenter  {
         }else{
             return true;
         }
+    }
+
+    public void crearUsuarioGoogle(){
+        UsuarioModel model = UsuarioModel.getInstance();
+        model.usuarioLogeado = new UsuarioDTO();
+        model.usuarioLogeado.setEventoFavoritos(new LinkedList<EventoDTO>());
     }
 }

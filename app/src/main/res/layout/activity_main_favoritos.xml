@@ -48,8 +48,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtorg"
 
+
         tools:context=".MainActivityFavoritos">
 
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/tvSinFavoritos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No tenes favoritos? Sola el NETFLIX y agurega alguno..."
+        app:layout_constraintBottom_toBottomOf="@+id/recview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtorg"
+        app:layout_constraintVertical_bias="0.446"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins_medium"
+        android:visibility="invisible"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
