@@ -8,12 +8,16 @@
     android:layout_marginBottom="20dp"
     >
 
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:scrollbars = "vertical"
     >
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <TextView
         android:id="@+id/TxtNomEvento"
@@ -28,72 +32,60 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
 
     <ImageButton
         android:id="@+id/share"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/imgEvento"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/TxtNomEvento"
         app:srcCompat="@android:drawable/ic_menu_share" />
-
 
     <ImageButton
         android:id="@+id/imageButton3"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_gravity="right"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/imgEvento"
         app:layout_constraintStart_toEndOf="@+id/share"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TxtNomEvento"
         app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
-
 
     <ImageButton
         android:id="@+id/ride"
         android:layout_width="42dp"
         android:layout_height="46dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="104dp"
         app:layout_constraintEnd_toStartOf="@+id/Ticket"
-        app:layout_constraintHorizontal_bias="0.928"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imageButton3"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TxtNomEvento"
         app:srcCompat="@drawable/ic_baseline_local_taxi_24" />
 
     <ImageButton
         android:id="@+id/Ticket"
         android:layout_width="46dp"
         android:layout_height="44dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginEnd="52dp"
         app:layout_constraintBottom_toTopOf="@+id/imgEvento"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.755"
-        app:layout_constraintStart_toEndOf="@+id/imageButton3"
-        app:layout_constraintTop_toTopOf="@+id/TxtNomEvento"
-        app:layout_constraintVertical_bias="0.166"
+        app:layout_constraintTop_toBottomOf="@+id/TxtNomEvento"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_baseline_add_shopping_cart_24" />
-
-
 
     <ImageView
         android:id="@+id/imgEvento"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="52dp"
         android:contentDescription="@string/ImgLogo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageButton3"
+        app:layout_constraintTop_toBottomOf="@+id/TxtNomEvento"
         app:srcCompat="@drawable/crowd" />
-
 
     <TextView
         android:id="@+id/textView4"

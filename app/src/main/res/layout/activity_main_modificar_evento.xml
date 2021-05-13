@@ -224,24 +224,6 @@
                 android:hint=""
                 android:inputType="textPersonName" />
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="center_horizontal"
-                android:text="@string/txt_map"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginTop="20dp"
-                />
-
-            <fragment
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="341dp"></fragment>
-
             <Button
                 android:id="@+id/btnModificarEvento"
                 android:layout_width="wrap_content"

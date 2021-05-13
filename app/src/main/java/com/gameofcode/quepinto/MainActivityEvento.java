@@ -1,6 +1,7 @@
 package com.gameofcode.quepinto;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,6 +61,16 @@ public class MainActivityEvento extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_evento);
+
+
+
+        //placing toolbar in place of actionbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Qué Pintó?");
+        setSupportActionBar(toolbar);
+      //  cargartool();
+
+
         imgEvento =(ImageView)findViewById(R.id.imgEvento);
         txtNomEvento =(TextView)findViewById(R.id.TxtNomEvento);
         txtFecha =(TextView)findViewById(R.id.txtFecha);
@@ -322,6 +336,68 @@ public class MainActivityEvento extends AppCompatActivity {
             }
             return esFavorito;
         }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if(UsuarioModel.getInstance().getUsuarioLogeado()==null){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu2, menu);
+        return true;
+        }else{
+            MenuInflater menuInflater = getMenuInflater();
+            menuInflater.inflate(R.menu.menu, menu);
+            return true;
+        }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.irlogeo:
+                Intent irlogeo = new Intent(this,MainActivityRegUsuario.class);
+                startActivity(irlogeo);
+                break;
+
+            case R.id.itSalir:
+                Intent salir = new Intent(this,MainActivity.class);
+                startActivity(salir);
+                break;
+            case R.id.irAcerca:
+                Intent acercade = new Intent(this,MainActivityAcercade.class);
+                startActivity(acercade);
+                break;
+            case R.id.menuC:
+                Intent micuenta = new Intent(this,MainActivityPerfil.class);
+                startActivity(micuenta);
+                break;
+
+            case R.id.menuF:
+                Intent favoritos = new Intent(this,MainActivityFavoritos.class);
+                startActivity(favoritos);
+                break;
+
+            case R.id.mencCr:
+                Intent creevento = new Intent(this,MainActivityRegEvento.class);
+                startActivity(creevento);
+                break;
+            case R.id.menuL:
+                //So cierra sesion borro los datos grabados
+                UsuarioModel.getInstance().borrarUsuarioLogeado(getApplicationContext());
+                Intent logout = new Intent(this,MainActivity.class);
+                startActivity(logout);
+                break;
+            case R.id.menuA:
+                Intent acerca = new Intent(this,MainActivityAcercade.class);
+                startActivity(acerca);
+                break;
+            case R.id.menuM:
+                Intent miseventos = new Intent(this,MainActivityMisEventosCreados.class);
+                startActivity(miseventos);
+                break;
+        }
+        return true;
+    }
 
 }
 
