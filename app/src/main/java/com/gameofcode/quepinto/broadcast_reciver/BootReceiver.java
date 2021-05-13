@@ -10,7 +10,7 @@ import android.content.Intent;
 import com.gameofcode.quepinto.services.NoticacionService;
 
 public class BootReceiver extends BroadcastReceiver {
-    private static final int PERIOD_MS = 15000;
+    private static final int PERIOD_MS = 30000;
     @Override
     public void onReceive(Context context, Intent intent) {
         scheduleJob(context);

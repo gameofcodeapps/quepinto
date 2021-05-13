@@ -1,10 +1,12 @@
 package com.gameofcode.quepinto.models;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.gameofcode.quepinto.DTO.EventoDTO;
 import com.gameofcode.quepinto.DTO.UsuarioDTO;
 import com.gameofcode.quepinto.helpers.ConnectDBHelper;
+import com.gameofcode.quepinto.helpers.PreferenciasSistema;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -282,6 +284,12 @@ public  class UsuarioModel {
 
         return true;
 
+    }
+
+    public void borrarUsuarioLogeado(Context context){
+        PreferenciasSistema.agregarPreferencia(context,"usuario","");
+        PreferenciasSistema.agregarPreferencia(context,"password","pPassword");
+        this.usuarioLogeado=null;
     }
 
 

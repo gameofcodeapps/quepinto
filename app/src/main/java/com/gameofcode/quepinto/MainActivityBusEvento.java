@@ -134,8 +134,7 @@ public class MainActivityBusEvento extends AppCompatActivity {
                 break;
             case R.id.menuL:
                 //So cierra sesion borro los datos grabados
-                PreferenciasSistema.agregarPreferencia(getApplicationContext(),"usuario","");
-                PreferenciasSistema.agregarPreferencia(getApplicationContext(),"password","pPassword");
+                UsuarioModel.getInstance().borrarUsuarioLogeado(getApplicationContext());
                 Intent logout = new Intent(this,MainActivity.class);
                 startActivity(logout);
                 break;

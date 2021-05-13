@@ -15,7 +15,9 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.gameofcode.quepinto.DTO.EventoDTO;
+import com.gameofcode.quepinto.interfaces.IMainPresenter;
 import com.gameofcode.quepinto.models.EventoModel;
+import com.gameofcode.quepinto.presentadores.MainPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,7 @@ public class MainActivityFavoritos extends AppCompatActivity {
     myadapter adapter;
     private int idEvento;
     private  List<EventoDTO> eventoDTOS;
-
+    private boolean accesoPorNotificacion = false;
 
     ////Alternativa cargar imagen/////////
     //private Bitmap imagen;
@@ -43,9 +45,9 @@ public class MainActivityFavoritos extends AppCompatActivity {
 
         //pongo Título
         toolbar.setTitle("Qué Pintó?");
+        accesoPorNotificacion = getIntent().getBooleanExtra("accesoPorNotificacion",false);
 
         inicializar();
-
         //placing toolbar in place of actionbar
         setSupportActionBar(toolbar);
     }
@@ -56,6 +58,12 @@ public class MainActivityFavoritos extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                if(accesoPorNotificacion){
+                    IMainPresenter presenter = new MainPresenter();
+                    presenter.validarUsuario("","",getApplicationContext());
+                    Log.i("en favoritos","validando usuario");
+                }
+                Log.i("en favoritos","cargando favoritos");
                 ArrayList<Model> holder = dataqueue();
                 runOnUiThread(new Runnable() {
                     @Override

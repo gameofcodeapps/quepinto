@@ -81,13 +81,13 @@ public class MainActivity extends AppCompatActivity {
         IMainPresenter iMainPresenter = new MainPresenter();
         //Si existe usuario grabado inicia sesion automaticamente
         if(iMainPresenter.existeUsuarioGrabado(getApplicationContext())){
-            //logUsuario(null);
+           // logUsuario(null);
         }
-
+        //BootReceiver.scheduleJob(getApplicationContext());
        // PreferenciasSistema.getInstance().obtener().getString("nombre","lalala");
        // SharedPreferences preferenciasSistema = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
        // preferenciasSistema.getString("nombre","lalala");
-        PreferenciasSistema.leerPreferencia(getApplicationContext(),"name");
+        //PreferenciasSistema.leerPreferencia(getApplicationContext(),"name");
 
     }
     public void buscarEventos(View view) {

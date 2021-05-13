@@ -3,8 +3,10 @@ package com.gameofcode.quepinto.services;
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,6 +19,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.gameofcode.quepinto.DTO.EventoDTO;
+import com.gameofcode.quepinto.MainActivityFavoritos;
 import com.gameofcode.quepinto.R;
 import com.gameofcode.quepinto.broadcast_reciver.BootReceiver;
 import com.gameofcode.quepinto.helpers.PreferenciasSistema;
@@ -31,7 +34,15 @@ public class NoticacionService extends JobService {
     public boolean onStartJob(JobParameters params) {
         //Log.d(this.getClass().getSimpleName(),"onStartJob");
         String usuario = PreferenciasSistema.leerPreferencia(getApplicationContext(), "usuario");
-
+        Intent notifyIntent = new Intent(this, MainActivityFavoritos.class);
+        notifyIntent.putExtra("accesoPorNotificacion",true);
+// Set the Activity to start in a new, empty task
+        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+// Create the PendingIntent
+        PendingIntent notifyPendingIntent = PendingIntent.getActivity(
+                getApplicationContext(), 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT
+        );
         Handler getHandler = new Handler(getMainLooper()) {
             @SuppressLint("HandlerLeak")
             @Override
@@ -40,10 +51,14 @@ public class NoticacionService extends JobService {
                 createNotificationChannel();
                 List<EventoDTO> listaFavoritos = (List<EventoDTO>) msg.obj;
                 if(listaFavoritos.size()>0){
+
+
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),"QuePinto")
                             .setSmallIcon(R.mipmap.ic_launcher)
                             .setContentTitle("Tenes "+String.valueOf(listaFavoritos.size()) +" eventos favoritos proximos")
                             .setContentText("Hace click para ver tus favoritos")
+                            .setContentIntent(notifyPendingIntent)
+
                             .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                     NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
                     // notificationId is a unique int for each notification that you must define

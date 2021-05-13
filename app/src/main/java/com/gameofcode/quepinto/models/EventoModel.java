@@ -308,8 +308,9 @@ public class EventoModel {
         try {
             ConnectDBHelper.establecerConexionBD();
             if(pEvento.getImagenEventoBMP()!= null){
-                String nombreFoto=pEvento.getId()+"_"+(pEvento.getId()+1)+"_"+pEvento.getNombreEvento()+".jpeg";
-                nombreFoto.replaceAll("\\s+","_");
+                String nombreFoto=pEvento.getId()+"_"+String.valueOf(Math.random()*100000).substring(0,5)+"_"+pEvento.getNombreEvento()+".jpeg";
+                Log.i("nombre_foto",nombreFoto);
+                nombreFoto.replaceAll(" ","_");
                 sqlInsert="UPDATE home_evento SET " +
                         "nameEvent=\""+pEvento.getNombreEvento()+"\", "+
                         "organizer=\""+pEvento.getOrganizador()+"\", "+

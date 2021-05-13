@@ -9,4 +9,5 @@ public interface IMainPresenter {
 
     public boolean validarUsuario(String pUsuarrio, String pPassword,Context context);
     public boolean existeUsuarioGrabado(Context context);
+
 }

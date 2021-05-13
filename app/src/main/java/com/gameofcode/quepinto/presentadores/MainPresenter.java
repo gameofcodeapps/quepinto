@@ -30,7 +30,6 @@ public class MainPresenter  implements IMainPresenter  {
         }else{
             usuarioDTO=instance.obtenerDatosUsuario(usuarioGrabado,passwordGrabado);
         }
-
         if (usuarioDTO.getUsername()==null){
             return false;
         }else{
